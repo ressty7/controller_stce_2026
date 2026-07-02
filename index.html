@@ -7,43 +7,43 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
-:root {
-  --navy:#0d1f40;--navy2:#1a3260;--navy3:#253f73;
-  --accent:#2563eb;--accent2:#60a5fa;--accent-pale:#dbeafe;
-  --teal:#0d9488;--teal-p:#ccfbf1;--amber:#d97706;--amber-p:#fef3c7;
-  --red:#dc2626;--red-p:#fee2e2;--green:#16a34a;--green-p:#dcfce7;
-  --purple:#7c3aed;--purple-p:#ede9fe;--pink:#db2777;--pink-p:#fce7f3;
+:root{
+  --navy:#0d1f40;--navy2:#1a3260;--accent:#2563eb;--accent2:#60a5fa;--apal:#dbeafe;
+  --teal:#0d9488;--tealp:#ccfbf1;--amb:#d97706;--ambp:#fef3c7;
+  --red:#dc2626;--redp:#fee2e2;--grn:#16a34a;--grnp:#dcfce7;
+  --pur:#7c3aed;--purp:#ede9fe;--pink:#db2777;--pinkp:#fce7f3;
   --tx:#0f172a;--txm:#475569;--txl:#94a3b8;
   --bd:#e2e8f0;--surf:#f8fafc;--wh:#fff;
+  --sh:0 1px 3px rgba(0,0,0,.07);--shmd:0 4px 6px rgba(0,0,0,.06);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#f1f5f9;color:var(--tx);font-size:14px;line-height:1.5;}
 
 /* SIDEBAR */
-.sb{position:fixed;left:0;top:0;width:230px;height:100vh;background:var(--navy);color:#fff;display:flex;flex-direction:column;z-index:100;overflow-y:auto;}
+.sb{position:fixed;left:0;top:0;width:228px;height:100vh;background:var(--navy);color:#fff;display:flex;flex-direction:column;z-index:100;overflow-y:auto;}
 .sb-logo{padding:16px 18px 12px;border-bottom:1px solid rgba(255,255,255,.1);}
-.sb-logo h1{font-size:15px;font-weight:700;letter-spacing:.3px;}
-.sb-logo p{font-size:10px;color:rgba(255,255,255,.45);margin-top:2px;}
-.sb-role{margin:10px 14px;padding:7px 10px;background:rgba(37,99,235,.2);border-radius:7px;border:1px solid rgba(37,99,235,.35);font-size:10px;color:var(--accent2);font-weight:700;text-transform:uppercase;letter-spacing:.4px;}
+.sb-logo h1{font-size:15px;font-weight:700;}
+.sb-logo p{font-size:10px;color:rgba(255,255,255,.4);margin-top:2px;}
+.sb-role{margin:10px 14px;padding:7px 10px;background:rgba(37,99,235,.2);border-radius:7px;border:1px solid rgba(37,99,235,.3);font-size:10px;color:var(--accent2);font-weight:700;text-transform:uppercase;letter-spacing:.4px;}
 .sb-nav{flex:1;padding:6px 0;}
 .nsec{font-size:10px;font-weight:700;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.8px;padding:12px 18px 3px;}
 .ni{display:flex;align-items:center;gap:8px;padding:8px 18px;cursor:pointer;color:rgba(255,255,255,.65);font-size:12px;font-weight:500;transition:all .15s;border-left:3px solid transparent;}
 .ni:hover{background:rgba(255,255,255,.06);color:#fff;}
 .ni.active{background:rgba(37,99,235,.18);color:#fff;border-left-color:var(--accent);}
-.ni-ic{font-size:14px;width:18px;text-align:center;}
-.sb-foot{padding:12px 18px;border-top:1px solid rgba(255,255,255,.1);font-size:10px;color:rgba(255,255,255,.35);}
+.nic{font-size:14px;width:18px;text-align:center;}
+.sb-foot{padding:12px 18px;border-top:1px solid rgba(255,255,255,.1);font-size:10px;color:rgba(255,255,255,.3);}
 
 /* MAIN */
-.main{margin-left:230px;min-height:100vh;}
-.topbar{background:var(--wh);border-bottom:1px solid var(--bd);padding:0 24px;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;}
-.topbar-title{font-size:15px;font-weight:700;color:var(--navy);}
-.topbar-r{display:flex;align-items:center;gap:10px;}
+.main{margin-left:228px;min-height:100vh;}
+.topbar{background:var(--wh);border-bottom:1px solid var(--bd);padding:0 22px;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:var(--sh);}
+.tb-title{font-size:15px;font-weight:700;color:var(--navy);}
+.tb-r{display:flex;align-items:center;gap:8px;}
 .bd-date{font-size:11px;color:var(--txm);padding:3px 9px;background:var(--surf);border:1px solid var(--bd);border-radius:20px;}
-.content{padding:20px 24px;}
+.content{padding:20px 22px;}
 .page{display:none;}.page.active{display:block;}
 
 /* CARDS */
-.card{background:var(--wh);border:1px solid var(--bd);border-radius:12px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.06);}
+.card{background:var(--wh);border:1px solid var(--bd);border-radius:12px;padding:18px;box-shadow:var(--sh);}
 .ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
 .ct{font-size:13px;font-weight:700;color:var(--navy);}
 .csub{font-size:11px;color:var(--txm);margin-top:1px;}
@@ -51,14 +51,14 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#f1f5f9;color:var(--
 /* METRICS */
 .mg4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;}
 .mg3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;}
-.mc{background:var(--wh);border:1px solid var(--bd);border-radius:11px;padding:14px 16px;}
+.mc{background:var(--wh);border:1px solid var(--bd);border-radius:11px;padding:14px 16px;box-shadow:var(--sh);}
 .ml{font-size:10px;font-weight:700;color:var(--txm);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;}
 .mv{font-size:20px;font-weight:800;color:var(--navy);line-height:1;}
 .msub{font-size:10px;color:var(--txl);margin-top:3px;}
 .mind{display:inline-flex;align-items:center;gap:2px;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;margin-top:3px;}
-.ig{background:var(--green-p);color:var(--green);}
-.ir{background:var(--red-p);color:var(--red);}
-.ia{background:var(--amber-p);color:var(--amber);}
+.ig{background:var(--grnp);color:var(--grn);}
+.ir{background:var(--redp);color:var(--red);}
+.ia{background:var(--ambp);color:var(--amb);}
 
 /* GRIDS */
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px;}
@@ -67,8 +67,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#f1f5f9;color:var(--
 
 /* TABLES */
 table{width:100%;border-collapse:collapse;}
-thead th{font-size:10px;font-weight:700;color:var(--txm);text-transform:uppercase;letter-spacing:.4px;padding:7px 10px;background:var(--surf);border-bottom:1px solid var(--bd);text-align:left;}
-tbody td{padding:9px 10px;border-bottom:1px solid #f1f5f9;font-size:12px;color:var(--tx);vertical-align:middle;}
+thead th{font-size:10px;font-weight:700;color:var(--txm);text-transform:uppercase;letter-spacing:.4px;padding:7px 10px;background:var(--surf);border-bottom:1px solid var(--bd);text-align:left;white-space:nowrap;}
+tbody td{padding:8px 10px;border-bottom:1px solid #f1f5f9;font-size:12px;color:var(--tx);vertical-align:middle;}
 tbody tr:hover{background:var(--surf);}
 tbody tr:last-child td{border-bottom:none;}
 .tr{text-align:right;}.tc{text-align:center;}
@@ -86,21 +86,19 @@ textarea{resize:vertical;min-height:60px;}
 .btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;border:none;transition:all .15s;font-family:inherit;}
 .bp{background:var(--accent);color:#fff;}.bp:hover{background:#1d4ed8;}
 .bs{background:var(--surf);color:var(--tx);border:1px solid var(--bd);}.bs:hover{background:var(--bd);}
-.bd2{background:var(--red-p);color:var(--red);border:1px solid #fca5a5;}
-.bg2{background:var(--green-p);color:var(--green);border:1px solid #86efac;}
+.bd2{background:var(--redp);color:var(--red);border:1px solid #fca5a5;}
+.bg2{background:var(--grnp);color:var(--grn);border:1px solid #86efac;}
 .bsm{padding:4px 9px;font-size:11px;}
 .bg{display:flex;gap:7px;flex-wrap:wrap;}
 
 /* BADGES */
 .badge{display:inline-flex;align-items:center;padding:2px 7px;border-radius:20px;font-size:10px;font-weight:700;}
-.bn{background:var(--navy2);color:#e0e7ff;}
-.bgreen{background:var(--green-p);color:var(--green);}
-.bred{background:var(--red-p);color:var(--red);}
-.bamb{background:var(--amber-p);color:var(--amber);}
-.bblue{background:var(--accent-pale);color:var(--accent);}
-.bpur{background:var(--purple-p);color:var(--purple);}
+.bn{background:var(--navy2);color:#e0e7ff;}.bgreen{background:var(--grnp);color:var(--grn);}
+.bred{background:var(--redp);color:var(--red);}.bamb{background:var(--ambp);color:var(--amb);}
+.bblue{background:var(--apal);color:var(--accent);}.bpur{background:var(--purp);color:var(--pur);}
 .bgray{background:var(--surf);color:var(--txm);border:1px solid var(--bd);}
-.bpink{background:var(--pink-p);color:var(--pink);}
+.bpink{background:var(--pinkp);color:var(--pink);}
+.bteal{background:var(--tealp);color:var(--teal);}
 
 /* PROGRESS */
 .pw{background:#f1f5f9;border-radius:100px;height:7px;overflow:hidden;}
@@ -108,50 +106,51 @@ textarea{resize:vertical;min-height:60px;}
 
 /* ALERTS */
 .alert{padding:10px 14px;border-radius:8px;font-size:12px;margin-bottom:14px;display:flex;align-items:flex-start;gap:7px;}
-.ai{background:var(--accent-pale);color:#1e40af;border:1px solid #bfdbfe;}
-.aw{background:var(--amber-p);color:#92400e;border:1px solid #fcd34d;}
-.ar{background:var(--red-p);color:#991b1b;border:1px solid #fca5a5;}
-.ag{background:var(--green-p);color:#166534;border:1px solid #86efac;}
+.ai{background:var(--apal);color:#1e40af;border:1px solid #bfdbfe;}
+.aw{background:var(--ambp);color:#92400e;border:1px solid #fcd34d;}
+.ar{background:var(--redp);color:#991b1b;border:1px solid #fca5a5;}
+.ag{background:var(--grnp);color:#166534;border:1px solid #86efac;}
 
 /* MISC */
 .stitle{font-size:17px;font-weight:800;color:var(--navy);margin-bottom:3px;}
 .ssub{font-size:12px;color:var(--txm);margin-bottom:18px;}
-.divider{border:none;border-top:1px solid var(--bd);margin:16px 0;}
+.divider{border:none;border-top:1px solid var(--bd);margin:14px 0;}
 .cw{position:relative;width:100%;}
 .ts{overflow-x:auto;}
 
 /* SCENARIO LEGEND */
-.scen-leg{display:flex;gap:14px;margin-bottom:10px;flex-wrap:wrap;}
-.scen-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--txm);}
-.scen-dot{width:12px;height:12px;border-radius:3px;}
+.scen-leg{display:flex;gap:12px;margin-bottom:10px;flex-wrap:wrap;}
+.sl-item{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--txm);}
+.sl-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0;}
 
 /* IMPORT DROP */
-.drop-zone{border:2px dashed var(--bd);border-radius:10px;padding:24px;text-align:center;cursor:pointer;transition:all .2s;}
-.drop-zone:hover,.drop-zone.drag{border-color:var(--accent);background:var(--accent-pale);}
-.drop-zone p{font-size:12px;color:var(--txm);}
+.drop-zone{border:2px dashed var(--bd);border-radius:10px;padding:22px;text-align:center;cursor:pointer;transition:all .2s;}
+.drop-zone:hover,.drop-zone.drag{border-color:var(--accent);background:var(--apal);}
 
 /* GFORM BADGE */
-.gf-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#e8f0fe;border:1px solid #c5d3f7;border-radius:6px;font-size:11px;color:#1a56db;font-weight:600;}
+.gfb{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:#e8f0fe;border:1px solid #c5d3f7;border-radius:6px;font-size:11px;color:#1a56db;font-weight:600;}
 
 /* TODO */
 .todo-item{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #f1f5f9;cursor:pointer;}
 .todo-item:last-child{border:none;}
 .todo-cb{width:15px;height:15px;border-radius:3px;border:1.5px solid var(--bd);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;transition:all .15s;}
-.todo-cb.done{background:var(--green);border-color:var(--green);color:#fff;}
-.todo-text{font-size:12px;transition:color .15s;}
+.todo-cb.done{background:var(--grn);border-color:var(--grn);color:#fff;}
+.todo-text{font-size:12px;transition:color .15s;flex:1;}
 .todo-text.done{color:var(--txl);text-decoration:line-through;}
-.todo-tag{margin-left:auto;flex-shrink:0;}
 
-/* DOPA GRID */
+/* DOPA */
 .dg{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
-.di{padding:8px;border:1px solid var(--bd);border-radius:7px;text-align:center;cursor:pointer;transition:all .15s;}
-.di.lunas{background:var(--green-p);border-color:#86efac;}
-.di.belum{background:var(--red-p);border-color:#fca5a5;}
-.di p{font-size:10px;font-weight:700;}
+.di{padding:8px;border:1px solid var(--bd);border-radius:7px;text-align:center;cursor:pointer;transition:all .15s;user-select:none;}
+.di.lunas{background:var(--grnp);border-color:#86efac;}
+.di.belum{background:var(--redp);border-color:#fca5a5;}
+.di p{font-size:10px;font-weight:700;line-height:1.3;margin-bottom:2px;}
 .di span{font-size:9px;color:var(--txm);}
 
-/* SCENARIO COMPARE */
-.sc-bar{height:100%;min-height:6px;}
+/* TIER BADGES */
+.tier-po{background:#fef9c3;color:#854d0e;border:1px solid #fde047;padding:2px 6px;border-radius:4px;font-size:9px;font-weight:800;}
+.tier-pi{background:#ede9fe;color:#6d28d9;border:1px solid #c4b5fd;padding:2px 6px;border-radius:4px;font-size:9px;font-weight:800;}
+.tier-bph{background:#dbeafe;color:#1e40af;border:1px solid #93c5fd;padding:2px 6px;border-radius:4px;font-size:9px;font-weight:800;}
+.tier-staf{background:#f3f4f6;color:#374151;border:1px solid #d1d5db;padding:2px 6px;border-radius:4px;font-size:9px;font-weight:800;}
 
 @media(max-width:1200px){.mg4{grid-template-columns:repeat(2,1fr);}.g2,.g6040,.g3{grid-template-columns:1fr;}.dg{grid-template-columns:repeat(3,1fr);}}
 </style>
@@ -162,817 +161,794 @@ textarea{resize:vertical;min-height:60px;}
 <nav class="sb">
   <div class="sb-logo">
     <h1>⚙ STCE 2026</h1>
-    <p>Ekosistem Keuangan — v2.0</p>
+    <p>Ekosistem Keuangan — v3.0</p>
   </div>
   <div class="sb-role">🏦 Bendahara Controller</div>
   <div class="sb-nav">
     <div class="nsec">Utama</div>
-    <div class="ni active" onclick="showPage('dashboard',this)"><span class="ni-ic">📊</span>Dashboard</div>
-    <div class="ni" onclick="showPage('manual',this)"><span class="ni-ic">📖</span>Manual & Setup</div>
-    <div class="ni" onclick="showPage('todo',this)"><span class="ni-ic">✅</span>To-Do Timeline</div>
+    <div class="ni active" onclick="nav('dashboard',this)"><span class="nic">📊</span>Dashboard</div>
+    <div class="ni" onclick="nav('manual',this)"><span class="nic">📖</span>Manual & Setup</div>
+    <div class="ni" onclick="nav('todo',this)"><span class="nic">✅</span>To-Do Timeline</div>
     <div class="nsec">Keuangan</div>
-    <div class="ni" onclick="showPage('rab',this)"><span class="ni-ic">📋</span>RAB & Skenario</div>
-    <div class="ni" onclick="showPage('pemasukan',this)"><span class="ni-ic">📈</span>Pemasukan</div>
-    <div class="ni" onclick="showPage('pengeluaran',this)"><span class="ni-ic">📉</span>Pengeluaran</div>
-    <div class="ni" onclick="showPage('laporan',this)"><span class="ni-ic">📑</span>Laporan Keuangan</div>
+    <div class="ni" onclick="nav('rab',this)"><span class="nic">📋</span>RAB & Skenario</div>
+    <div class="ni" onclick="nav('pemasukan',this)"><span class="nic">📈</span>Pemasukan</div>
+    <div class="ni" onclick="nav('pengeluaran',this)"><span class="nic">📉</span>Pengeluaran</div>
+    <div class="ni" onclick="nav('laporan',this)"><span class="nic">📑</span>Laporan Keuangan</div>
     <div class="nsec">Administrasi</div>
-    <div class="ni" onclick="showPage('dopa',this)"><span class="ni-ic">💳</span>DOPA Panitia</div>
-    <div class="ni" onclick="showPage('reimburse',this)"><span class="ni-ic">🔄</span>Reimburse & DOPA Form</div>
-    <div class="ni" onclick="showPage('arsip',this)"><span class="ni-ic">🗂</span>Arsip Transaksi</div>
-    <div class="ni" onclick="showPage('spo',this)"><span class="ni-ic">📜</span>SPO & Parameter</div>
+    <div class="ni" onclick="nav('dopa',this)"><span class="nic">💳</span>DOPA Panitia</div>
+    <div class="ni" onclick="nav('reimburse',this)"><span class="nic">🔄</span>Reimburse & Form</div>
+    <div class="ni" onclick="nav('arsip',this)"><span class="nic">🗂</span>Arsip Transaksi</div>
+    <div class="ni" onclick="nav('spo',this)"><span class="nic">📜</span>SPO & Parameter</div>
   </div>
-  <div class="sb-foot">STCE 2026 — BEM FMIPA UI · Bencon: Resty Novika</div>
+  <div class="sb-foot">STCE 2026 — BEM FMIPA UI · Bencon: Resty Novika Febrilia</div>
 </nav>
 
 <!-- MAIN -->
 <main class="main">
   <div class="topbar">
-    <div class="topbar-title" id="pageTitle">Dashboard Keuangan</div>
-    <div class="topbar-r">
+    <div class="tb-title" id="pageTitle">Dashboard Keuangan</div>
+    <div class="tb-r">
       <div class="bd-date" id="currDate"></div>
-      <button class="btn bp bsm" onclick="exportCSV()">⬇ Export CSV</button>
       <button class="btn bs bsm" onclick="syncGForm()">🔄 Sync G-Form</button>
+      <button class="btn bp bsm" onclick="exportCSV()">⬇ Export CSV</button>
     </div>
   </div>
 
   <div class="content">
 
-    <!-- ===== MANUAL ===== -->
-    <div class="page" id="page-manual">
-      <div class="stitle">📖 Manual Penggunaan & Setup</div>
-      <div class="ssub">Baca ini terlebih dahulu. Semua data tersimpan otomatis di browser.</div>
-
-      <div class="alert ai">ℹ <strong>STCE 2026 — Dashboard Bendahara Controller</strong> oleh Resty Novika Febrilia. BNI a.n Resty: <strong>1988428515</strong></div>
-
-      <div class="g2">
-        <div class="card">
-          <div class="ch"><div class="ct">🚀 Quick Start (5 Langkah)</div></div>
-          <div style="display:flex;flex-direction:column;gap:10px;">
-            <div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd);">
-              <div style="width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
-              <div><p style="font-size:12px;font-weight:700;color:var(--navy);">Import RAB dari Excel</p><p style="font-size:11px;color:var(--txm);">Masuk ke menu <strong>RAB & Skenario</strong> → klik zona import → upload file Excel RAB yang sudah disusun. Sistem otomatis membaca 3 skenario (Optimis/Realistis/Pesimis).</p></div>
-            </div>
-            <div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd);">
-              <div style="width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
-              <div><p style="font-size:12px;font-weight:700;color:var(--navy);">Hubungkan Google Form Responses</p><p style="font-size:11px;color:var(--txm);">Di menu <strong>Reimburse & DOPA Form</strong> → masukkan ID Spreadsheet Google Form Responses → klik Hubungkan. Klik tombol <strong>🔄 Sync</strong> kapan saja untuk update data terbaru.</p></div>
-            </div>
-            <div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd);">
-              <div style="width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
-              <div><p style="font-size:12px;font-weight:700;color:var(--navy);">Isi DOPA Panitia</p><p style="font-size:11px;color:var(--txm);">Di menu <strong>DOPA Panitia</strong> → klik nama untuk toggle lunas/belum. Target 95% lunas sebelum Main Event STCE 2026.</p></div>
-            </div>
-            <div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd);">
-              <div style="width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</div>
-              <div><p style="font-size:12px;font-weight:700;color:var(--navy);">Catat Pemasukan & Pengeluaran</p><p style="font-size:11px;color:var(--txm);">Setiap transaksi langsung diinput. Dashboard otomatis update grafik & indikator RAB vs Aktual.</p></div>
-            </div>
-            <div style="display:flex;gap:10px;padding:8px 0;">
-              <div style="width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;">5</div>
-              <div><p style="font-size:12px;font-weight:700;color:var(--navy);">Monitor Laporan Keuangan</p><p style="font-size:11px;color:var(--txm);">Menu <strong>Laporan Keuangan</strong> menampilkan grafik komparasi skenario (Optimis/Realistis/Pesimis) vs Aktual secara real-time.</p></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="ch"><div class="ct">🔗 Integrasi Google Form</div></div>
-          <div class="alert ai" style="margin-bottom:12px;">ℹ Google Form DOPA, Reimburse, dan Disbursement terintegrasi otomatis via Google Sheets CSV export.</div>
-          <div class="fg">
-            <label class="fl">ID Google Spreadsheet Responses</label>
-            <input type="text" id="gfSheetId" placeholder="1FiyXDHGb1jOLD1jm7wz_9DOkrYFjFlK8mh5GjTWZkRc" value="">
-            <p style="font-size:10px;color:var(--txm);margin-top:3px;">Ambil dari URL: …/spreadsheets/d/<strong>[ID INI]</strong>/edit…</p>
-          </div>
-          <div class="fg">
-            <label class="fl">GID Sheet (tab responses)</label>
-            <input type="text" id="gfGid" placeholder="1244319623" value="">
-          </div>
-          <div class="fg">
-            <label class="fl">Mapping Kolom Google Form → Dashboard</label>
-            <div style="background:var(--surf);border:1px solid var(--bd);border-radius:7px;padding:10px;font-size:11px;color:var(--txm);">
-              Sistem akan mendeteksi otomatis kolom berdasarkan keyword:<br>
-              <strong>Nama</strong> → nama pengaju · <strong>Jenis</strong> → reimburse/disbursement · <strong>Jumlah</strong> → nominal · <strong>Keterangan/Keperluan</strong> → deskripsi · <strong>Bukti</strong> → kode/link bukti
-            </div>
-          </div>
-          <button class="btn bp" onclick="saveGFormConfig()">💾 Simpan & Hubungkan</button>
-          <div id="gfStatus" style="margin-top:8px;"></div>
-
-          <hr class="divider">
-          <div class="ch" style="margin-bottom:8px;"><div class="ct">🔑 Cara Akses Google Sheets</div></div>
-          <p style="font-size:11px;color:var(--txm);line-height:1.6;">
-            1. Buka Google Sheets responses → File → Share → <strong>Anyone with the link can view</strong><br>
-            2. Klik Sync untuk mengambil data terbaru (format CSV publik)<br>
-            3. Data masuk otomatis ke tabel Reimburse & Disbursement
-          </p>
-        </div>
-      </div>
-
+  <!-- ===== MANUAL ===== -->
+  <div class="page" id="page-manual">
+    <div class="stitle">📖 Manual & Setup</div>
+    <div class="ssub">Panduan penggunaan Ekosistem Keuangan STCE 2026. Semua data disimpan otomatis di browser.</div>
+    <div class="alert ai">ℹ Rekening STCE 2026: <strong>BNI a.n Resty Novika Febrilia — 1988428515</strong></div>
+    <div class="g2">
       <div class="card">
-        <div class="ch"><div class="ct">🎨 Panduan Kode Warna & Notasi</div></div>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
-          <div style="padding:10px;background:var(--surf);border-radius:7px;border:1px solid var(--bd);">
-            <span class="badge bgreen" style="margin-bottom:6px;display:inline-flex;">Hijau</span>
-            <p style="font-size:11px;color:var(--txm);">Aman / On-track / Lunas / Di bawah RAB</p>
+        <div class="ch"><div class="ct">🚀 Quick Start</div></div>
+        <div style="display:flex;flex-direction:column;gap:0;">
+          <div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd);">
+            <div style="width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">1</div>
+            <div><p style="font-size:12px;font-weight:700;color:var(--navy);">RAB sudah terisi otomatis</p><p style="font-size:11px;color:var(--txm);">RAB STCE 2026 dari Excel Resty sudah di-preload. Cek di menu <strong>RAB & Skenario</strong>. Bisa juga re-import file Excel terbaru kapan saja.</p></div>
           </div>
-          <div style="padding:10px;background:var(--surf);border-radius:7px;border:1px solid var(--bd);">
-            <span class="badge bamb" style="margin-bottom:6px;display:inline-flex;">Kuning</span>
-            <p style="font-size:11px;color:var(--txm);">Perhatian / 70-89% target / Pending</p>
+          <div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd);">
+            <div style="width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">2</div>
+            <div><p style="font-size:12px;font-weight:700;color:var(--navy);">DOPA sudah terisi nama panitia</p><p style="font-size:11px;color:var(--txm);">Daftar PI + BPH sudah otomatis masuk ke DOPA tracker dengan nominal yang sesuai tier. Klik nama untuk toggle lunas/belum.</p></div>
           </div>
-          <div style="padding:10px;background:var(--surf);border-radius:7px;border:1px solid var(--bd);">
-            <span class="badge bred" style="margin-bottom:6px;display:inline-flex;">Merah</span>
-            <p style="font-size:11px;color:var(--red);">Kritis / Over budget / Overdue / Belum</p>
+          <div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd);">
+            <div style="width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">3</div>
+            <div><p style="font-size:12px;font-weight:700;color:var(--navy);">Hubungkan Google Form</p><p style="font-size:11px;color:var(--txm);">Isi ID Spreadsheet di bawah → klik Simpan → klik <strong>🔄 Sync G-Form</strong> kapan saja untuk tarik data terbaru (DOPA, Reimburse, Disbursement).</p></div>
           </div>
-          <div style="padding:10px;background:var(--surf);border-radius:7px;border:1px solid var(--bd);">
-            <span class="badge bblue" style="margin-bottom:6px;display:inline-flex;">Biru</span>
-            <p style="font-size:11px;color:var(--txm);">Skenario realistis / Info / In-progress</p>
+          <div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd);">
+            <div style="width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">4</div>
+            <div><p style="font-size:12px;font-weight:700;color:var(--navy);">Catat transaksi masuk/keluar</p><p style="font-size:11px;color:var(--txm);">Menu <strong>Pemasukan</strong> & <strong>Pengeluaran</strong> — Dashboard auto-update setiap ada input baru.</p></div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== TO-DO TIMELINE ===== -->
-    <div class="page" id="page-todo">
-      <div class="stitle">✅ To-Do Timeline Bencon STCE 2026</div>
-      <div class="ssub">Checklist kegiatan berdasarkan timeline. Klik item untuk toggle selesai.</div>
-
-      <div class="g2">
-        <div class="card">
-          <div class="ch">
-            <div class="ct">📋 Timeline Kegiatan</div>
-            <div id="todoPct" style="font-size:12px;font-weight:700;color:var(--accent);">0% selesai</div>
-          </div>
-          <div class="pw" style="margin-bottom:14px;"><div class="pf" id="todoBar" style="background:var(--accent);width:0%;"></div></div>
-          <div id="todoList"></div>
-        </div>
-        <div>
-          <div class="card" style="margin-bottom:18px;">
-            <div class="ch"><div class="ct">📊 Progres per Fase</div></div>
-            <div id="todoPhaseProgress"></div>
-          </div>
-          <div class="card">
-            <div class="ch"><div class="ct">➕ Tambah To-Do</div></div>
-            <div class="fg"><label class="fl">Item</label><input type="text" id="newTodo" placeholder="Nama kegiatan..."></div>
-            <div class="fr2">
-              <div class="fg"><label class="fl">Fase</label>
-                <select id="newTodoPhase">
-                  <option value="RAB">RAB</option>
-                  <option value="SPO">SPO</option>
-                  <option value="DOPA">DOPA</option>
-                  <option value="Pre-Event">Pre-Event</option>
-                  <option value="Main Event">Main Event</option>
-                  <option value="Pasca">Pasca Acara</option>
-                  <option value="Lain">Lain-lain</option>
-                </select>
-              </div>
-              <div class="fg"><label class="fl">Prioritas</label>
-                <select id="newTodoPri">
-                  <option value="Tinggi">Tinggi</option>
-                  <option value="Sedang" selected>Sedang</option>
-                  <option value="Rendah">Rendah</option>
-                </select>
-              </div>
-            </div>
-            <button class="btn bp" onclick="addTodo()">+ Tambah</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== DASHBOARD ===== -->
-    <div class="page active" id="page-dashboard">
-      <div class="stitle">Dashboard Keuangan STCE 2026</div>
-      <div class="ssub">Real-time overview — diperbarui otomatis setiap transaksi baru</div>
-      <div id="dashAlerts"></div>
-      <div class="mg4">
-        <div class="mc"><div class="ml">💰 Saldo Bersih</div><div class="mv" id="m-saldo">Rp 0</div><div class="msub">Pemasukan − Pengeluaran Lunas</div><div class="mind" id="m-saldo-i"></div></div>
-        <div class="mc"><div class="ml">📈 Total Pemasukan</div><div class="mv" id="m-masuk">Rp 0</div><div class="msub" id="m-masuk-s">Target Realistis: Rp 31.210.000</div><div class="mind" id="m-masuk-i"></div></div>
-        <div class="mc"><div class="ml">📉 Total Pengeluaran</div><div class="mv" id="m-keluar">Rp 0</div><div class="msub" id="m-keluar-s">vs RAB Realistis: Rp 30.694.500</div><div class="mind" id="m-keluar-i"></div></div>
-        <div class="mc"><div class="ml">💳 DOPA Panitia</div><div class="mv" id="m-dopa">0%</div><div class="msub" id="m-dopa-s">dari total panitia terdaftar</div><div class="mind" id="m-dopa-i"></div></div>
-      </div>
-      <div class="g6040">
-        <div class="card">
-          <div class="ch"><div><div class="ct">Tren Pemasukan vs Pengeluaran</div><div class="csub">Akumulasi per bulan</div></div></div>
-          <div class="cw" style="height:210px;"><canvas id="cTren" role="img" aria-label="Tren keuangan bulanan">Grafik tren keuangan STCE 2026</canvas></div>
-        </div>
-        <div class="card">
-          <div class="ch"><div class="ct">Komposisi Pemasukan</div></div>
-          <div id="legMasuk" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;"></div>
-          <div class="cw" style="height:170px;"><canvas id="cMasuk" role="img" aria-label="Komposisi pemasukan">Komposisi sumber pemasukan</canvas></div>
-        </div>
-      </div>
-      <div class="g2">
-        <div class="card">
-          <div class="ch"><div><div class="ct">RAB vs Realisasi per Divisi</div><div class="csub">Skenario Realistis (baseline)</div></div></div>
-          <div class="cw" style="height:210px;"><canvas id="cRAB" role="img" aria-label="RAB vs realisasi">Perbandingan RAB vs realisasi per divisi</canvas></div>
-        </div>
-        <div class="card">
-          <div class="ch"><div class="ct">Progres Target Keuangan</div></div>
-          <div id="dashTargets"></div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="ch"><div class="ct">⏱ Transaksi Terbaru</div><button class="btn bs bsm" onclick="showPage('pengeluaran',null)">Lihat Semua</button></div>
-        <div class="ts"><table><thead><tr><th>Tanggal</th><th>Deskripsi</th><th>Kategori</th><th>Jenis</th><th class="tr">Jumlah</th><th>Status</th></tr></thead><tbody id="tTerbaru"></tbody></table></div>
-      </div>
-    </div>
-
-    <!-- ===== RAB & SKENARIO ===== -->
-    <div class="page" id="page-rab">
-      <div class="stitle">📋 RAB & Skenario Anggaran</div>
-      <div class="ssub">Import Excel atau input manual. Tiga skenario: Optimis, Realistis, Pesimis.</div>
-
-      <div class="g6040">
-        <div class="card">
-          <div class="ch"><div class="ct">📂 Import dari Excel</div></div>
-          <div class="drop-zone" id="dropZone" onclick="document.getElementById('xlsxInput').click()" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="handleDrop(event)">
-            <p style="font-size:24px;margin-bottom:6px;">📊</p>
-            <p style="font-weight:700;color:var(--navy);font-size:13px;">Klik atau drag & drop file Excel RAB</p>
-            <p>Format: .xlsx — otomatis membaca sheet Pengeluaran (Optimis), (Realistis), (Pesimis) & Pemasukan</p>
-            <input type="file" id="xlsxInput" accept=".xlsx,.xls" style="display:none" onchange="handleXlsxImport(this)">
-          </div>
-          <div id="importStatus" style="margin-top:10px;"></div>
-
-          <hr class="divider">
-          <div class="ch" style="margin-bottom:10px;"><div class="ct">Tambah Pos Manual</div></div>
-          <div class="fr2">
-            <div class="fg"><label class="fl">Nama Pos</label><input type="text" id="rabNama" placeholder="cth: Konsumsi Main Event"></div>
-            <div class="fg"><label class="fl">Divisi</label>
-              <select id="rabDiv">
-                <option>Administration</option><option>Sponsorship</option><option>Creative Income</option>
-                <option>Pre-Event</option><option>Main Event</option><option>Public Relation</option>
-                <option>Media Partner</option><option>Logistics</option><option>Operations</option><option>Lain-lain</option>
-              </select>
-            </div>
-          </div>
-          <div class="fr3">
-            <div class="fg"><label class="fl">Optimis (Rp)</label><input type="number" id="rabOpt" placeholder="0"></div>
-            <div class="fg"><label class="fl">Realistis (Rp)</label><input type="number" id="rabRel" placeholder="0"></div>
-            <div class="fg"><label class="fl">Pesimis (Rp)</label><input type="number" id="rabPes" placeholder="0"></div>
-          </div>
-          <button class="btn bp" onclick="addRAB()">+ Tambah Pos</button>
-        </div>
-
-        <div>
-          <div class="card" style="margin-bottom:16px;">
-            <div class="ch"><div class="ct">Ringkasan 3 Skenario</div></div>
-            <table>
-              <thead><tr><th>Skenario</th><th class="tr">Pemasukan</th><th class="tr">Pengeluaran</th><th class="tr">Surplus/Defisit</th></tr></thead>
-              <tbody id="tScenSum"></tbody>
-            </table>
-          </div>
-          <div class="card">
-            <div class="ch"><div class="ct">RAB Pengeluaran per Skenario</div></div>
-            <div class="cw" style="height:180px;"><canvas id="cScen" role="img" aria-label="Perbandingan skenario">Perbandingan tiga skenario RAB</canvas></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="ch"><div class="ct">Daftar Pos RAB</div><div id="rabCnt" style="font-size:11px;color:var(--txm);">0 pos</div></div>
-        <div class="ts"><table><thead><tr><th>#</th><th>Pos Anggaran</th><th>Divisi</th><th class="tr">Optimis</th><th class="tr">Realistis</th><th class="tr">Pesimis</th><th class="tr">Aktual</th><th>% Aktual/Realistis</th><th class="tc">Aksi</th></tr></thead><tbody id="tRAB"></tbody></table></div>
-      </div>
-    </div>
-
-    <!-- ===== PEMASUKAN ===== -->
-    <div class="page" id="page-pemasukan">
-      <div class="stitle">📈 Pencatatan Pemasukan</div>
-      <div class="ssub">Catat seluruh sumber pemasukan. Target: Rp 37.385.000 (Optimis) / Rp 31.210.000 (Realistis) / Rp 25.810.000 (Pesimis)</div>
-      <div class="alert ai">ℹ Rekening STCE: <strong>BNI a.n Resty — 1988428515</strong></div>
-      <div class="g6040">
-        <div class="card">
-          <div class="ch"><div class="ct">Input Pemasukan Baru</div></div>
-          <div class="fr2">
-            <div class="fg"><label class="fl">Tanggal *</label><input type="date" id="pTgl"></div>
-            <div class="fg"><label class="fl">Sumber *</label>
-              <select id="pKat">
-                <option>Donasi Panitia (DOPA)</option><option>Sponsorship</option><option>Dana Usaha</option>
-                <option>Merchandise</option><option>Tiket Company Visit</option><option>Dana Dekanat</option>
-                <option>Dana Turunan</option><option>Media Partner</option><option>Lain-lain</option>
-              </select>
-            </div>
-          </div>
-          <div class="fg"><label class="fl">Deskripsi *</label><input type="text" id="pDesk" placeholder="cth: Sponsorship Pertamina Paket Gold"></div>
-          <div class="fr2">
-            <div class="fg"><label class="fl">Jumlah (Rp) *</label><input type="number" id="pJml" placeholder="0"></div>
-            <div class="fg"><label class="fl">Pihak / Pengirim</label><input type="text" id="pPihak" placeholder="cth: PT Pertamina"></div>
-          </div>
-          <div class="fg"><label class="fl">No. Bukti</label><input type="text" id="pBukti" placeholder="cth: TRF-001"></div>
-          <div class="bg"><button class="btn bp" onclick="addPemasukan()">+ Catat</button><button class="btn bs" onclick="resetPForm()">Reset</button></div>
-        </div>
-        <div class="card">
-          <div class="ch"><div class="ct">Progres Target</div></div>
-          <div style="margin-bottom:12px;">
-            <div style="font-size:11px;color:var(--txm);">Total Terkumpul</div>
-            <div style="font-size:22px;font-weight:800;color:var(--navy);" id="pTotal">Rp 0</div>
-          </div>
-          <div style="margin-bottom:6px;">
-            <div class="pw"><div class="pf" id="pBar" style="background:var(--green);width:0%;"></div></div>
-            <div style="display:flex;justify-content:space-between;margin-top:3px;">
-              <span style="font-size:11px;font-weight:700;" id="pPct">0%</span>
-              <span style="font-size:10px;color:var(--txm);">Realistis: Rp 31.210.000</span>
-            </div>
-          </div>
-          <hr class="divider">
-          <div id="pBreak"></div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="ch"><div class="ct">Riwayat Pemasukan</div><div id="pCnt" style="font-size:11px;color:var(--txm);">0 transaksi</div></div>
-        <div class="ts"><table><thead><tr><th>Tanggal</th><th>Deskripsi</th><th>Sumber</th><th>Pihak</th><th>Bukti</th><th class="tr">Jumlah</th><th class="tc">Aksi</th></tr></thead><tbody id="tMasuk"></tbody></table></div>
-      </div>
-    </div>
-
-    <!-- ===== PENGELUARAN ===== -->
-    <div class="page" id="page-pengeluaran">
-      <div class="stitle">📉 Pencatatan Pengeluaran</div>
-      <div class="ssub">Catat semua pengeluaran. Sistem otomatis cek kesesuaian dengan RAB.</div>
-      <div class="g6040">
-        <div class="card">
-          <div class="ch"><div class="ct">Input Pengeluaran Baru</div></div>
-          <div class="fr2">
-            <div class="fg"><label class="fl">Tanggal *</label><input type="date" id="eTgl"></div>
-            <div class="fg"><label class="fl">Divisi / Kategori *</label>
-              <select id="eKat" onchange="showRABRef()">
-                <option value="">-- Pilih --</option>
-                <option>Administration</option><option>Sponsorship</option><option>Creative Income</option>
-                <option>Pre-Event</option><option>Main Event</option><option>Public Relation</option>
-                <option>Media Partner</option><option>Logistics</option><option>Operations</option><option>Dana Darurat</option><option>Lain-lain</option>
-              </select>
-            </div>
-          </div>
-          <div class="fg"><label class="fl">Deskripsi *</label><input type="text" id="eDesk" placeholder="cth: Sewa sound system Main Event"></div>
-          <div class="fr2">
-            <div class="fg"><label class="fl">Jumlah (Rp) *</label><input type="number" id="eJml" placeholder="0"></div>
-            <div class="fg"><label class="fl">Dibayar Oleh</label><input type="text" id="ePay" placeholder="cth: Resty (Bencon)"></div>
-          </div>
-          <div class="fr2">
-            <div class="fg"><label class="fl">No. Bukti</label><input type="text" id="eBukti" placeholder="cth: NOTA-001"></div>
-            <div class="fg"><label class="fl">Status</label>
-              <select id="eStat"><option>Lunas</option><option>Pending</option><option>Butuh Reimburse</option></select>
-            </div>
-          </div>
-          <div id="rabRef" class="alert ai" style="display:none;margin-bottom:10px;"></div>
-          <div class="bg"><button class="btn bp" onclick="addPengeluaran()">+ Catat</button><button class="btn bs" onclick="resetEForm()">Reset</button></div>
-        </div>
-        <div class="card">
-          <div class="ch"><div class="ct">Status Pengeluaran</div></div>
-          <div style="margin-bottom:10px;"><div style="font-size:11px;color:var(--txm);">Total Pengeluaran</div><div style="font-size:22px;font-weight:800;color:var(--red);" id="eTotal">Rp 0</div></div>
-          <div class="fr2" style="margin-bottom:12px;">
-            <div><div style="font-size:10px;color:var(--txm);">Lunas</div><div style="font-size:15px;font-weight:700;color:var(--green);" id="eLunas">Rp 0</div></div>
-            <div><div style="font-size:10px;color:var(--txm);">Pending</div><div style="font-size:15px;font-weight:700;color:var(--amber);" id="ePend">Rp 0</div></div>
-          </div>
-          <hr class="divider">
-          <div id="eBreak"></div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="ch"><div class="ct">Riwayat Pengeluaran</div>
-          <select id="eFilter" onchange="renderTPengeluaran()" style="font-size:11px;padding:3px 7px;width:auto;">
-            <option value="">Semua Status</option><option>Lunas</option><option>Pending</option><option>Butuh Reimburse</option>
-          </select>
-        </div>
-        <div class="ts"><table><thead><tr><th>Tanggal</th><th>Deskripsi</th><th>Kategori</th><th>Dibayar Oleh</th><th>Bukti</th><th class="tr">Jumlah</th><th>Status</th><th class="tc">Aksi</th></tr></thead><tbody id="tKeluar"></tbody></table></div>
-      </div>
-    </div>
-
-    <!-- ===== LAPORAN KEUANGAN ===== -->
-    <div class="page" id="page-laporan">
-      <div class="stitle">📑 Laporan Keuangan & Analisis Skenario</div>
-      <div class="ssub">Komparasi kondisi aktual vs 3 skenario RAB (Optimis, Realistis, Pesimis)</div>
-
-      <div class="mg4">
-        <div class="mc"><div class="ml">Aktual Pemasukan</div><div class="mv" style="color:var(--green);" id="lMasuk">Rp 0</div></div>
-        <div class="mc"><div class="ml">Aktual Pengeluaran</div><div class="mv" style="color:var(--red);" id="lKeluar">Rp 0</div></div>
-        <div class="mc"><div class="ml">Net Cash Flow</div><div class="mv" id="lNet">Rp 0</div><div class="mind" id="lNetI"></div></div>
-        <div class="mc"><div class="ml">RAB Compliance</div><div class="mv" id="lComp">0%</div><div class="msub">pengeluaran ≤ RAB Realistis</div></div>
-      </div>
-
-      <!-- MAIN SCENARIO CHART -->
-      <div class="card" style="margin-bottom:20px;">
-        <div class="ch">
-          <div><div class="ct">Komparasi Total: Aktual vs 3 Skenario RAB</div><div class="csub">Pemasukan & Pengeluaran dalam semua kondisi</div></div>
-        </div>
-        <div class="scen-leg">
-          <div class="scen-item"><div class="scen-dot" style="background:#16a34a;"></div>Aktual Pemasukan</div>
-          <div class="scen-item"><div class="scen-dot" style="background:#dc2626;"></div>Aktual Pengeluaran</div>
-          <div class="scen-item"><div class="scen-dot" style="background:#3b82f6;"></div>RAB Optimis</div>
-          <div class="scen-item"><div class="scen-dot" style="background:#f59e0b;"></div>RAB Realistis</div>
-          <div class="scen-item"><div class="scen-dot" style="background:#8b5cf6;"></div>RAB Pesimis</div>
-        </div>
-        <div class="cw" style="height:260px;"><canvas id="cScenMain" role="img" aria-label="Komparasi skenario keuangan">Komparasi skenario keuangan STCE 2026</canvas></div>
-      </div>
-
-      <div class="g2">
-        <div class="card">
-          <div class="ch"><div><div class="ct">Aktual vs RAB per Divisi</div><div class="csub">Baseline: Skenario Realistis</div></div></div>
-          <div class="cw" style="height:250px;"><canvas id="cDivComp" role="img" aria-label="Aktual vs RAB per divisi">Aktual vs RAB per divisi</canvas></div>
-        </div>
-        <div class="card">
-          <div class="ch"><div><div class="ct">Proyeksi Arus Kas (Cash Flow)</div><div class="csub">Kumulatif Pemasukan vs Pengeluaran</div></div></div>
-          <div class="cw" style="height:250px;"><canvas id="cCF" role="img" aria-label="Proyeksi arus kas">Proyeksi arus kas kumulatif</canvas></div>
-        </div>
-      </div>
-
-      <div class="g2">
-        <div class="card">
-          <div class="ch"><div class="ct">Pemasukan per Sumber</div></div>
-          <table><thead><tr><th>Sumber</th><th class="tr">Aktual</th><th class="tr">Target (Realistis)</th><th class="tr">Gap</th></tr></thead><tbody id="lTMasuk"></tbody></table>
-        </div>
-        <div class="card">
-          <div class="ch"><div class="ct">Pengeluaran per Divisi vs RAB</div></div>
-          <table><thead><tr><th>Divisi</th><th class="tr">Aktual</th><th class="tr">RAB Realistis</th><th>Status</th></tr></thead><tbody id="lTKeluar"></tbody></table>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="ch"><div class="ct">Analisis Selisih RAB vs Realisasi</div></div>
-        <div id="lAnalisis"></div>
-      </div>
-    </div>
-
-    <!-- ===== DOPA ===== -->
-    <div class="page" id="page-dopa">
-      <div class="stitle">💳 Tracker DOPA Panitia</div>
-      <div class="ssub">Monitor donasi panitia STCE 2026. Target: 95% lunas 3 hari sebelum Main Event.</div>
-      <div class="alert aw">⚠ Klik nama untuk toggle lunas/belum. Nominal default Rp 50.000 (sesuaikan dengan kesepakatan).</div>
-      <div class="g6040">
-        <div class="card">
-          <div class="ch"><div class="ct">Status Per Panitia</div><button class="btn bs bsm" onclick="toggleAllDopa()">Toggle Semua</button></div>
-          <div class="fr2" style="margin-bottom:12px;">
-            <div class="fg"><label class="fl">Nama Panitia</label><input type="text" id="dNama" placeholder="Nama lengkap"></div>
-            <div class="fg"><label class="fl">Nominal (Rp)</label><input type="number" id="dNom" placeholder="50000" value="50000"></div>
-          </div>
-          <button class="btn bp bsm" onclick="addDopa()" style="margin-bottom:14px;">+ Tambah</button>
-          <div class="dg" id="dopaGrid"></div>
-        </div>
-        <div class="card">
-          <div class="ch"><div class="ct">Ringkasan DOPA</div></div>
-          <div style="text-align:center;margin-bottom:16px;">
-            <div style="font-size:40px;font-weight:800;color:var(--navy);" id="dopaPct">0%</div>
-            <div style="font-size:11px;color:var(--txm);">panitia lunas</div>
-          </div>
-          <div class="pw" style="height:10px;margin-bottom:14px;"><div class="pf" id="dopaBar" style="background:var(--green);width:0%;"></div></div>
-          <table>
-            <tr><td style="padding:5px 0;font-size:12px;color:var(--txm);">Sudah Lunas</td><td style="text-align:right;font-weight:700;color:var(--green);" id="dopaLunas">0 orang</td></tr>
-            <tr><td style="padding:5px 0;font-size:12px;color:var(--txm);">Belum Lunas</td><td style="text-align:right;font-weight:700;color:var(--red);" id="dopaBelum">0 orang</td></tr>
-            <tr><td style="padding:5px 0;font-size:12px;color:var(--txm);">Terkumpul</td><td style="text-align:right;font-weight:700;" id="dopaTotal">Rp 0</td></tr>
-            <tr><td style="padding:5px 0;font-size:12px;color:var(--txm);">Potensi Penuh</td><td style="text-align:right;color:var(--txm);" id="dopaPot">Rp 0</td></tr>
-          </table>
-          <hr class="divider">
-          <div id="dopaStatus"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== REIMBURSE & FORM ===== -->
-    <div class="page" id="page-reimburse">
-      <div class="stitle">🔄 Reimburse, Disbursement & DOPA Form</div>
-      <div class="ssub">Terintegrasi dengan Google Form Responses STCE 2026.</div>
-
-      <div class="alert ai">
-        <span>🔗 <strong>Google Form terintegrasi.</strong> Data dari form DOPA, penyerahan bukti, reimburse & disbursement otomatis masuk setelah klik Sync.</span>
-        <div style="margin-left:auto;flex-shrink:0;"><span class="gf-badge" id="gfBadge">⚪ Belum tersambung</span></div>
-      </div>
-      <div class="alert aw">⚠ SPO: Reimburse dibayar max <strong>H+7</strong> setelah dokumen lengkap. Disbursement max <strong>H+3</strong> pasca acara.</div>
-
-      <!-- SYNC PANEL -->
-      <div class="card" style="margin-bottom:20px;">
-        <div class="ch">
-          <div><div class="ct">🔄 Sinkronisasi Google Form Responses</div><div class="csub" id="lastSync">Belum pernah sync</div></div>
-          <div class="bg">
-            <button class="btn bp" onclick="syncGForm()">🔄 Sync Sekarang</button>
-            <button class="btn bs" onclick="showPage('manual',null)">⚙ Setup Koneksi</button>
-          </div>
-        </div>
-        <div id="syncResult"></div>
-      </div>
-
-      <div class="g6040">
-        <div class="card">
-          <div class="ch"><div class="ct">Input Manual Reimburse / Disbursement</div></div>
-          <div class="fr2">
-            <div class="fg"><label class="fl">Nama Pengaju *</label><input type="text" id="rNama" placeholder="Nama panitia"></div>
-            <div class="fg"><label class="fl">Jenis *</label>
-              <select id="rJenis"><option>Reimbursement</option><option>Disbursement</option><option>DOPA</option></select>
-            </div>
-          </div>
-          <div class="fg"><label class="fl">Deskripsi *</label><input type="text" id="rDesk" placeholder="Keperluan pengeluaran..."></div>
-          <div class="fr2">
-            <div class="fg"><label class="fl">Jumlah (Rp) *</label><input type="number" id="rJml" placeholder="0"></div>
-            <div class="fg"><label class="fl">Tanggal Pengajuan *</label><input type="date" id="rTgl"></div>
-          </div>
-          <div class="fg"><label class="fl">No. Bukti *</label><input type="text" id="rBukti" placeholder="NOTA-001"></div>
-          <button class="btn bp" onclick="addReiMb()">+ Ajukan</button>
-        </div>
-        <div class="card">
-          <div class="ch"><div class="ct">Ringkasan Pengajuan</div></div>
-          <table>
-            <tr><td style="padding:5px 0;font-size:12px;color:var(--txm);">Total Pengajuan</td><td class="tr" style="font-weight:700;" id="rCnt">0</td></tr>
-            <tr><td style="padding:5px 0;font-size:12px;color:var(--txm);">Total Nominal</td><td class="tr" style="font-weight:700;" id="rNom">Rp 0</td></tr>
-            <tr><td style="padding:5px 0;font-size:12px;color:var(--txm);">Sudah Dibayar</td><td class="tr" style="font-weight:700;color:var(--green);" id="rPaid">Rp 0</td></tr>
-            <tr><td style="padding:5px 0;font-size:12px;color:var(--txm);">Menunggu</td><td class="tr" style="font-weight:700;color:var(--amber);" id="rWait">Rp 0</td></tr>
-          </table>
-          <hr class="divider">
-          <div id="rAlerts"></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="ch"><div class="ct">Daftar Pengajuan (Manual + Google Form)</div>
-          <div class="bg">
-            <select id="rFilter" onchange="renderTReiMb()" style="font-size:11px;padding:3px 7px;width:auto;">
-              <option value="">Semua</option><option>Reimbursement</option><option>Disbursement</option><option>DOPA</option>
-            </select>
-          </div>
-        </div>
-        <div class="ts"><table><thead><tr><th>Sumber</th><th>Tanggal</th><th>Nama</th><th>Jenis</th><th>Deskripsi</th><th>Bukti</th><th class="tr">Jumlah</th><th>Status</th><th>Batas Bayar</th><th class="tc">Aksi</th></tr></thead><tbody id="tReiMb"></tbody></table></div>
-      </div>
-    </div>
-
-    <!-- ===== ARSIP ===== -->
-    <div class="page" id="page-arsip">
-      <div class="stitle">🗂 Arsip Transaksi & Bukti</div>
-      <div class="ssub">Arsip seluruh nota, transfer, invoice secara terstruktur.</div>
-      <div class="g6040">
-        <div class="card">
-          <div class="ch"><div class="ct">Tambah Arsip Bukti</div></div>
-          <div class="fr2">
-            <div class="fg"><label class="fl">Kode Bukti *</label><input type="text" id="bKode" placeholder="NOTA-001"></div>
-            <div class="fg"><label class="fl">Tanggal *</label><input type="date" id="bTgl"></div>
-          </div>
-          <div class="fr2">
-            <div class="fg"><label class="fl">Jenis</label>
-              <select id="bJenis"><option>Pemasukan</option><option>Pengeluaran</option><option>Reimbursement</option><option>Disbursement</option></select>
-            </div>
-            <div class="fg"><label class="fl">Nominal (Rp)</label><input type="number" id="bNom" placeholder="0"></div>
-          </div>
-          <div class="fg"><label class="fl">Deskripsi *</label><input type="text" id="bDesk" placeholder="Deskripsi transaksi"></div>
-          <div class="fr2">
-            <div class="fg"><label class="fl">Pihak</label><input type="text" id="bPihak" placeholder="Nama orang/perusahaan"></div>
-            <div class="fg"><label class="fl">Metode</label>
-              <select id="bMet"><option>Transfer Bank</option><option>Tunai</option><option>QRIS</option><option>Kartu</option></select>
-            </div>
-          </div>
-          <div class="fg"><label class="fl">Catatan</label><textarea id="bCat" placeholder="Catatan tambahan..."></textarea></div>
-          <button class="btn bp" onclick="addArsip()">+ Simpan</button>
-        </div>
-        <div class="card">
-          <div class="ch"><div class="ct">Statistik Arsip</div></div>
-          <div id="arsipStats"></div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="ch"><div class="ct">Arsip Lengkap</div>
-          <select id="aFilter" onchange="renderArsip()" style="font-size:11px;padding:3px 7px;width:auto;">
-            <option value="">Semua</option><option>Pemasukan</option><option>Pengeluaran</option><option>Reimbursement</option><option>Disbursement</option>
-          </select>
-        </div>
-        <div class="ts"><table><thead><tr><th>Kode</th><th>Tanggal</th><th>Jenis</th><th>Deskripsi</th><th>Pihak</th><th>Metode</th><th class="tr">Nominal</th><th>Catatan</th><th class="tc">Aksi</th></tr></thead><tbody id="tArsip"></tbody></table></div>
-      </div>
-    </div>
-
-    <!-- ===== SPO ===== -->
-    <div class="page" id="page-spo">
-      <div class="stitle">📜 SPO & Parameter Keberhasilan STCE 2026</div>
-      <div class="ssub">Standar prosedur operasional keuangan berdasarkan Draft Bencon STCE 2026 oleh Resty Novika Febrilia.</div>
-      <div class="g2">
-        <div class="card">
-          <div class="ch"><div class="ct">📊 Parameter Keberhasilan</div></div>
-          <table><thead><tr><th>Aspek</th><th>Parameter</th><th>Status</th></tr></thead>
-            <tbody>
-              <tr><td>RAB Final</td><td>Disahkan sebelum operasional dimulai</td><td id="spo-rab"><span class="badge bgray">—</span></td></tr>
-              <tr><td>Kontrol Anggaran</td><td>Min. 90% pengeluaran sesuai RAB</td><td id="spo-ctrl"><span class="badge bgray">—</span></td></tr>
-              <tr><td>DOPA Panitia</td><td>Min. 95% lunas (max H-3 Main Event)</td><td id="spo-dopa"><span class="badge bgray">—</span></td></tr>
-              <tr><td>Bukti Transaksi</td><td>100% pengeluaran ada bukti/BA pengganti</td><td><span class="badge bamb">Pantau</span></td></tr>
-              <tr><td>Reimbursement</td><td>Min. 95% valid dibayar max H+7</td><td id="spo-reimb"><span class="badge bgray">—</span></td></tr>
-              <tr><td>Disbursement</td><td>100% ada laporan max H+3 pasca acara</td><td><span class="badge bamb">Pantau</span></td></tr>
-              <tr><td>Dashboard</td><td>Update min. 1x/minggu (kritis: tiap hari)</td><td><span class="badge bgreen">Aktif</span></td></tr>
-              <tr><td>Draft LPJ</td><td>Selesai max H+10</td><td><span class="badge bgray">Belum</span></td></tr>
-              <tr><td>LPJ Final</td><td>Selesai max H+14</td><td><span class="badge bgray">Belum</span></td></tr>
-              <tr><td>Rekonsiliasi</td><td>Tidak ada selisih kas yang tak dapat dijelaskan</td><td><span class="badge bgray">Pantau</span></td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="card">
-          <div class="ch"><div class="ct">⏱ Batas Waktu Kritis</div></div>
-          <table><thead><tr><th>Prosedur</th><th>Batas</th></tr></thead>
-            <tbody>
-              <tr><td>Bayar Reimbursement</td><td><span class="badge bred">H+7</span> dok lengkap</td></tr>
-              <tr><td>Bayar Disbursement</td><td><span class="badge bred">H+3</span> pasca acara</td></tr>
-              <tr><td>DOPA Lunas</td><td><span class="badge bamb">H-3</span> Main Event</td></tr>
-              <tr><td>Pengajuan transaksi terakhir</td><td>Tetapkan sendiri</td></tr>
-              <tr><td>Rekonsiliasi akhir</td><td><span class="badge bamb">H+7</span> pasca acara</td></tr>
-              <tr><td>Draft LPJ Keuangan</td><td><span class="badge bamb">H+10</span></td></tr>
-              <tr><td>LPJ Final</td><td><span class="badge bred">H+14</span></td></tr>
-              <tr><td>Arsip digital selesai</td><td><span class="badge bgray">H+14</span></td></tr>
-            </tbody>
-          </table>
-          <hr class="divider">
-          <div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:8px;">🏦 Rekening STCE 2026</div>
-          <div style="background:var(--surf);border:1px solid var(--bd);border-radius:7px;padding:10px;font-size:12px;">
-            <strong>BNI</strong> a.n Resty Novika Febrilia<br>
-            <span style="font-size:18px;font-weight:800;letter-spacing:2px;color:var(--navy);">1988428515</span>
+          <div style="display:flex;gap:10px;padding:8px 0;">
+            <div style="width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">5</div>
+            <div><p style="font-size:12px;font-weight:700;color:var(--navy);">Pantau Laporan Keuangan</p><p style="font-size:11px;color:var(--txm);">Menu <strong>Laporan Keuangan</strong> — grafik komparasi Aktual vs 3 Skenario (Optimis/Realistis/Pesimis) secara real-time.</p></div>
           </div>
         </div>
       </div>
       <div class="card">
-        <div class="ch"><div class="ct">Checklist Tugas Bencon</div></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;">
-          <div><div style="font-size:11px;font-weight:800;color:var(--navy);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px;">PRA HARI-H</div><div id="chkPra"></div></div>
-          <div><div style="font-size:11px;font-weight:800;color:var(--navy);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px;">HARI-H</div><div id="chkHari"></div></div>
-          <div><div style="font-size:11px;font-weight:800;color:var(--navy);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px;">PASCA ACARA</div><div id="chkPasca"></div></div>
+        <div class="ch"><div class="ct">🔗 Setup Google Form</div></div>
+        <div class="alert ai" style="margin-bottom:12px;">Spreadsheet: <code style="font-size:10px;">1FiyXDHGb1jOLD1jm7wz_9DOkrYFjFlK8mh5GjTWZkRc</code></div>
+        <div class="fg">
+          <label class="fl">ID Google Spreadsheet Responses *</label>
+          <input type="text" id="gfId" placeholder="ID dari URL spreadsheet...">
+          <p style="font-size:10px;color:var(--txm);margin-top:2px;">…/spreadsheets/d/<strong>[ID DI SINI]</strong>/edit…</p>
+        </div>
+        <div class="fg">
+          <label class="fl">GID Tab (default: 1244319623)</label>
+          <input type="text" id="gfGid" placeholder="1244319623">
+        </div>
+        <button class="btn bp" onclick="saveGF()">💾 Simpan & Hubungkan</button>
+        <div id="gfStat" style="margin-top:8px;"></div>
+        <hr class="divider">
+        <p style="font-size:11px;color:var(--txm);line-height:1.7;">
+          <strong>Cara kerja:</strong><br>
+          1. Buka Google Sheets → Share → <em>Anyone with the link can view</em><br>
+          2. Copy ID dari URL → paste di atas<br>
+          3. Klik Sync — data reimburse/disbursement/DOPA dari form masuk otomatis<br>
+          4. Sistem deteksi otomatis kolom berdasarkan keyword (Nama, Jenis, Jumlah, Keterangan, Bukti)
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ct">💳 Nominal DOPA per Tier</div></div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
+        <div style="padding:12px;background:#fef9c3;border:1px solid #fde047;border-radius:8px;text-align:center;">
+          <div class="tier-po" style="margin-bottom:6px;display:inline-block;">PO/VPO</div>
+          <div style="font-size:18px;font-weight:800;color:#854d0e;">Rp325.000</div>
+          <div style="font-size:10px;color:#92400e;">Ketua & Wakil Ketua</div>
+        </div>
+        <div style="padding:12px;background:#ede9fe;border:1px solid #c4b5fd;border-radius:8px;text-align:center;">
+          <div class="tier-pi" style="margin-bottom:6px;display:inline-block;">PI</div>
+          <div style="font-size:18px;font-weight:800;color:#6d28d9;">Rp200.000</div>
+          <div style="font-size:10px;color:#7c3aed;">Pengurus Inti lainnya</div>
+        </div>
+        <div style="padding:12px;background:#dbeafe;border:1px solid #93c5fd;border-radius:8px;text-align:center;">
+          <div class="tier-bph" style="margin-bottom:6px;display:inline-block;">BPH</div>
+          <div style="font-size:18px;font-weight:800;color:#1e40af;">Rp150.000</div>
+          <div style="font-size:10px;color:#1d4ed8;">Badan Pengurus Harian</div>
+        </div>
+        <div style="padding:12px;background:#f3f4f6;border:1px solid #d1d5db;border-radius:8px;text-align:center;">
+          <div class="tier-staf" style="margin-bottom:6px;display:inline-block;">STAF</div>
+          <div style="font-size:18px;font-weight:800;color:#374151;">Rp100.000</div>
+          <div style="font-size:10px;color:#6b7280;">Staf Divisi</div>
         </div>
       </div>
     </div>
-
   </div>
+
+  <!-- ===== TO-DO ===== -->
+  <div class="page" id="page-todo">
+    <div class="stitle">✅ To-Do Timeline Bencon STCE 2026</div>
+    <div class="ssub">Klik item untuk toggle selesai. Berdasarkan list STCE 2026 terbaru.</div>
+    <div class="g2">
+      <div class="card">
+        <div class="ch">
+          <div class="ct">📋 To-Do List</div>
+          <div id="tdPct" style="font-size:12px;font-weight:700;color:var(--accent);">0% selesai</div>
+        </div>
+        <div class="pw" style="margin-bottom:14px;"><div class="pf" id="tdBar" style="background:var(--accent);width:0%;"></div></div>
+        <div id="tdList"></div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="ch"><div class="ct">Progres per Fase</div></div>
+          <div id="tdPhase"></div>
+        </div>
+        <div class="card">
+          <div class="ch"><div class="ct">➕ Tambah To-Do</div></div>
+          <div class="fg"><label class="fl">Item</label><input type="text" id="newTd" placeholder="Nama kegiatan..."></div>
+          <div class="fr2">
+            <div class="fg"><label class="fl">Fase</label>
+              <select id="newTdPhase"><option>RAB</option><option>SPO</option><option>DOPA</option><option>Pre-Event</option><option>Main Event</option><option>Pasca</option><option>Lain</option></select>
+            </div>
+            <div class="fg"><label class="fl">Prioritas</label>
+              <select id="newTdPri"><option>Tinggi</option><option selected>Sedang</option><option>Rendah</option></select>
+            </div>
+          </div>
+          <button class="btn bp" onclick="addTodo()">+ Tambah</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DASHBOARD ===== -->
+  <div class="page active" id="page-dashboard">
+    <div class="stitle">Dashboard Keuangan STCE 2026</div>
+    <div class="ssub">Real-time overview — diperbarui otomatis setiap ada transaksi baru</div>
+    <div id="dashAlerts"></div>
+    <div class="mg4">
+      <div class="mc"><div class="ml">💰 Saldo Bersih</div><div class="mv" id="m-saldo">Rp 0</div><div class="msub">Pemasukan − Pengeluaran Lunas</div><div class="mind" id="m-saldo-i"></div></div>
+      <div class="mc"><div class="ml">📈 Total Pemasukan</div><div class="mv" id="m-masuk">Rp 0</div><div class="msub" id="m-masuk-s">Target Realistis: Rp 38.504.000</div><div class="mind" id="m-masuk-i"></div></div>
+      <div class="mc"><div class="ml">📉 Total Pengeluaran</div><div class="mv" id="m-keluar">Rp 0</div><div class="msub">RAB Realistis: Rp 38.502.500</div><div class="mind" id="m-keluar-i"></div></div>
+      <div class="mc"><div class="ml">💳 DOPA Panitia</div><div class="mv" id="m-dopa">0%</div><div class="msub" id="m-dopa-s">dari panitia terdaftar</div><div class="mind" id="m-dopa-i"></div></div>
+    </div>
+    <div class="g6040">
+      <div class="card">
+        <div class="ch"><div><div class="ct">Tren Pemasukan vs Pengeluaran</div><div class="csub">Akumulasi per bulan</div></div></div>
+        <div class="cw" style="height:210px;"><canvas id="cTren"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ct">Komposisi Pemasukan</div></div>
+        <div id="legMasuk" style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px;"></div>
+        <div class="cw" style="height:170px;"><canvas id="cMasuk"></canvas></div>
+      </div>
+    </div>
+    <div class="g2">
+      <div class="card">
+        <div class="ch"><div><div class="ct">RAB vs Realisasi per Divisi</div><div class="csub">Skenario Realistis — baseline</div></div></div>
+        <div class="cw" style="height:210px;"><canvas id="cRAB"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ct">Progres Target Keuangan</div></div>
+        <div id="dashTargets"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ct">⏱ Transaksi Terbaru</div><button class="btn bs bsm" onclick="nav('pengeluaran',null)">Lihat Semua</button></div>
+      <div class="ts"><table><thead><tr><th>Tanggal</th><th>Deskripsi</th><th>Kategori</th><th>Jenis</th><th class="tr">Jumlah</th><th>Status</th></tr></thead><tbody id="tTerbaru"><tr><td colspan="6" style="text-align:center;color:#94a3b8;padding:20px;">Belum ada transaksi.</td></tr></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- ===== RAB ===== -->
+  <div class="page" id="page-rab">
+    <div class="stitle">📋 RAB & Skenario Anggaran</div>
+    <div class="ssub">RAB STCE 2026 sudah di-preload dari Excel. Bisa re-import atau tambah manual.</div>
+    <div class="g6040">
+      <div class="card">
+        <div class="ch"><div class="ct">📂 Import / Re-Import dari Excel</div></div>
+        <div class="drop-zone" id="dropZone" onclick="document.getElementById('xlsxIn').click()" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="handleDrop(event)">
+          <p style="font-size:22px;margin-bottom:6px;">📊</p>
+          <p style="font-weight:700;color:var(--navy);font-size:13px;">Klik atau drag & drop file Excel RAB</p>
+          <p style="font-size:11px;color:var(--txm);">Format .xlsx — otomatis baca sheet Pengeluaran (Optimis/Realistis/Pesimis)</p>
+          <input type="file" id="xlsxIn" accept=".xlsx,.xls" style="display:none" onchange="handleXlsx(this)">
+        </div>
+        <div id="xlsxStat" style="margin-top:10px;"></div>
+        <hr class="divider">
+        <div class="ch" style="margin-bottom:10px;"><div class="ct">Tambah Pos Manual</div></div>
+        <div class="fr2">
+          <div class="fg"><label class="fl">Nama Pos</label><input type="text" id="rNama" placeholder="Nama item anggaran"></div>
+          <div class="fg"><label class="fl">Divisi</label>
+            <select id="rDiv"><option>Administrasi</option><option>Sponsorship</option><option>Creative Income</option><option>Pre-Event</option><option>Main Event</option><option>Logistik</option><option>Operasional</option><option>Public Relation & Media Partnership</option><option>Controller</option><option>Lain-lain</option></select>
+          </div>
+        </div>
+        <div class="fr3">
+          <div class="fg"><label class="fl">Optimis (Rp)</label><input type="number" id="rOpt" placeholder="0"></div>
+          <div class="fg"><label class="fl">Realistis (Rp)</label><input type="number" id="rRel" placeholder="0"></div>
+          <div class="fg"><label class="fl">Pesimis (Rp)</label><input type="number" id="rPes" placeholder="0"></div>
+        </div>
+        <button class="btn bp" onclick="addRAB()">+ Tambah Pos</button>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="ch"><div class="ct">Ringkasan 3 Skenario</div></div>
+          <table><thead><tr><th>Skenario</th><th class="tr">Pemasukan</th><th class="tr">Pengeluaran</th><th class="tr">Surplus/Defisit</th></tr></thead><tbody id="tScen"></tbody></table>
+        </div>
+        <div class="card">
+          <div class="ch"><div class="ct">RAB per Divisi — Perbandingan</div></div>
+          <div class="cw" style="height:180px;"><canvas id="cScen"></canvas></div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ct">Daftar Pos RAB STCE 2026</div><div id="rabCnt" style="font-size:11px;color:var(--txm);">0 pos</div></div>
+      <div class="ts"><table><thead><tr><th>#</th><th>Pos Anggaran</th><th>Divisi</th><th class="tr">Optimis</th><th class="tr">Realistis</th><th class="tr">Pesimis</th><th class="tr">Aktual</th><th>% Realisasi</th><th class="tc">Aksi</th></tr></thead><tbody id="tRAB"></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- ===== PEMASUKAN ===== -->
+  <div class="page" id="page-pemasukan">
+    <div class="stitle">📈 Pencatatan Pemasukan</div>
+    <div class="ssub">Target: Rp 48.605.000 (Optimis) · Rp 38.504.000 (Realistis) · Rp 32.015.000 (Pesimis)</div>
+    <div class="alert ai">ℹ Rekening: <strong>BNI a.n Resty Novika Febrilia — 1988428515</strong></div>
+    <div class="g6040">
+      <div class="card">
+        <div class="ch"><div class="ct">Input Pemasukan Baru</div></div>
+        <div class="fr2">
+          <div class="fg"><label class="fl">Tanggal *</label><input type="date" id="pTgl"></div>
+          <div class="fg"><label class="fl">Sumber *</label>
+            <select id="pKat"><option>Donasi Panitia (DOPA)</option><option>Sponsorship</option><option>Dana Usaha — Jus</option><option>Dana Usaha — Sando</option><option>Dana Usaha — Air Mineral</option><option>Dana Usaha — Tisu</option><option>Merch — Stiker</option><option>Merch — Kipas</option><option>Company Visit — Tiket</option><option>Job Fair — Booth</option><option>Dana Dekanat</option><option>Dana Turunan</option><option>Lain-lain</option></select>
+          </div>
+        </div>
+        <div class="fg"><label class="fl">Deskripsi *</label><input type="text" id="pDesk" placeholder="cth: Sponsorship PT XYZ Paket Gold"></div>
+        <div class="fr2">
+          <div class="fg"><label class="fl">Jumlah (Rp) *</label><input type="number" id="pJml" placeholder="0"></div>
+          <div class="fg"><label class="fl">Pihak / Pengirim</label><input type="text" id="pPihak" placeholder="Nama orang/perusahaan"></div>
+        </div>
+        <div class="fg"><label class="fl">No. Bukti / Referensi</label><input type="text" id="pBukti" placeholder="cth: TRF-001"></div>
+        <div class="bg"><button class="btn bp" onclick="addMasuk()">+ Catat</button><button class="btn bs" onclick="resetPF()">Reset</button></div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ct">Progres Target</div></div>
+        <div style="margin-bottom:10px;"><div style="font-size:11px;color:var(--txm);">Total Terkumpul</div><div style="font-size:22px;font-weight:800;color:var(--navy);" id="pTot">Rp 0</div></div>
+        <div class="pw" style="margin-bottom:4px;"><div class="pf" id="pBar" style="background:var(--grn);width:0%;"></div></div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:12px;"><span style="font-size:11px;font-weight:700;" id="pPct">0%</span><span style="font-size:10px;color:var(--txm);">Realistis: Rp 38.504.000</span></div>
+        <hr class="divider">
+        <div id="pBreak"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ct">Riwayat Pemasukan</div><div id="pCnt" style="font-size:11px;color:var(--txm);">0 transaksi</div></div>
+      <div class="ts"><table><thead><tr><th>Tanggal</th><th>Deskripsi</th><th>Sumber</th><th>Pihak</th><th>Bukti</th><th class="tr">Jumlah</th><th class="tc">Aksi</th></tr></thead><tbody id="tMasuk"></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- ===== PENGELUARAN ===== -->
+  <div class="page" id="page-pengeluaran">
+    <div class="stitle">📉 Pencatatan Pengeluaran</div>
+    <div class="ssub">Catat semua pengeluaran. Sistem otomatis cek vs RAB per divisi.</div>
+    <div class="g6040">
+      <div class="card">
+        <div class="ch"><div class="ct">Input Pengeluaran Baru</div></div>
+        <div class="fr2">
+          <div class="fg"><label class="fl">Tanggal *</label><input type="date" id="eTgl"></div>
+          <div class="fg"><label class="fl">Divisi / Kategori *</label>
+            <select id="eKat" onchange="showRRef()"><option value="">-- Pilih --</option><option>Administrasi</option><option>Sponsorship</option><option>Creative Income</option><option>Pre-Event</option><option>Main Event</option><option>Logistik</option><option>Operasional</option><option>Public Relation & Media Partnership</option><option>Controller</option><option>Dana Darurat</option><option>Lain-lain</option></select>
+          </div>
+        </div>
+        <div class="fg"><label class="fl">Deskripsi *</label><input type="text" id="eDesk" placeholder="cth: Bus Company Visit (2 unit)"></div>
+        <div class="fr2">
+          <div class="fg"><label class="fl">Jumlah (Rp) *</label><input type="number" id="eJml" placeholder="0"></div>
+          <div class="fg"><label class="fl">Dibayar Oleh</label><input type="text" id="ePay" placeholder="cth: Resty (Bencon)"></div>
+        </div>
+        <div class="fr2">
+          <div class="fg"><label class="fl">No. Bukti / Nota</label><input type="text" id="eBukti" placeholder="cth: NOTA-001"></div>
+          <div class="fg"><label class="fl">Status</label>
+            <select id="eStat"><option>Lunas</option><option>Pending</option><option>Butuh Reimburse</option></select>
+          </div>
+        </div>
+        <div id="rabRef" style="display:none;" class="alert ai"></div>
+        <div class="bg"><button class="btn bp" onclick="addKeluar()">+ Catat</button><button class="btn bs" onclick="resetEF()">Reset</button></div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ct">Status Pengeluaran</div></div>
+        <div style="margin-bottom:10px;"><div style="font-size:11px;color:var(--txm);">Total Pengeluaran</div><div style="font-size:22px;font-weight:800;color:var(--red);" id="eTot">Rp 0</div></div>
+        <div class="fr2" style="margin-bottom:12px;">
+          <div><div style="font-size:10px;color:var(--txm);">Lunas</div><div style="font-size:15px;font-weight:700;color:var(--grn);" id="eLunas">Rp 0</div></div>
+          <div><div style="font-size:10px;color:var(--txm);">Pending</div><div style="font-size:15px;font-weight:700;color:var(--amb);" id="ePend">Rp 0</div></div>
+        </div>
+        <hr class="divider">
+        <div id="eBreak"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ct">Riwayat Pengeluaran</div>
+        <select id="eFilt" onchange="renderTKeluar()" style="font-size:11px;padding:3px 7px;width:auto;">
+          <option value="">Semua Status</option><option>Lunas</option><option>Pending</option><option>Butuh Reimburse</option>
+        </select>
+      </div>
+      <div class="ts"><table><thead><tr><th>Tanggal</th><th>Deskripsi</th><th>Kategori</th><th>Dibayar Oleh</th><th>Bukti</th><th class="tr">Jumlah</th><th>Status</th><th class="tc">Aksi</th></tr></thead><tbody id="tKeluar"></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- ===== LAPORAN ===== -->
+  <div class="page" id="page-laporan">
+    <div class="stitle">📑 Laporan Keuangan & Analisis Skenario</div>
+    <div class="ssub">Komparasi kondisi aktual vs 3 skenario RAB (Optimis / Realistis / Pesimis)</div>
+    <div class="mg4">
+      <div class="mc"><div class="ml">Aktual Pemasukan</div><div class="mv" style="color:var(--grn);" id="lM">Rp 0</div></div>
+      <div class="mc"><div class="ml">Aktual Pengeluaran</div><div class="mv" style="color:var(--red);" id="lK">Rp 0</div></div>
+      <div class="mc"><div class="ml">Net Cash Flow</div><div class="mv" id="lN">Rp 0</div><div class="mind" id="lNI"></div></div>
+      <div class="mc"><div class="ml">RAB Compliance</div><div class="mv" id="lC">—</div><div class="msub">pengeluaran ≤ RAB Realistis</div></div>
+    </div>
+    <div class="card" style="margin-bottom:20px;">
+      <div class="ch"><div><div class="ct">Komparasi Total: Aktual vs 3 Skenario RAB</div><div class="csub">Perbandingan Pemasukan & Pengeluaran semua kondisi</div></div></div>
+      <div class="scen-leg">
+        <div class="sl-item"><div class="sl-dot" style="background:#16a34a;"></div>Aktual Pemasukan</div>
+        <div class="sl-item"><div class="sl-dot" style="background:#dc2626;"></div>Aktual Pengeluaran</div>
+        <div class="sl-item"><div class="sl-dot" style="background:#3b82f6;"></div>Optimis</div>
+        <div class="sl-item"><div class="sl-dot" style="background:#f59e0b;"></div>Realistis</div>
+        <div class="sl-item"><div class="sl-dot" style="background:#8b5cf6;"></div>Pesimis</div>
+      </div>
+      <div class="cw" style="height:260px;"><canvas id="cScenMain"></canvas></div>
+    </div>
+    <div class="g2">
+      <div class="card">
+        <div class="ch"><div><div class="ct">Aktual vs RAB per Divisi</div><div class="csub">Baseline: Skenario Realistis</div></div></div>
+        <div class="cw" style="height:260px;"><canvas id="cDivComp"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="ch"><div><div class="ct">Proyeksi Arus Kas Kumulatif</div></div></div>
+        <div class="cw" style="height:260px;"><canvas id="cCF"></canvas></div>
+      </div>
+    </div>
+    <div class="g2">
+      <div class="card">
+        <div class="ch"><div class="ct">Pemasukan per Sumber vs Target Realistis</div></div>
+        <div class="ts"><table><thead><tr><th>Sumber</th><th class="tr">Aktual</th><th class="tr">Target</th><th class="tr">Gap</th></tr></thead><tbody id="lTM"></tbody></table></div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ct">Pengeluaran per Divisi vs RAB Realistis</div></div>
+        <div class="ts"><table><thead><tr><th>Divisi</th><th class="tr">Aktual</th><th class="tr">RAB Realistis</th><th>Status</th></tr></thead><tbody id="lTK"></tbody></table></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ct">📊 Analisis Selisih RAB vs Realisasi</div></div>
+      <div id="lAnalisis"></div>
+    </div>
+  </div>
+
+  <!-- ===== DOPA ===== -->
+  <div class="page" id="page-dopa">
+    <div class="stitle">💳 Tracker DOPA Panitia STCE 2026</div>
+    <div class="ssub">Monitor donasi panitia. Target: 95% lunas max H-3 Main Event. Klik nama untuk toggle lunas/belum.</div>
+    <div class="alert aw">💡 Nominal: PO/VPO Rp325.000 · PI Rp200.000 · BPH Rp150.000 · Staf Rp100.000</div>
+    <div class="g6040">
+      <div class="card">
+        <div class="ch"><div class="ct">Status Per Panitia</div>
+          <div class="bg">
+            <button class="btn bs bsm" onclick="toggleAllDopa()">Toggle Semua</button>
+            <button class="btn bs bsm" onclick="filterDopa('semua')" id="dfAll" style="background:var(--apal);">Semua</button>
+            <button class="btn bs bsm" onclick="filterDopa('belum')">Belum</button>
+          </div>
+        </div>
+        <div class="fr2" style="margin-bottom:10px;">
+          <div class="fg"><label class="fl">Tambah Nama</label><input type="text" id="dNama" placeholder="Nama lengkap panitia"></div>
+          <div class="fg"><label class="fl">Tier</label>
+            <select id="dTier"><option value="po">PO/VPO (Rp325.000)</option><option value="pi">PI (Rp200.000)</option><option value="bph">BPH (Rp150.000)</option><option value="staf">Staf (Rp100.000)</option></select>
+          </div>
+        </div>
+        <button class="btn bp bsm" onclick="addDopa()" style="margin-bottom:14px;">+ Tambah Panitia</button>
+        <div class="dg" id="dopaGrid"></div>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ct">Ringkasan DOPA</div></div>
+        <div style="text-align:center;margin-bottom:14px;">
+          <div style="font-size:40px;font-weight:800;color:var(--navy);" id="dopaPct">0%</div>
+          <div style="font-size:11px;color:var(--txm);">panitia lunas</div>
+        </div>
+        <div class="pw" style="height:10px;margin-bottom:14px;"><div class="pf" id="dopaBar" style="background:var(--grn);width:0%;"></div></div>
+        <table>
+          <tr><td style="padding:5px 0;font-size:12px;color:var(--txm);">Sudah Lunas</td><td style="text-align:right;font-weight:700;color:var(--grn);" id="dopaL">0 orang</td></tr>
+          <tr><td style="padding:5px 0;font-size:12px;color:var(--txm);">Belum Lunas</td><td style="text-align:right;font-weight:700;color:var(--red);" id="dopaB">0 orang</td></tr>
+          <tr><td style="padding:5px 0;font-size:12px;color:var(--txm);">Dana Terkumpul</td><td style="text-align:right;font-weight:700;" id="dopaT">Rp 0</td></tr>
+          <tr><td style="padding:5px 0;font-size:12px;color:var(--txm);">Potensi Penuh</td><td style="text-align:right;color:var(--txm);" id="dopaP">Rp 0</td></tr>
+        </table>
+        <hr class="divider">
+        <div id="dopaStatus"></div>
+        <hr class="divider">
+        <div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:8px;">Per Tier</div>
+        <div id="dopaTier"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== REIMBURSE ===== -->
+  <div class="page" id="page-reimburse">
+    <div class="stitle">🔄 Reimburse, Disbursement & DOPA Form</div>
+    <div class="ssub">Data dari Google Form masuk otomatis. Bisa juga input manual.</div>
+    <div class="alert ai"><span>🔗 <strong>Terintegrasi Google Form.</strong> Data DOPA, penyerahan bukti, reimburse & disbursement otomatis masuk setelah Sync.</span><div style="margin-left:auto;flex-shrink:0;"><span class="gfb" id="gfBadge">⚪ Belum tersambung</span></div></div>
+    <div class="alert aw">⚠ SPO: Reimburse dibayar max <strong>H+7</strong> setelah dokumen lengkap. Disbursement max <strong>H+3</strong> pasca acara.</div>
+    <div class="card" style="margin-bottom:20px;">
+      <div class="ch">
+        <div><div class="ct">🔄 Sinkronisasi Google Form</div><div class="csub" id="lastSync">Belum pernah sync</div></div>
+        <div class="bg">
+          <button class="btn bp" onclick="syncGForm()">🔄 Sync Sekarang</button>
+          <button class="btn bs" onclick="nav('manual',null)">⚙ Setup</button>
+        </div>
+      </div>
+      <div id="syncResult"></div>
+    </div>
+    <div class="g6040">
+      <div class="card">
+        <div class="ch"><div class="ct">Input Manual</div></div>
+        <div class="fr2">
+          <div class="fg"><label class="fl">Nama Pengaju *</label><input type="text" id="rNama" placeholder="Nama panitia"></div>
+          <div class="fg"><label class="fl">Jenis *</label><select id="rJenis"><option>Reimbursement</option><option>Disbursement</option><option>DOPA</option><option>Penyerahan Bukti</option></select></div>
+        </div>
+        <div class="fg"><label class="fl">Deskripsi *</label><input type="text" id="rDesk" placeholder="Keperluan pengeluaran..."></div>
+        <div class="fr2">
+          <div class="fg"><label class="fl">Jumlah (Rp) *</label><input type="number" id="rJml" placeholder="0"></div>
+          <div class="fg"><label class="fl">Tanggal Pengajuan *</label><input type="date" id="rTgl"></div>
+        </div>
+        <div class="fg"><label class="fl">No. Bukti *</label><input type="text" id="rBukti" placeholder="NOTA-001"></div>
+        <button class="btn bp" onclick="addReiMb()">+ Ajukan</button>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ct">Ringkasan Pengajuan</div></div>
+        <table>
+          <tr><td style="padding:5px 0;font-size:12px;color:var(--txm);">Total Pengajuan</td><td class="tr" style="font-weight:700;" id="rCnt">0</td></tr>
+          <tr><td style="padding:5px 0;font-size:12px;color:var(--txm);">Total Nominal</td><td class="tr" style="font-weight:700;" id="rNom">Rp 0</td></tr>
+          <tr><td style="padding:5px 0;font-size:12px;color:var(--txm);">Sudah Dibayar</td><td class="tr" style="font-weight:700;color:var(--grn);" id="rPaid">Rp 0</td></tr>
+          <tr><td style="padding:5px 0;font-size:12px;color:var(--txm);">Menunggu</td><td class="tr" style="font-weight:700;color:var(--amb);" id="rWait">Rp 0</td></tr>
+        </table>
+        <hr class="divider">
+        <div id="rAlerts"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ct">Daftar Pengajuan</div>
+        <select id="rFilt" onchange="renderTReiMb()" style="font-size:11px;padding:3px 7px;width:auto;">
+          <option value="">Semua</option><option>Reimbursement</option><option>Disbursement</option><option>DOPA</option><option>Penyerahan Bukti</option>
+        </select>
+      </div>
+      <div class="ts"><table><thead><tr><th>Src</th><th>Tanggal</th><th>Nama</th><th>Jenis</th><th>Deskripsi</th><th>Bukti</th><th class="tr">Jumlah</th><th>Status</th><th>Batas Bayar</th><th class="tc">Aksi</th></tr></thead><tbody id="tReiMb"></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- ===== ARSIP ===== -->
+  <div class="page" id="page-arsip">
+    <div class="stitle">🗂 Arsip Transaksi & Bukti</div>
+    <div class="ssub">Arsipkan semua nota, transfer, invoice secara terstruktur.</div>
+    <div class="g6040">
+      <div class="card">
+        <div class="ch"><div class="ct">Tambah Arsip</div></div>
+        <div class="fr2">
+          <div class="fg"><label class="fl">Kode Bukti *</label><input type="text" id="bKode" placeholder="NOTA-001"></div>
+          <div class="fg"><label class="fl">Tanggal *</label><input type="date" id="bTgl"></div>
+        </div>
+        <div class="fr2">
+          <div class="fg"><label class="fl">Jenis</label><select id="bJenis"><option>Pemasukan</option><option>Pengeluaran</option><option>Reimbursement</option><option>Disbursement</option></select></div>
+          <div class="fg"><label class="fl">Nominal (Rp)</label><input type="number" id="bNom" placeholder="0"></div>
+        </div>
+        <div class="fg"><label class="fl">Deskripsi *</label><input type="text" id="bDesk" placeholder="Deskripsi transaksi"></div>
+        <div class="fr2">
+          <div class="fg"><label class="fl">Pihak</label><input type="text" id="bPihak" placeholder="Nama orang/perusahaan"></div>
+          <div class="fg"><label class="fl">Metode</label><select id="bMet"><option>Transfer Bank</option><option>Tunai</option><option>QRIS</option><option>Kartu</option></select></div>
+        </div>
+        <div class="fg"><label class="fl">Catatan</label><textarea id="bCat" placeholder="Catatan tambahan..."></textarea></div>
+        <button class="btn bp" onclick="addArsip()">+ Simpan</button>
+      </div>
+      <div class="card"><div class="ch"><div class="ct">Statistik Arsip</div></div><div id="arsipStat"></div></div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ct">Arsip Lengkap</div>
+        <select id="aFilt" onchange="renderArsip()" style="font-size:11px;padding:3px 7px;width:auto;"><option value="">Semua</option><option>Pemasukan</option><option>Pengeluaran</option><option>Reimbursement</option><option>Disbursement</option></select>
+      </div>
+      <div class="ts"><table><thead><tr><th>Kode</th><th>Tanggal</th><th>Jenis</th><th>Deskripsi</th><th>Pihak</th><th>Metode</th><th class="tr">Nominal</th><th>Catatan</th><th class="tc">Aksi</th></tr></thead><tbody id="tArsip"></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- ===== SPO ===== -->
+  <div class="page" id="page-spo">
+    <div class="stitle">📜 SPO & Parameter Keberhasilan STCE 2026</div>
+    <div class="ssub">Standar prosedur operasional keuangan — Resty Novika Febrilia (Bencon STCE 2026)</div>
+    <div class="g2">
+      <div class="card">
+        <div class="ch"><div class="ct">📊 Parameter Keberhasilan</div></div>
+        <table><thead><tr><th>Aspek</th><th>Parameter</th><th>Status Live</th></tr></thead><tbody>
+          <tr><td>RAB Final</td><td>Disahkan sebelum operasional</td><td id="s-rab"><span class="badge bgray">—</span></td></tr>
+          <tr><td>Kontrol Anggaran</td><td>Min 90% pengeluaran sesuai RAB</td><td id="s-ctrl"><span class="badge bgray">—</span></td></tr>
+          <tr><td>DOPA Panitia</td><td>Min 95% lunas (max H-3)</td><td id="s-dopa"><span class="badge bgray">—</span></td></tr>
+          <tr><td>Bukti Transaksi</td><td>100% pengeluaran ada bukti/BA</td><td><span class="badge bamb">Pantau</span></td></tr>
+          <tr><td>Reimbursement</td><td>Min 95% valid dibayar H+7</td><td id="s-reimb"><span class="badge bgray">—</span></td></tr>
+          <tr><td>Disbursement</td><td>100% ada laporan H+3 pasca acara</td><td><span class="badge bamb">Pantau</span></td></tr>
+          <tr><td>Dashboard</td><td>Update min 1x/minggu (kritis: tiap hari)</td><td><span class="badge bgreen">✓ Aktif</span></td></tr>
+          <tr><td>Draft LPJ</td><td>Selesai max H+10</td><td><span class="badge bgray">Belum</span></td></tr>
+          <tr><td>LPJ Final</td><td>Selesai max H+14</td><td><span class="badge bgray">Belum</span></td></tr>
+          <tr><td>Rekonsiliasi</td><td>Tidak ada selisih kas tak terjelaskan</td><td><span class="badge bgray">Pantau</span></td></tr>
+        </tbody></table>
+      </div>
+      <div class="card">
+        <div class="ch"><div class="ct">⏱ Batas Waktu Kritis</div></div>
+        <table><thead><tr><th>Prosedur</th><th>Batas</th></tr></thead><tbody>
+          <tr><td>Bayar Reimbursement</td><td><span class="badge bred">H+7</span> dok lengkap</td></tr>
+          <tr><td>Bayar Disbursement</td><td><span class="badge bred">H+3</span> pasca acara</td></tr>
+          <tr><td>DOPA Lunas</td><td><span class="badge bamb">H-3</span> Main Event</td></tr>
+          <tr><td>Rekonsiliasi akhir</td><td><span class="badge bamb">H+7</span></td></tr>
+          <tr><td>Draft LPJ Keuangan</td><td><span class="badge bamb">H+10</span></td></tr>
+          <tr><td>LPJ Final</td><td><span class="badge bred">H+14</span></td></tr>
+        </tbody></table>
+        <hr class="divider">
+        <div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:8px;">🏦 Rekening STCE 2026</div>
+        <div style="background:var(--surf);border:1px solid var(--bd);border-radius:7px;padding:10px;">
+          <strong>BNI</strong> a.n Resty Novika Febrilia<br>
+          <span style="font-size:20px;font-weight:800;letter-spacing:2px;color:var(--navy);">1988428515</span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ct">Checklist Tugas Bencon</div></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;">
+        <div><div style="font-size:11px;font-weight:800;color:var(--navy);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px;">PRA HARI-H</div><div id="chkPra"></div></div>
+        <div><div style="font-size:11px;font-weight:800;color:var(--navy);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px;">HARI-H</div><div id="chkHari"></div></div>
+        <div><div style="font-size:11px;font-weight:800;color:var(--navy);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px;">PASCA ACARA</div><div id="chkPasca"></div></div>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- /content -->
 </main>
 
 <script>
-// ============ DATA ============
-const T_MASUK_OPT=37385000,T_MASUK_REL=31210000,T_MASUK_PES=25810000;
-const RAB_OPT=36417500,RAB_REL=30694500,RAB_PES=24930000;
+// ============ RAB STCE 2026 DATA (Pre-loaded from Excel) ============
+const RAB_2026 = [
+  {div:'Administrasi',     opt:248000,    rel:248000,    pes:240000},
+  {div:'Sponsorship',      opt:327500,    rel:327500,    pes:327500},
+  {div:'Creative Income',  opt:6772000,   rel:3371000,   pes:3311000},
+  {div:'Pre-Event',        opt:5357000,   rel:2554500,   pes:1017500},
+  {div:'Main Event',       opt:10295500,  rel:10160500,  pes:8615500},
+  {div:'Logistik',         opt:19490000,  rel:16706000,  pes:14156000},
+  {div:'Operasional',      opt:5800000,   rel:4905000,   pes:4135000},
+  {div:'Public Relation & Media Partnership', opt:241000, rel:160000, pes:140000},
+  {div:'Controller',       opt:70000,     rel:70000,     pes:70000},
+];
 
-let D={
-  rab:[],masuk:[],keluar:[],dopa:[],reimb:[],arsip:[],
-  chk:{pra:[],hari:[],pasca:[]},
-  todo:[],
-  gfConfig:{sheetId:'1FiyXDHGb1jOLD1jm7wz_9DOkrYFjFlK8mh5GjTWZkRc',gid:'1244319623'},
-  lastSync:null
+// Target pemasukan 2026
+const T_OPT=48605000, T_REL=38504000, T_PES=32015000;
+const RAB_OPT=48601000, RAB_REL=38502500, RAB_PES=32012500;
+
+// Target pemasukan per sumber (Realistis)
+const TARGET_MASUK = {
+  'Donasi Panitia (DOPA)':11150000,
+  'Sponsorship':5000000,
+  'Dana Usaha — Jus':2400000,
+  'Dana Usaha — Sando':2100000,
+  'Dana Usaha — Air Mineral':864000,
+  'Dana Usaha — Tisu':60000,
+  'Merch — Stiker':200000,
+  'Merch — Kipas':200000,
+  'Company Visit — Tiket':6270000,
+  'Job Fair — Booth':5000000,
+  'Dana Dekanat':3750000,
+  'Dana Turunan':1000000,
 };
 
+// ============ PANITIA STCE 2026 ============
+const PANITIA_PI = [
+  {nama:'Siti Madina Aulia Akbar',    jabatan:'Ketua Pelaksana',     tier:'po'},
+  {nama:'Aqla Yuka Nurjannah',        jabatan:'Wakil Ketua Pelaksana', tier:'po'},
+  {nama:'Nanda Lanang M. Farauh Ajuj',jabatan:'Sekretaris Umum',     tier:'pi'},
+  {nama:'Resty Novika Febrilia',      jabatan:'Bendahara Controller', tier:'pi'},
+  {nama:'Nur Aisah Bani',             jabatan:'Bendahara Treasurer',  tier:'pi'},
+  {nama:'Abdurrasyid Dzaki Amir',     jabatan:'Koordinator Acara',    tier:'pi'},
+  {nama:'Taufik Nurrohman',           jabatan:'Koordinator Teknis',   tier:'pi'},
+  {nama:'Zafira Khairina',            jabatan:'Koordinator Media',    tier:'pi'},
+];
+const PANITIA_BPH = [
+  {nama:'Salsabila Putri Aprilia',    jabatan:'PJ Divisi Administrasi',            tier:'bph'},
+  {nama:'Aisyah Thar Tilla Ramadhani',jabatan:'Wakil PJ Divisi Administrasi',      tier:'bph'},
+  {nama:'Raise Kurniaty',             jabatan:'PJ Divisi Sponsorship',             tier:'bph'},
+  {nama:'Ardelia Zeta Awani',         jabatan:'Wakil PJ Divisi Sponsorship',       tier:'bph'},
+  {nama:'Redo Al-Quddus Hijaraja R.', jabatan:'PJ Divisi Creative Income',         tier:'bph'},
+  {nama:'Muhammad Hilmi Farizqi',     jabatan:'Wakil PJ Divisi Creative Income',   tier:'bph'},
+  {nama:'Naila Syafitri Okantara',    jabatan:'PJ Divisi Pre-Event',               tier:'bph'},
+  {nama:'Mario Mediantoro',           jabatan:'Wakil PJ Divisi Pre-Event',         tier:'bph'},
+  {nama:'Zuwita Ramadhani',           jabatan:'PJ Divisi Main Event',              tier:'bph'},
+  {nama:'Dania Elang',                jabatan:'Wakil PJ Divisi Main Event',        tier:'bph'},
+  {nama:'Muhammad Al Jibran Firjatullah', jabatan:'PJ Divisi Logistik',            tier:'bph'},
+  {nama:'Muhammad Orekel Liraish',    jabatan:'Wakil PJ Divisi Logistik',          tier:'bph'},
+  {nama:'Altezza Ceishar',            jabatan:'PJ Divisi Operasional',             tier:'bph'},
+  {nama:'Muhammad Rayhan Pasha N.',   jabatan:'Wakil PJ Divisi Operasional',       tier:'bph'},
+  {nama:'Nisrina Khayyira Elikha',    jabatan:'PJ Divisi Public Relation',         tier:'bph'},
+  {nama:'Chasya Joanna Liem',         jabatan:'Wakil PJ Divisi Public Relation',   tier:'bph'},
+  {nama:'Alika Putri Deharani',       jabatan:'PJ Divisi Visual Design',           tier:'bph'},
+  {nama:'Liani Permata Zenia',        jabatan:'Wakil PJ Divisi Visual Design',     tier:'bph'},
+  {nama:'Atiqa Kayla Mecca',          jabatan:'PJ Divisi Media Partner',           tier:'bph'},
+  {nama:'Anisha Pramesthi Bening',    jabatan:'Wakil PJ Divisi Media Partner',     tier:'bph'},
+];
+
+// ============ DATA STORE ============
+let D = {
+  rab:[], masuk:[], keluar:[], dopa:[], reimb:[], arsip:[],
+  chk:{pra:[],hari:[],pasca:[]},
+  todo:[],
+  gf:{id:'1FiyXDHGb1jOLD1jm7wz_9DOkrYFjFlK8mh5GjTWZkRc', gid:'1244319623'},
+  lastSync:null,
+  dopaFilter:'semua'
+};
+
+const TIER_NOM = {po:325000, pi:200000, bph:150000, staf:100000};
+
 function load(){
-  try{const s=localStorage.getItem('stce2026');if(s)D=JSON.parse(s);}catch(e){}
+  try{const s=localStorage.getItem('stce2026v3');if(s){const p=JSON.parse(s);Object.assign(D,p);}}catch(e){}
   initDefaults();
 }
-function save(){localStorage.setItem('stce2026',JSON.stringify(D));}
+function save(){try{localStorage.setItem('stce2026v3',JSON.stringify(D));}catch(e){alert('Penyimpanan penuh! Hapus beberapa data lama.');}}
+
+// ============ DEFAULTS ============
+function initDefaults(){
+  // RAB
+  if(!D.rab.length){
+    D.rab = RAB_2026.map(r=>({id:uid(),nama:r.div+' (Total)',div:r.div,opt:r.opt,rel:r.rel,pes:r.pes}));
+  }
+  // DOPA — dari daftar panitia
+  if(!D.dopa.length){
+    const semua=[...PANITIA_PI,...PANITIA_BPH];
+    D.dopa=semua.map(p=>({id:uid(),nama:p.nama,jabatan:p.jabatan,tier:p.tier,nom:TIER_NOM[p.tier],lunas:false}));
+  }
+  // Checklists
+  if(!D.chk.pra.length){
+    D.chk.pra=['Susun & sahkan RAB STCE 2026 bersama Bentre','Susun SPO Keuangan STCE 2026','Susun sistem pengendalian keuangan','Buat Google Form DOPA, Reimburse, Disbursement','Susun matriks persetujuan transaksi','Lakukan financial briefing ke seluruh divisi','Susun proyeksi arus kas','Kumpulkan DOPA panitia (target 95%)','Pantau & catat semua pemasukan'].map((t,i)=>({id:'p'+i,text:t,done:false}));
+    D.chk.hari=['Siapkan & amankan dana operasional hari-H','Kontrol penggunaan dana darurat','Catat semua transaksi hari-H','Simpan semua bukti pembayaran vendor','Lakukan penutupan kas sementara'].map((t,i)=>({id:'h'+i,text:t,done:false}));
+    D.chk.pasca=['Terima & validasi bukti transaksi dari semua divisi','Bayar semua reimbursement (max H+7)','Bayar semua disbursement (max H+3)','Lakukan rekonsiliasi keuangan','Analisis selisih RAB vs realisasi','Selesaikan utang & piutang acara','Buat draft LPJ keuangan (max H+10)','Finalisasi LPJ keuangan (max H+14)','Arsipkan semua dokumen digital'].map((t,i)=>({id:'pa'+i,text:t,done:false}));
+  }
+  // To-do
+  if(!D.todo.length){
+    D.todo=[
+      {id:'td0',text:'RAB Perdivisi',phase:'RAB',pri:'Tinggi',done:false},
+      {id:'td1',text:'RAB Optimis Pesimis Realistis',phase:'RAB',pri:'Tinggi',done:true},
+      {id:'td2',text:'SPO DOPA',phase:'SPO',pri:'Tinggi',done:false},
+      {id:'td3',text:'SPO Pengajuan Dana',phase:'SPO',pri:'Tinggi',done:false},
+      {id:'td4',text:'SPO Penyerahan Bukti',phase:'SPO',pri:'Tinggi',done:false},
+      {id:'td5',text:'DOPA PI',phase:'DOPA',pri:'Tinggi',done:false},
+      {id:'td6',text:'DOPA BPH',phase:'DOPA',pri:'Tinggi',done:false},
+      {id:'td7',text:'DOPA Staf',phase:'DOPA',pri:'Sedang',done:false},
+      {id:'td8',text:'LPJKD (Laporan Pertanggungjawaban Keuangan Divisi)',phase:'Pasca',pri:'Tinggi',done:false},
+      {id:'td9',text:'Workspace / Tracker Dashboard',phase:'Lain',pri:'Tinggi',done:true},
+      {id:'td10',text:'LPJK (Laporan Pertanggungjawaban Keuangan)',phase:'Pasca',pri:'Tinggi',done:false},
+      {id:'td11',text:'RDPK (Rekap Dana & Pertanggungjawaban Keuangan)',phase:'Pasca',pri:'Tinggi',done:false},
+    ];
+  }
+  if(!D.gf)D.gf={id:'1FiyXDHGb1jOLD1jm7wz_9DOkrYFjFlK8mh5GjTWZkRc',gid:'1244319623'};
+  save();
+}
 
 // ============ UTILS ============
 const fmt=n=>'Rp '+Math.round(n||0).toLocaleString('id-ID');
 const fmtS=n=>{n=Math.round(n||0);if(n>=1e6)return'Rp '+(n/1e6).toFixed(1)+'jt';if(n>=1e3)return'Rp '+(n/1e3).toFixed(0)+'rb';return'Rp '+n;};
 const today=()=>new Date().toISOString().split('T')[0];
 const addDays=(d,n)=>{const dt=new Date(d);dt.setDate(dt.getDate()+n);return dt.toISOString().split('T')[0];};
-const fmtD=s=>{if(!s)return'-';const d=new Date(s);return d.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'});};
+const fmtD=s=>{if(!s)return'-';try{const d=new Date(s+'T00:00:00');return d.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'});}catch{return s;}};
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2);
-const isOD=d=>d&&new Date(d)<new Date(today());
+const isOD=d=>d&&new Date(d+'T23:59:59')<new Date();
 const totalMasuk=()=>D.masuk.reduce((s,x)=>s+(+x.jml||0),0);
 const totalKeluar=()=>D.keluar.reduce((s,x)=>s+(+x.jml||0),0);
 const totalLunas=()=>D.keluar.filter(x=>x.stat==='Lunas').reduce((s,x)=>s+(+x.jml||0),0);
+const aktualDiv=div=>D.keluar.filter(x=>x.kat===div).reduce((s,x)=>s+(+x.jml||0),0);
 const dopaLunas=()=>D.dopa.filter(x=>x.lunas);
 const dopaPct=()=>D.dopa.length?Math.round(dopaLunas().length/D.dopa.length*100):0;
-const aktualKat=k=>D.keluar.filter(x=>x.kat===k).reduce((s,x)=>s+(+x.jml||0),0);
 
-// ============ CHARTS STORE ============
+// ============ CHARTS ============
 const CH={};
 function mkChart(id,cfg){
-  try{if(CH[id])CH[id].destroy();}catch(e){}
-  const cv=document.getElementById(id);
-  if(!cv)return;
-  try{CH[id]=new Chart(cv.getContext('2d'),cfg);}catch(e){}
+  try{if(CH[id]){CH[id].destroy();delete CH[id];}}catch(e){}
+  const cv=document.getElementById(id);if(!cv)return;
+  try{CH[id]=new Chart(cv.getContext('2d'),cfg);}catch(e){console.warn('Chart error:',id,e);}
 }
+const SCEN_COLS={opt:'rgba(59,130,246,.7)',rel:'rgba(245,158,11,.7)',pes:'rgba(139,92,246,.7)'};
+const DIV_COLORS=['#3b82f6','#16a34a','#d97706','#7c3aed','#0d9488','#dc2626','#ec4899','#f97316','#64748b'];
 
 // ============ NAV ============
-function showPage(id,el){
+function nav(id,el){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));
-  const pg=document.getElementById('page-'+id);
-  if(pg)pg.classList.add('active');
+  const pg=document.getElementById('page-'+id);if(pg)pg.classList.add('active');
   if(el)el.classList.add('active');
-  else{document.querySelectorAll('.ni').forEach(n=>{if(n.getAttribute('onclick')&&n.getAttribute('onclick').includes("'"+id+"'"))n.classList.add('active');});}
-  const titles={dashboard:'Dashboard Keuangan',manual:'Manual & Setup',todo:'To-Do Timeline',rab:'RAB & Skenario',pemasukan:'Pencatatan Pemasukan',pengeluaran:'Pencatatan Pengeluaran',laporan:'Laporan Keuangan',dopa:'DOPA Panitia',reimburse:'Reimburse & DOPA Form',arsip:'Arsip Transaksi',spo:'SPO & Parameter'};
+  else document.querySelectorAll('.ni').forEach(n=>{if((n.getAttribute('onclick')||'').includes("'"+id+"'"))n.classList.add('active');});
+  const titles={dashboard:'Dashboard Keuangan',manual:'Manual & Setup',todo:'To-Do Timeline',rab:'RAB & Skenario 2026',pemasukan:'Pencatatan Pemasukan',pengeluaran:'Pencatatan Pengeluaran',laporan:'Laporan Keuangan',dopa:'DOPA Panitia',reimburse:'Reimburse & Form',arsip:'Arsip Transaksi',spo:'SPO & Parameter'};
   document.getElementById('pageTitle').textContent=titles[id]||id;
-  const r={dashboard:renderDashboard,rab:()=>{renderTRAB();updateRABSummary();},pemasukan:()=>{renderTMasuk();updateMasukSummary();},pengeluaran:()=>{renderTPengeluaran();updateKeluarSummary();updateEKatDropdown();},laporan:renderLaporan,dopa:renderDopa,reimburse:()=>{renderTReiMb();updateReiMbSummary();},arsip:()=>{renderArsip();renderArsipStats();},spo:()=>{renderSPO();renderChk();},todo:renderTodo};
+  const r={dashboard:renderDash,rab:()=>{renderTRAB();updateRABSum();},pemasukan:()=>{renderTMasuk();updateMasukSum();},pengeluaran:()=>{renderTKeluar();updateKeluarSum();},laporan:renderLaporan,dopa:renderDopa,reimburse:()=>{renderTReiMb();updateReiMbSum();},arsip:()=>{renderArsip();renderArsipStat();},spo:()=>{renderSPO();renderChk();},todo:renderTodo};
   if(r[id])r[id]();
 }
 
-// ============ DEFAULTS ============
-function initDefaults(){
-  // Default RAB from Excel data
-  if(D.rab.length===0){
-    const rabData=[
-      {div:'Administration',opt:418000,rel:418000,pes:418000},
-      {div:'Sponsorship',opt:299500,rel:299500,pes:299500},
-      {div:'Creative Income',opt:4172000,rel:4172000,pes:4172000},
-      {div:'Pre-Event',opt:2500000,rel:2240000,pes:1740000},
-      {div:'Main Event',opt:10989500,rel:7989500,pes:6357500},
-      {div:'Public Relation',opt:130000,rel:65000,pes:32500},
-      {div:'Media Partner',opt:130000,rel:130000,pes:130000},
-      {div:'Logistics',opt:15588500,rel:13206500,pes:9606500},
-      {div:'Operations',opt:2190000,rel:2174000,pes:2174000},
-    ];
-    rabData.forEach(r=>D.rab.push({id:uid(),nama:r.div+' (Total)',div:r.div,opt:r.opt,rel:r.rel,pes:r.pes}));
-    save();
-  }
-  // Default DOPA from document
-  if(D.dopa.length===0){
-    const names=['Resty Novika (Bencon)','[PI 1]','[PI 2]','[PI 3]','[PI 4]','[BPH Adm 1]','[BPH Adm 2]','[BPH Spon 1]','[BPH Spon 2]','[BPH CI 1]','[BPH CI 2]','[BPH Pre 1]','[BPH Pre 2]','[BPH Main 1]','[BPH Main 2]','[BPH PR 1]','[BPH PR 2]','[BPH MP 1]','[BPH MP 2]','[BPH Log 1]'];
-    names.forEach(n=>D.dopa.push({id:uid(),nama:n,nom:50000,lunas:false}));
-    save();
-  }
-  // Default checklists from docx
-  if(!D.chk.pra.length){
-    D.chk.pra=[
-      'Susun & sahkan RAB STCE 2026 bersama Bentre','Susun SPO Keuangan','Setup sistem pengendalian keuangan','Buat Google Form DOPA, Reimburse & Disbursement','Susun matriks persetujuan transaksi','Lakukan financial briefing ke seluruh divisi','Susun proyeksi arus kas','Kumpulkan donasi panitia (target 95%)','Pantau dan catat semua pemasukan'
-    ].map((t,i)=>({id:'pra'+i,text:t,done:false}));
-    D.chk.hari=[
-      'Siapkan & amankan dana operasional hari-H','Kontrol penggunaan dana darurat','Catat semua transaksi hari-H','Simpan semua bukti pembayaran vendor','Lakukan penutupan kas sementara setelah acara'
-    ].map((t,i)=>({id:'hari'+i,text:t,done:false}));
-    D.chk.pasca=[
-      'Terima & validasi bukti transaksi dari semua divisi','Selesaikan seluruh reimbursement (max H+7)','Selesaikan seluruh disbursement (max H+3)','Lakukan rekonsiliasi keuangan','Analisis selisih RAB vs realisasi','Selesaikan utang dan piutang acara','Buat draft LPJ keuangan (max H+10)','Finalisasi LPJ keuangan (max H+14)','Arsipkan semua dokumen keuangan digital'
-    ].map((t,i)=>({id:'pasca'+i,text:t,done:false}));
-    save();
-  }
-  // Default todo
-  if(!D.todo.length){
-    const todos=[
-      {text:'RAB Perdivisi',phase:'RAB',pri:'Tinggi',done:false},
-      {text:'RAB Optimis Pesimis Realistis',phase:'RAB',pri:'Tinggi',done:false},
-      {text:'SPO DOPA',phase:'SPO',pri:'Tinggi',done:false},
-      {text:'SPO Pengajuan Dana',phase:'SPO',pri:'Tinggi',done:false},
-      {text:'SPO Penyerahan Bukti',phase:'SPO',pri:'Tinggi',done:false},
-      {text:'DOPA PI',phase:'DOPA',pri:'Tinggi',done:false},
-      {text:'DOPA BPH',phase:'DOPA',pri:'Tinggi',done:false},
-      {text:'DOPA Staf',phase:'DOPA',pri:'Sedang',done:false},
-      {text:'LPJKD (Laporan Pertanggungjawaban Keuangan Divisi)',phase:'Pasca',pri:'Tinggi',done:false},
-      {text:'Workspace / Tracker Dashboard',phase:'Lain',pri:'Tinggi',done:true},
-      {text:'LPJK (Laporan Pertanggungjawaban Keuangan)',phase:'Pasca',pri:'Tinggi',done:false},
-      {text:'RDPK (Rekap Dana & Pertanggungjawaban Keuangan)',phase:'Pasca',pri:'Tinggi',done:false},
-    ].map((t,i)=>({...t,id:'td'+i}));
-    D.todo=todos;
-    save();
-  }
-  if(!D.gfConfig)D.gfConfig={sheetId:'1FiyXDHGb1jOLD1jm7wz_9DOkrYFjFlK8mh5GjTWZkRc',gid:'1244319623'};
-}
-
 // ============ DASHBOARD ============
-function renderDashboard(){
+function renderDash(){
   const saldo=totalMasuk()-totalLunas();
   const masuk=totalMasuk(),keluar=totalKeluar();
-  const pMasuk=Math.round(masuk/T_MASUK_REL*100);
   const rabRel=D.rab.reduce((s,r)=>s+(+r.rel||0),0)||RAB_REL;
+  const pMasuk=Math.min(200,Math.round(masuk/T_REL*100));
   const pKeluar=rabRel?Math.round(keluar/rabRel*100):0;
 
   document.getElementById('m-saldo').textContent=fmt(saldo);
   document.getElementById('m-masuk').textContent=fmt(masuk);
   document.getElementById('m-keluar').textContent=fmt(keluar);
   document.getElementById('m-dopa').textContent=dopaPct()+'%';
-  document.getElementById('m-masuk-s').textContent='Target Realistis: '+fmt(T_MASUK_REL)+' — '+pMasuk+'% tercapai';
-  document.getElementById('m-keluar-s').textContent='RAB Realistis: '+fmt(rabRel);
+  document.getElementById('m-masuk-s').textContent='Target Realistis: '+fmt(T_REL)+' — '+pMasuk+'% tercapai';
   document.getElementById('m-dopa-s').textContent=D.dopa.length+' panitia terdaftar';
 
-  const setInd=(id,val,g,a,r,suffix='')=>{const el=document.getElementById(id);el.className='mind '+(val>=g?'ig':val>=a?'ia':'ir');el.textContent=(val>=g?'✓ ':val>=a?'⚠ ':'🚨 ')+val+suffix;};
-  setInd('m-saldo-i',saldo<0?0:saldo<2000000?1:2,2,1,0,' status','');
-  document.getElementById('m-saldo-i').textContent=saldo<0?'🚨 Defisit!':saldo<2000000?'⚠ Kritis':'✓ Aman';
-  document.getElementById('m-saldo-i').className='mind '+(saldo<0?'ir':saldo<2000000?'ia':'ig');
-  setInd('m-masuk-i',pMasuk,100,70,0,'%');
-  setInd('m-keluar-i',pKeluar,0,80,100,'% RAB');
-  document.getElementById('m-keluar-i').className='mind '+(pKeluar>100?'ir':pKeluar>80?'ia':'ig');
-  document.getElementById('m-keluar-i').textContent=pKeluar+'% dari RAB';
-  setInd('m-dopa-i',dopaPct(),95,80,0,'%');
+  const si=document.getElementById('m-saldo-i');
+  si.className='mind '+(saldo<0?'ir':saldo<2000000?'ia':'ig');
+  si.textContent=saldo<0?'🚨 Defisit!':saldo<2000000?'⚠ Kritis':'✓ Aman';
 
-  renderAlerts();
-  renderChTren();renderChMasuk();renderChRAB();renderDashTargets();renderTTerbaru();
+  const mi=document.getElementById('m-masuk-i');
+  mi.className='mind '+(pMasuk>=100?'ig':pMasuk>=70?'ia':'ir');
+  mi.textContent=pMasuk+'% dari target';
+
+  const ki=document.getElementById('m-keluar-i');
+  ki.className='mind '+(pKeluar>110?'ir':pKeluar>90?'ia':'ig');
+  ki.textContent=pKeluar+'% dari RAB';
+
+  const di=document.getElementById('m-dopa-i');
+  di.className='mind '+(dopaPct()>=95?'ig':dopaPct()>=80?'ia':'ir');
+  di.textContent=dopaLunas().length+'/'+D.dopa.length+' lunas';
+
+  renderAlerts();renderChTren();renderChMasuk();renderChRAB();renderDashTargets();renderTTerbaru();
 }
 
 function renderAlerts(){
   const a=[];
   const saldo=totalMasuk()-totalLunas();
-  if(saldo<0)a.push({t:'ar',m:'🚨 DEFISIT! Saldo negatif '+fmt(saldo)+'. Tindakan segera diperlukan!'});
-  else if(saldo<2000000)a.push({t:'ar',m:'🚨 SALDO KRITIS ('+fmt(saldo)+'). Segera laporkan ke Ketua Pelaksana & percepat pencarian sponsor.'});
-  if(totalMasuk()<T_MASUK_REL*0.5&&D.masuk.length>0)a.push({t:'aw',m:'⚠ Pemasukan baru '+Math.round(totalMasuk()/T_MASUK_REL*100)+'% dari target realistis. Percepat fundraising.'});
-  if(dopaPct()<80&&D.dopa.length>0)a.push({t:'aw',m:'⚠ DOPA panitia '+dopaPct()+'%. Target 95%. Butuh '+Math.max(0,Math.ceil(D.dopa.length*0.95)-dopaLunas().length)+' orang lagi.'});
+  if(saldo<0)a.push({c:'ar',m:'🚨 DEFISIT! Saldo negatif '+fmt(saldo)+'. Segera laporkan ke Ketua Pelaksana!'});
+  else if(saldo<2000000)a.push({c:'ar',m:'🚨 SALDO KRITIS ('+fmt(saldo)+'). Percepat pencarian sponsor & dana usaha.'});
+  if(dopaPct()<80&&D.dopa.length>0)a.push({c:'aw',m:'⚠ DOPA '+dopaPct()+'%. Target 95%. Butuh '+Math.max(0,Math.ceil(D.dopa.length*0.95)-dopaLunas().length)+' orang lagi.'});
   const od=D.reimb.filter(x=>x.stat==='Menunggu'&&isOD(x.batas));
-  if(od.length)a.push({t:'ar',m:'🚨 '+od.length+' reimbursement/disbursement OVERDUE (SPO: max H+7)!'});
-  document.getElementById('dashAlerts').innerHTML=a.map(x=>`<div class="alert ${x.t}">${x.m}</div>`).join('');
+  if(od.length)a.push({c:'ar',m:'🚨 '+od.length+' reimbursement/disbursement OVERDUE! Segera bayarkan (SPO: max H+7).'});
+  document.getElementById('dashAlerts').innerHTML=a.map(x=>`<div class="alert ${x.c}">${x.m}</div>`).join('');
 }
 
 function renderChTren(){
-  const all=[...D.masuk.map(x=>({t:x.tgl,j:'masuk',v:+x.jml})),...D.keluar.map(x=>({t:x.tgl,j:'keluar',v:+x.jml}))].sort((a,b)=>a.t.localeCompare(b.t));
-  const mo={};all.forEach(x=>{const m=x.t.slice(0,7);if(!mo[m])mo[m]={m:0,k:0};mo[m][x.j==='masuk'?'m':'k']+=x.v;});
-  const labs=Object.keys(mo).sort()||['2026-01'];const dM=labs.map(l=>mo[l].m),dK=labs.map(l=>mo[l].k);
-  mkChart('cTren',{type:'bar',data:{labels:labs,datasets:[{label:'Pemasukan',data:dM,backgroundColor:'#16a34a',borderRadius:4},{label:'Pengeluaran',data:dK,backgroundColor:'#dc2626',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top',labels:{font:{size:10}}}},scales:{y:{ticks:{callback:v=>fmtS(v),font:{size:9}},grid:{color:'#f1f5f9'}},x:{ticks:{font:{size:9}},grid:{display:false}}}}});
+  const all=[...D.masuk.map(x=>({t:x.tgl,j:'m',v:+x.jml})),...D.keluar.map(x=>({t:x.tgl,j:'k',v:+x.jml}))].sort((a,b)=>a.t.localeCompare(b.t));
+  const mo={};all.forEach(x=>{const m=x.t.slice(0,7);if(!mo[m])mo[m]={m:0,k:0};mo[m][x.j]+=x.v;});
+  const labs=Object.keys(mo).sort();const dM=labs.map(l=>mo[l].m),dK=labs.map(l=>mo[l].k);
+  if(!labs.length){labs.push('2026-01');dM.push(0);dK.push(0);}
+  mkChart('cTren',{type:'bar',data:{labels:labs,datasets:[{label:'Pemasukan',data:dM,backgroundColor:'#16a34a',borderRadius:4},{label:'Pengeluaran',data:dK,backgroundColor:'#dc2626',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top',labels:{font:{size:10},boxWidth:12}}},scales:{y:{ticks:{callback:v=>fmtS(v),font:{size:9}},grid:{color:'#f1f5f9'}},x:{ticks:{font:{size:9}},grid:{display:false}}}}});
 }
 
 function renderChMasuk(){
   const cats={};D.masuk.forEach(x=>{cats[x.kat]=(cats[x.kat]||0)+(+x.jml);});
   const labs=Object.keys(cats),vals=labs.map(l=>cats[l]);
-  const cols=['#3b82f6','#16a34a','#d97706','#7c3aed','#0d9488','#dc2626','#ec4899','#f97316'];
-  document.getElementById('legMasuk').innerHTML=labs.map((l,i)=>`<span style="display:flex;align-items:center;gap:3px;font-size:10px;color:#475569;"><span style="width:9px;height:9px;border-radius:2px;background:${cols[i%cols.length]};display:inline-block;"></span>${l}</span>`).join('');
+  document.getElementById('legMasuk').innerHTML=labs.map((l,i)=>`<span style="display:flex;align-items:center;gap:3px;font-size:10px;color:#475569;"><span style="width:9px;height:9px;border-radius:2px;background:${DIV_COLORS[i%DIV_COLORS.length]};display:inline-block;"></span>${l}</span>`).join('');
   if(!labs.length){document.getElementById('legMasuk').innerHTML='<span style="font-size:11px;color:#94a3b8;">Belum ada data</span>';return;}
-  const total=vals.reduce((a,b)=>a+b,0);
-  mkChart('cMasuk',{type:'doughnut',data:{labels:labs,datasets:[{data:vals,backgroundColor:cols,borderWidth:0,hoverOffset:4}]},options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+fmtS(c.raw)+' ('+Math.round(c.raw/total*100)+'%)'}}}}});
+  const tot=vals.reduce((a,b)=>a+b,0);
+  mkChart('cMasuk',{type:'doughnut',data:{labels:labs,datasets:[{data:vals,backgroundColor:DIV_COLORS,borderWidth:0,hoverOffset:4}]},options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+fmtS(c.raw)+' ('+Math.round(c.raw/tot*100)+'%)'}}}}});
 }
 
 function renderChRAB(){
   const divs=[...new Set(D.rab.map(r=>r.div))];
   const rabRel=divs.map(d=>D.rab.filter(r=>r.div===d).reduce((s,r)=>s+(+r.rel||0),0));
-  const aktual=divs.map(d=>aktualKat(d));
+  const akt=divs.map(d=>aktualDiv(d));
   if(!divs.length)return;
-  mkChart('cRAB',{type:'bar',data:{labels:divs,datasets:[{label:'RAB Realistis',data:rabRel,backgroundColor:'#dbeafe',borderColor:'#3b82f6',borderWidth:1,borderRadius:3},{label:'Aktual',data:aktual,backgroundColor:aktual.map((v,i)=>v>rabRel[i]?'#dc2626':'#16a34a'),borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:true,position:'top',labels:{font:{size:10}}}},scales:{x:{ticks:{callback:v=>fmtS(v),font:{size:9}},grid:{color:'#f1f5f9'}},y:{ticks:{font:{size:9}},grid:{display:false}}}}});
+  mkChart('cRAB',{type:'bar',data:{labels:divs.map(d=>d.length>12?d.slice(0,12)+'…':d),datasets:[{label:'RAB Realistis',data:rabRel,backgroundColor:'rgba(219,234,254,.9)',borderColor:'#3b82f6',borderWidth:1,borderRadius:3},{label:'Aktual',data:akt,backgroundColor:akt.map((v,i)=>v>rabRel[i]?'rgba(220,38,38,.8)':'rgba(22,163,74,.8)'),borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:true,position:'top',labels:{font:{size:10},boxWidth:12}}},scales:{x:{ticks:{callback:v=>fmtS(v),font:{size:9}},grid:{color:'#f1f5f9'}},y:{ticks:{font:{size:9}},grid:{display:false}}}}});
 }
 
 function renderDashTargets(){
-  const masuk=totalMasuk();const keluar=totalKeluar();const rabRel=D.rab.reduce((s,r)=>s+(+r.rel||0),0)||RAB_REL;
-  const duAkt=D.masuk.filter(x=>x.kat==='Dana Usaha').reduce((s,x)=>s+(+x.jml),0);
+  const masuk=totalMasuk(),keluar=totalKeluar();
+  const rabRel=D.rab.reduce((s,r)=>s+(+r.rel||0),0)||RAB_REL;
   const items=[
-    {l:'Pemasukan Total',v:Math.min(100,Math.round(masuk/T_MASUK_REL*100)),c:masuk>=T_MASUK_REL?'#16a34a':masuk>=T_MASUK_REL*.7?'#d97706':'#dc2626',d:fmt(masuk)+' / '+fmt(T_MASUK_REL)},
-    {l:'Kontrol Anggaran ≤ RAB',v:keluar?Math.min(100,Math.round(rabRel/keluar*100)):100,c:keluar<=rabRel?'#16a34a':keluar<=rabRel*1.1?'#d97706':'#dc2626',d:fmt(keluar)+' keluar'},
+    {l:'Pemasukan Total',v:Math.min(100,Math.round(masuk/T_REL*100)),c:masuk>=T_REL?'#16a34a':masuk>=T_REL*.7?'#d97706':'#dc2626',d:fmt(masuk)+' / '+fmt(T_REL)},
+    {l:'Kontrol Anggaran (≤ RAB)',v:keluar?Math.min(100,Math.round(rabRel/keluar*100)):100,c:keluar<=rabRel?'#16a34a':keluar<=rabRel*1.1?'#d97706':'#dc2626',d:fmt(keluar)+' terpakai'},
     {l:'DOPA Panitia',v:Math.min(100,dopaPct()),c:dopaPct()>=95?'#16a34a':dopaPct()>=80?'#d97706':'#dc2626',d:dopaLunas().length+'/'+D.dopa.length+' orang'},
     {l:'Reimburse Selesai',v:D.reimb.length?Math.min(100,Math.round(D.reimb.filter(x=>x.stat==='Dibayar').length/D.reimb.length*100)):100,c:'#16a34a',d:D.reimb.filter(x=>x.stat==='Dibayar').length+'/'+D.reimb.length},
   ];
@@ -983,336 +959,312 @@ function renderTTerbaru(){
   const all=[...D.masuk.map(x=>({...x,jenis:'Pemasukan'})),...D.keluar.map(x=>({...x,jenis:'Pengeluaran'}))].sort((a,b)=>b.tgl.localeCompare(a.tgl)).slice(0,8);
   const tb=document.getElementById('tTerbaru');
   if(!all.length){tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:#94a3b8;padding:20px;">Belum ada transaksi.</td></tr>';return;}
-  tb.innerHTML=all.map(x=>`<tr><td>${fmtD(x.tgl)}</td><td>${x.desk}</td><td><span class="badge bgray">${x.kat}</span></td><td><span class="badge ${x.jenis==='Pemasukan'?'bgreen':'bred'}">${x.jenis}</span></td><td class="tr" style="font-weight:700;color:${x.jenis==='Pemasukan'?'#16a34a':'#dc2626'};">${x.jenis==='Pemasukan'?'+':'-'}${fmt(x.jml)}</td><td><span class="badge ${x.stat==='Lunas'||!x.stat?'bgreen':x.stat==='Pending'?'bamb':'bblue'}">${x.stat||'Masuk'}</span></td></tr>`).join('');
+  tb.innerHTML=all.map(x=>`<tr><td>${fmtD(x.tgl)}</td><td>${x.desk}</td><td><span class="badge bgray">${x.kat}</span></td><td><span class="badge ${x.jenis==='Pemasukan'?'bgreen':'bred'}">${x.jenis}</span></td><td class="tr" style="font-weight:700;color:${x.jenis==='Pemasukan'?'#16a34a':'#dc2626'};">${x.jenis==='Pemasukan'?'+':'-'}${fmt(x.jml)}</td><td><span class="badge ${!x.stat||x.stat==='Lunas'?'bgreen':x.stat==='Pending'?'bamb':'bpur'}">${x.stat||'Masuk'}</span></td></tr>`).join('');
 }
 
-// ============ XLSX IMPORT ============
+// ============ RAB ============
 function handleDrop(e){e.preventDefault();document.getElementById('dropZone').classList.remove('drag');const f=e.dataTransfer.files[0];if(f)processXlsx(f);}
-function handleXlsxImport(inp){if(inp.files[0])processXlsx(inp.files[0]);inp.value='';}
+function handleXlsx(inp){if(inp.files[0])processXlsx(inp.files[0]);inp.value='';}
 function processXlsx(file){
   const reader=new FileReader();
   reader.onload=function(e){
     try{
       const wb=XLSX.read(e.target.result,{type:'array'});
-      let imported=0;
-      // Read skenario sheets
-      const scens=[{key:'opt',pat:'Optimis'},{key:'rel',pat:'Realistis'},{key:'pes',pat:'Pesimis'}];
       const newRab={};
-      scens.forEach(({key,pat})=>{
-        const shName=wb.SheetNames.find(n=>n.toLowerCase().includes(pat.toLowerCase()));
-        if(!shName)return;
-        const sh=wb.Sheets[shName];const rows=XLSX.utils.sheet_to_json(sh,{header:1,defval:''});
+      [['opt','Optimis'],['rel','Realistis'],['pes','Pesimis']].forEach(([key,pat])=>{
+        const sh=wb.Sheets[wb.SheetNames.find(n=>n.toLowerCase().includes(pat.toLowerCase()))];
+        if(!sh)return;
+        const rows=XLSX.utils.sheet_to_json(sh,{header:1,defval:''});
         let curDiv='';
         rows.forEach(row=>{
-          const label=String(row[0]||'').trim();const jenis=String(row[1]||'').trim();
-          // detect divisi header
-          if(label.toUpperCase()===label&&label.length>3&&!label.match(/^\d/)&&!label.startsWith('NO')&&!label.startsWith('TOTAL')&&!label.startsWith('JUMLAH')&&!label.startsWith('SCIENCE'))curDiv=label;
-          const last=row[row.length-1];const val=typeof last==='number'?last:0;
-          if(label.match(/^\d+\.?$/)&&jenis&&val>0){
+          const lbl=String(row[0]||'').trim(),jenis=String(row[1]||'').trim();
+          if(lbl===lbl.toUpperCase()&&lbl.length>3&&!lbl.match(/^\d/)&&!['NO','TOTAL','JUMLAH','GRAND','SCIENCE','CONTROLLER','DIVISI'].some(s=>lbl.startsWith(s)))curDiv=lbl.replace('DIVISI ','');
+          const v=typeof row[row.length-1]==='number'?row[row.length-1]:0;
+          if(lbl.match(/^\d+\.?$/)&&jenis&&v>0){
             const k=curDiv+'||'+jenis;
             if(!newRab[k])newRab[k]={div:curDiv,nama:jenis,opt:0,rel:0,pes:0};
-            newRab[k][key]=val;imported++;
+            newRab[k][key]=v;
           }
         });
       });
-      // Read Pemasukan
-      const pshName=wb.SheetNames.find(n=>n.toLowerCase().includes('pemasukan'));
-      if(pshName){
-        const sh=wb.Sheets[pshName];const rows=XLSX.utils.sheet_to_json(sh,{header:1,defval:''});
-        // Just read totals row
-        const totalRow=rows.find(r=>String(r[0]).toUpperCase().includes('TOTAL'));
-        if(totalRow){
-          const o=+totalRow[3]||0,r2=+totalRow[4]||0,p=+totalRow[5]||0;
-          document.getElementById('importStatus').innerHTML=`<div class="alert ag">✓ Berhasil membaca Pemasukan: Opt ${fmt(o)} / Rel ${fmt(r2)} / Pes ${fmt(p)}</div>`;
-        }
-      }
       if(Object.keys(newRab).length>0){
         D.rab=[...Object.values(newRab)].map(r=>({...r,id:uid()}));
-        save();renderTRAB();updateRABSummary();
-        document.getElementById('importStatus').innerHTML=`<div class="alert ag">✓ Import berhasil! ${Object.keys(newRab).length} pos RAB dari ${scens.length} skenario diimpor.</div>`;
-      } else {
-        document.getElementById('importStatus').innerHTML='<div class="alert aw">⚠ Tidak ada data terdeteksi. Pastikan sheet bernama "Pengeluaran (Optimis)", "(Realistis)", "(Pesimis)".</div>';
-      }
-    }catch(err){document.getElementById('importStatus').innerHTML='<div class="alert ar">Error membaca file: '+err.message+'</div>';}
-  };
-  reader.readAsArrayBuffer(file);
+        save();renderTRAB();updateRABSum();
+        document.getElementById('xlsxStat').innerHTML=`<div class="alert ag">✓ Import berhasil! ${Object.keys(newRab).length} pos RAB dari 3 skenario.</div>`;
+      } else document.getElementById('xlsxStat').innerHTML='<div class="alert aw">⚠ Tidak ada data. Pastikan sheet bernama "Pengeluaran (Optimis/Realistis/Pesimis)".</div>';
+    }catch(err){document.getElementById('xlsxStat').innerHTML='<div class="alert ar">Error: '+err.message+'</div>';}
+  };reader.readAsArrayBuffer(file);
 }
 
-// ============ RAB ============
 function addRAB(){
-  const nama=document.getElementById('rabNama').value.trim();
-  const div=document.getElementById('rabDiv').value;
-  const opt=+document.getElementById('rabOpt').value||0;
-  const rel=+document.getElementById('rabRel').value||0;
-  const pes=+document.getElementById('rabPes').value||0;
-  if(!nama)return alert('Nama pos wajib diisi!');
-  D.rab.push({id:uid(),nama,div,opt,rel,pes});
-  save();['rabNama','rabOpt','rabRel','rabPes'].forEach(id=>document.getElementById(id).value='');
-  renderTRAB();updateRABSummary();
+  const n=document.getElementById('rNama').value.trim(),d=document.getElementById('rDiv').value;
+  const o=+document.getElementById('rOpt').value||0,r=+document.getElementById('rRel').value||0,p=+document.getElementById('rPes').value||0;
+  if(!n)return alert('Nama pos wajib!');
+  D.rab.push({id:uid(),nama:n,div:d,opt:o,rel:r,pes:p});
+  save();['rNama','rOpt','rRel','rPes'].forEach(id=>document.getElementById(id).value='');
+  renderTRAB();updateRABSum();
 }
-
-function delRAB(id){if(!confirm('Hapus?'))return;D.rab=D.rab.filter(x=>x.id!==id);save();renderTRAB();updateRABSummary();}
+function delRAB(id){if(!confirm('Hapus pos ini?'))return;D.rab=D.rab.filter(x=>x.id!==id);save();renderTRAB();updateRABSum();}
 
 function renderTRAB(){
   document.getElementById('rabCnt').textContent=D.rab.length+' pos';
   const tb=document.getElementById('tRAB');
-  if(!D.rab.length){tb.innerHTML='<tr><td colspan="9" style="text-align:center;color:#94a3b8;padding:20px;">Belum ada pos. Import Excel atau tambah manual.</td></tr>';return;}
+  if(!D.rab.length){tb.innerHTML='<tr><td colspan="9" style="text-align:center;color:#94a3b8;padding:20px;">Belum ada pos RAB.</td></tr>';return;}
   tb.innerHTML=D.rab.map((r,i)=>{
-    const akt=aktualKat(r.div);const pct=r.rel?Math.round(akt/r.rel*100):0;
-    const c=pct>100?'#dc2626':pct>80?'#d97706':'#16a34a';
-    return`<tr><td>${i+1}</td><td style="font-weight:600;">${r.nama}</td><td><span class="badge bblue">${r.div}</span></td><td class="tr">${fmt(r.opt)}</td><td class="tr">${fmt(r.rel)}</td><td class="tr">${fmt(r.pes)}</td><td class="tr" style="color:var(--red);font-weight:700;">${fmt(akt)}</td><td><div style="display:flex;align-items:center;gap:5px;"><div class="pw" style="flex:1;"><div class="pf" style="background:${c};width:${Math.min(100,pct)}%;"></div></div><span style="font-size:10px;font-weight:700;color:${c};">${pct}%</span></div></td><td class="tc"><button class="btn bd2 bsm" onclick="delRAB('${r.id}')">✕</button></td></tr>`;
+    const akt=aktualDiv(r.div),pct=r.rel?Math.round(akt/r.rel*100):0;
+    const c=pct>110?'#dc2626':pct>90?'#d97706':'#16a34a';
+    return`<tr><td>${i+1}</td><td style="font-weight:600;">${r.nama}</td><td><span class="badge bblue">${r.div}</span></td><td class="tr">${fmt(r.opt)}</td><td class="tr">${fmt(r.rel)}</td><td class="tr">${fmt(r.pes)}</td><td class="tr" style="color:#dc2626;font-weight:700;">${fmt(akt)}</td><td><div style="display:flex;align-items:center;gap:5px;"><div class="pw" style="flex:1;"><div class="pf" style="background:${c};width:${Math.min(100,pct)}%;"></div></div><span style="font-size:10px;font-weight:700;color:${c};">${pct}%</span></div></td><td class="tc"><button class="btn bd2 bsm" onclick="delRAB('${r.id}')">✕</button></td></tr>`;
   }).join('');
 }
 
-function updateRABSummary(){
-  const tOpt=D.rab.reduce((s,r)=>s+(+r.opt||0),0);
-  const tRel=D.rab.reduce((s,r)=>s+(+r.rel||0),0);
-  const tPes=D.rab.reduce((s,r)=>s+(+r.pes||0),0);
-  const tAkt=totalKeluar();
-  document.getElementById('tScenSum').innerHTML=[
-    {s:'Optimis',p:fmt(T_MASUK_OPT),k:fmt(tOpt||RAB_OPT),sur:T_MASUK_OPT-(tOpt||RAB_OPT)},
-    {s:'Realistis',p:fmt(T_MASUK_REL),k:fmt(tRel||RAB_REL),sur:T_MASUK_REL-(tRel||RAB_REL)},
-    {s:'Pesimis',p:fmt(T_MASUK_PES),k:fmt(tPes||RAB_PES),sur:T_MASUK_PES-(tPes||RAB_PES)},
-    {s:'🔴 Aktual',p:fmt(totalMasuk()),k:fmt(tAkt),sur:totalMasuk()-tAkt}
-  ].map(r=>`<tr><td style="font-weight:600;">${r.s}</td><td class="tr" style="color:#16a34a;">${r.p}</td><td class="tr" style="color:#dc2626;">${r.k}</td><td class="tr" style="font-weight:700;color:${r.sur>=0?'#16a34a':'#dc2626'};">${r.sur>=0?'+':''}${fmt(r.sur)}</td></tr>`).join('');
+function updateRABSum(){
+  const tO=D.rab.reduce((s,r)=>s+(+r.opt||0),0)||RAB_OPT;
+  const tR=D.rab.reduce((s,r)=>s+(+r.rel||0),0)||RAB_REL;
+  const tP=D.rab.reduce((s,r)=>s+(+r.pes||0),0)||RAB_PES;
+  const tA=totalKeluar();
+  document.getElementById('tScen').innerHTML=[
+    {s:'Optimis',m:fmt(T_OPT),k:fmt(tO),sur:T_OPT-tO},
+    {s:'Realistis',m:fmt(T_REL),k:fmt(tR),sur:T_REL-tR},
+    {s:'Pesimis',m:fmt(T_PES),k:fmt(tP),sur:T_PES-tP},
+    {s:'🔴 Aktual',m:fmt(totalMasuk()),k:fmt(tA),sur:totalMasuk()-tA}
+  ].map(r=>`<tr><td style="font-weight:600;">${r.s}</td><td class="tr" style="color:#16a34a;">${r.m}</td><td class="tr" style="color:#dc2626;">${r.k}</td><td class="tr" style="font-weight:700;color:${r.sur>=0?'#16a34a':'#dc2626'};">${r.sur>=0?'+':''} ${fmt(r.sur)}</td></tr>`).join('');
 
   const divs=[...new Set(D.rab.map(r=>r.div))];
-  mkChart('cScen',{type:'bar',data:{labels:divs,datasets:[
-    {label:'Optimis',data:divs.map(d=>D.rab.filter(r=>r.div===d).reduce((s,r)=>s+(+r.opt||0),0)),backgroundColor:'rgba(59,130,246,.6)',borderRadius:2},
-    {label:'Realistis',data:divs.map(d=>D.rab.filter(r=>r.div===d).reduce((s,r)=>s+(+r.rel||0),0)),backgroundColor:'rgba(245,158,11,.6)',borderRadius:2},
-    {label:'Pesimis',data:divs.map(d=>D.rab.filter(r=>r.div===d).reduce((s,r)=>s+(+r.pes||0),0)),backgroundColor:'rgba(139,92,246,.6)',borderRadius:2},
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top',labels:{font:{size:9}}}},scales:{y:{ticks:{callback:v=>fmtS(v),font:{size:9}}},x:{ticks:{font:{size:9}},grid:{display:false}}}}});
+  const dO=divs.map(d=>D.rab.filter(r=>r.div===d).reduce((s,r)=>s+(+r.opt||0),0));
+  const dR=divs.map(d=>D.rab.filter(r=>r.div===d).reduce((s,r)=>s+(+r.rel||0),0));
+  const dP=divs.map(d=>D.rab.filter(r=>r.div===d).reduce((s,r)=>s+(+r.pes||0),0));
+  mkChart('cScen',{type:'bar',data:{labels:divs.map(d=>d.length>10?d.slice(0,10)+'…':d),datasets:[
+    {label:'Optimis',data:dO,backgroundColor:'rgba(59,130,246,.6)',borderRadius:2},
+    {label:'Realistis',data:dR,backgroundColor:'rgba(245,158,11,.6)',borderRadius:2},
+    {label:'Pesimis',data:dP,backgroundColor:'rgba(139,92,246,.6)',borderRadius:2},
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top',labels:{font:{size:9},boxWidth:10}}},scales:{y:{ticks:{callback:v=>fmtS(v),font:{size:9}}},x:{ticks:{font:{size:9}},grid:{display:false}}}}});
 }
 
 // ============ PEMASUKAN ============
-function addPemasukan(){
+function addMasuk(){
   const tgl=document.getElementById('pTgl').value,kat=document.getElementById('pKat').value;
   const desk=document.getElementById('pDesk').value.trim(),jml=+document.getElementById('pJml').value;
   const pihak=document.getElementById('pPihak').value.trim(),bukti=document.getElementById('pBukti').value.trim();
   if(!tgl||!desk||!jml)return alert('Tanggal, deskripsi, jumlah wajib!');
-  D.masuk.push({id:uid(),tgl,kat,desk,jml,pihak,bukti,src:'Manual'});
-  save();resetPForm();renderTMasuk();updateMasukSummary();
+  D.masuk.push({id:uid(),tgl,kat,desk,jml,pihak,bukti});
+  save();resetPF();renderTMasuk();updateMasukSum();
 }
-function resetPForm(){document.getElementById('pTgl').value=today();['pDesk','pJml','pPihak','pBukti'].forEach(id=>document.getElementById(id).value='');}
-function delMasuk(id){if(!confirm('Hapus?'))return;D.masuk=D.masuk.filter(x=>x.id!==id);save();renderTMasuk();updateMasukSummary();}
-
+function resetPF(){document.getElementById('pTgl').value=today();['pDesk','pJml','pPihak','pBukti'].forEach(id=>document.getElementById(id).value='');}
+function delMasuk(id){if(!confirm('Hapus?'))return;D.masuk=D.masuk.filter(x=>x.id!==id);save();renderTMasuk();updateMasukSum();}
 function renderTMasuk(){
   document.getElementById('pCnt').textContent=D.masuk.length+' transaksi';
   const tb=document.getElementById('tMasuk');
   if(!D.masuk.length){tb.innerHTML='<tr><td colspan="7" style="text-align:center;color:#94a3b8;padding:20px;">Belum ada data.</td></tr>';return;}
   tb.innerHTML=[...D.masuk].sort((a,b)=>b.tgl.localeCompare(a.tgl)).map(x=>`<tr><td>${fmtD(x.tgl)}</td><td style="font-weight:600;">${x.desk}</td><td><span class="badge bgreen">${x.kat}</span></td><td>${x.pihak||'-'}</td><td style="font-size:11px;color:var(--txm);">${x.bukti||'-'}</td><td class="tr" style="font-weight:700;color:#16a34a;">+${fmt(x.jml)}</td><td class="tc"><button class="btn bd2 bsm" onclick="delMasuk('${x.id}')">✕</button></td></tr>`).join('');
 }
-function updateMasukSummary(){
-  const total=totalMasuk(),pct=Math.min(100,Math.round(total/T_MASUK_REL*100));
-  document.getElementById('pTotal').textContent=fmt(total);
+function updateMasukSum(){
+  const total=totalMasuk(),pct=Math.min(100,Math.round(total/T_REL*100));
+  document.getElementById('pTot').textContent=fmt(total);
   document.getElementById('pBar').style.width=pct+'%';
   document.getElementById('pBar').style.background=pct>=100?'#16a34a':pct>=70?'#d97706':'#3b82f6';
   document.getElementById('pPct').textContent=pct+'% dari target realistis';
   const cats={};D.masuk.forEach(x=>{cats[x.kat]=(cats[x.kat]||0)+(+x.jml);});
-  const cl=['#3b82f6','#16a34a','#d97706','#7c3aed','#0d9488','#dc2626','#ec4899'];
-  document.getElementById('pBreak').innerHTML=Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([k,v],i)=>`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;"><div style="display:flex;align-items:center;gap:5px;"><div style="width:7px;height:7px;border-radius:50%;background:${cl[i%cl.length]};"></div><span style="font-size:11px;">${k}</span></div><span style="font-size:11px;font-weight:700;">${fmt(v)}</span></div>`).join('')||'<p style="font-size:11px;color:#94a3b8;">Belum ada data.</p>';
+  document.getElementById('pBreak').innerHTML=Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([k,v],i)=>`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px;"><div style="display:flex;align-items:center;gap:5px;"><div style="width:7px;height:7px;border-radius:50%;background:${DIV_COLORS[i%DIV_COLORS.length]};"></div><span style="font-size:11px;">${k}</span></div><span style="font-size:11px;font-weight:700;">${fmt(v)}</span></div>`).join('')||'<p style="font-size:11px;color:#94a3b8;">Belum ada data.</p>';
 }
 
 // ============ PENGELUARAN ============
-function updateEKatDropdown(){
-  const cats=[...new Set(D.rab.map(r=>r.div)),'Dana Darurat','Lain-lain'];
-  const sel=document.getElementById('eKat');
-  const cur=sel.value;
-  sel.innerHTML='<option value="">-- Pilih --</option>'+[...new Set(['Administration','Sponsorship','Creative Income','Pre-Event','Main Event','Public Relation','Media Partner','Logistics','Operations',...cats])].map(c=>`<option value="${c}">${c}</option>`).join('');
-  if(cur)sel.value=cur;
-}
-function showRABRef(){
+function showRRef(){
   const kat=document.getElementById('eKat').value;
-  const ri=document.getElementById('rabRef');
-  if(!kat){ri.style.display='none';return;}
-  const rabForKat=D.rab.filter(r=>r.div===kat);
-  if(rabForKat.length){
-    const totRel=rabForKat.reduce((s,r)=>s+(+r.rel||0),0);
-    const akt=aktualKat(kat);const sisa=totRel-akt;
-    ri.style.display='flex';
-    ri.className='alert '+(sisa<0?'ar':'ai');
-    ri.innerHTML=`📋 RAB <strong>${kat}</strong>: Realistis ${fmt(totRel)} · Terpakai ${fmt(akt)} · <strong>Sisa ${fmt(sisa)}</strong>`;
-  } else ri.style.display='none';
+  const el=document.getElementById('rabRef');
+  if(!kat){el.style.display='none';return;}
+  const rForDiv=D.rab.filter(r=>r.div===kat);
+  if(rForDiv.length){
+    const totRel=rForDiv.reduce((s,r)=>s+(+r.rel||0),0);
+    const akt=aktualDiv(kat),sisa=totRel-akt;
+    el.style.display='flex';el.className='alert '+(sisa<0?'ar':'ai');
+    el.innerHTML=`📋 RAB <strong>${kat}</strong>: Realistis ${fmt(totRel)} · Terpakai ${fmt(akt)} · <strong>Sisa ${fmt(sisa)}</strong>`;
+  }else el.style.display='none';
 }
-function addPengeluaran(){
+function addKeluar(){
   const tgl=document.getElementById('eTgl').value,kat=document.getElementById('eKat').value;
   const desk=document.getElementById('eDesk').value.trim(),jml=+document.getElementById('eJml').value;
   const pay=document.getElementById('ePay').value.trim(),bukti=document.getElementById('eBukti').value.trim();
   const stat=document.getElementById('eStat').value;
   if(!tgl||!kat||!desk||!jml)return alert('Tanggal, kategori, deskripsi, jumlah wajib!');
   D.keluar.push({id:uid(),tgl,kat,desk,jml,pay,bukti,stat});
-  save();resetEForm();renderTPengeluaran();updateKeluarSummary();
+  save();resetEF();renderTKeluar();updateKeluarSum();
 }
-function resetEForm(){document.getElementById('eTgl').value=today();['eDesk','eJml','ePay','eBukti'].forEach(id=>document.getElementById(id).value='');document.getElementById('eKat').value='';document.getElementById('rabRef').style.display='none';}
-function delKeluar(id){if(!confirm('Hapus?'))return;D.keluar=D.keluar.filter(x=>x.id!==id);save();renderTPengeluaran();updateKeluarSummary();}
-function renderTPengeluaran(){
-  const f=document.getElementById('eFilter').value;
+function resetEF(){document.getElementById('eTgl').value=today();['eDesk','eJml','ePay','eBukti'].forEach(id=>document.getElementById(id).value='');document.getElementById('eKat').value='';document.getElementById('rabRef').style.display='none';}
+function delKeluar(id){if(!confirm('Hapus?'))return;D.keluar=D.keluar.filter(x=>x.id!==id);save();renderTKeluar();updateKeluarSum();}
+function renderTKeluar(){
+  const f=document.getElementById('eFilt').value;
   let rows=[...D.keluar].sort((a,b)=>b.tgl.localeCompare(a.tgl));
   if(f)rows=rows.filter(x=>x.stat===f);
   const tb=document.getElementById('tKeluar');
   if(!rows.length){tb.innerHTML='<tr><td colspan="8" style="text-align:center;color:#94a3b8;padding:20px;">Tidak ada data.</td></tr>';return;}
   tb.innerHTML=rows.map(x=>`<tr><td>${fmtD(x.tgl)}</td><td style="font-weight:600;">${x.desk}</td><td><span class="badge bblue">${x.kat}</span></td><td>${x.pay||'-'}</td><td style="font-size:11px;color:var(--txm);">${x.bukti||'-'}</td><td class="tr" style="font-weight:700;color:#dc2626;">-${fmt(x.jml)}</td><td><span class="badge ${x.stat==='Lunas'?'bgreen':x.stat==='Pending'?'bamb':'bpur'}">${x.stat}</span></td><td class="tc"><button class="btn bd2 bsm" onclick="delKeluar('${x.id}')">✕</button></td></tr>`).join('');
 }
-function updateKeluarSummary(){
-  document.getElementById('eTotal').textContent=fmt(totalKeluar());
+function updateKeluarSum(){
+  document.getElementById('eTot').textContent=fmt(totalKeluar());
   document.getElementById('eLunas').textContent=fmt(totalLunas());
   document.getElementById('ePend').textContent=fmt(D.keluar.filter(x=>x.stat!=='Lunas').reduce((s,x)=>s+(+x.jml),0));
   const cats={};D.keluar.forEach(x=>{cats[x.kat]=(cats[x.kat]||0)+(+x.jml);});
-  document.getElementById('eBreak').innerHTML=Object.entries(cats).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([k,v])=>`<div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:11px;color:var(--txm);">${k}</span><span style="font-size:11px;font-weight:700;color:#dc2626;">${fmt(v)}</span></div>`).join('')||'<p style="font-size:11px;color:#94a3b8;">Belum ada data.</p>';
+  document.getElementById('eBreak').innerHTML=Object.entries(cats).sort((a,b)=>b[1]-a[1]).slice(0,6).map(([k,v])=>`<div style="display:flex;justify-content:space-between;margin-bottom:5px;"><span style="font-size:11px;color:var(--txm);">${k}</span><span style="font-size:11px;font-weight:700;color:#dc2626;">${fmt(v)}</span></div>`).join('')||'<p style="font-size:11px;color:#94a3b8;">Belum ada data.</p>';
 }
 
 // ============ LAPORAN ============
-let cfChart=null,divChart=null,scMain=null;
 function renderLaporan(){
   const masuk=totalMasuk(),keluar=totalKeluar(),net=masuk-keluar;
   const rabRel=D.rab.reduce((s,r)=>s+(+r.rel||0),0)||RAB_REL;
-  const comp=rabRel?Math.round(Math.min(100,(keluar<=rabRel?100:rabRel/keluar*100))):100;
-  document.getElementById('lMasuk').textContent=fmt(masuk);
-  document.getElementById('lKeluar').textContent=fmt(keluar);
-  document.getElementById('lNet').textContent=fmt(net);
-  document.getElementById('lNet').style.color=net>=0?'#16a34a':'#dc2626';
-  const ni=document.getElementById('lNetI');ni.className='mind '+(net>=0?'ig':'ir');ni.textContent=net>=0?'✓ Positif':'⚠ Negatif';
-  document.getElementById('lComp').textContent=comp+'%';
+  const comp=keluar>0?(keluar<=rabRel?'✓ Sesuai':'⚠ Over Budget'):'—';
+  document.getElementById('lM').textContent=fmt(masuk);
+  document.getElementById('lK').textContent=fmt(keluar);
+  document.getElementById('lN').textContent=fmt(net);
+  document.getElementById('lN').style.color=net>=0?'#16a34a':'#dc2626';
+  const ni=document.getElementById('lNI');ni.className='mind '+(net>=0?'ig':'ir');ni.textContent=net>=0?'✓ Positif':'⚠ Negatif';
+  document.getElementById('lC').textContent=comp;document.getElementById('lC').style.color=keluar>rabRel?'#dc2626':'#16a34a';
 
-  // MAIN SCENARIO CHART
-  const cats=[...new Set(D.rab.map(r=>r.div))];
-  const labels=['Pemasukan','Pengeluaran'];
-  const tOpt=D.rab.reduce((s,r)=>s+(+r.opt||0),0)||RAB_OPT;
-  const tRel=D.rab.reduce((s,r)=>s+(+r.rel||0),0)||RAB_REL;
-  const tPes=D.rab.reduce((s,r)=>s+(+r.pes||0),0)||RAB_PES;
+  // SCENARIO MAIN
+  const tR=D.rab.reduce((s,r)=>s+(+r.rel||0),0)||RAB_REL;
+  const tO=D.rab.reduce((s,r)=>s+(+r.opt||0),0)||RAB_OPT;
+  const tP=D.rab.reduce((s,r)=>s+(+r.pes||0),0)||RAB_PES;
   mkChart('cScenMain',{type:'bar',data:{
     labels:['Aktual','Optimis','Realistis','Pesimis'],
     datasets:[
-      {label:'Pemasukan',data:[masuk,T_MASUK_OPT,T_MASUK_REL,T_MASUK_PES],backgroundColor:['#16a34a','rgba(22,163,74,.4)','rgba(22,163,74,.4)','rgba(22,163,74,.4)'],borderRadius:4},
-      {label:'Pengeluaran',data:[keluar,tOpt,tRel,tPes],backgroundColor:['#dc2626','rgba(220,38,38,.4)','rgba(220,38,38,.4)','rgba(220,38,38,.4)'],borderRadius:4},
-    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top',labels:{font:{size:10}}}},scales:{y:{ticks:{callback:v=>fmtS(v),font:{size:9}},grid:{color:'#f1f5f9'}},x:{ticks:{font:{size:9}},grid:{display:false}}}}});
+      {label:'Pemasukan',data:[masuk,T_OPT,T_REL,T_PES],backgroundColor:['#16a34a','rgba(22,163,74,.4)','rgba(22,163,74,.4)','rgba(22,163,74,.4)'],borderRadius:4},
+      {label:'Pengeluaran',data:[keluar,tO,tR,tP],backgroundColor:['#dc2626','rgba(220,38,38,.4)','rgba(220,38,38,.4)','rgba(220,38,38,.4)'],borderRadius:4},
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top',labels:{font:{size:10},boxWidth:12}}},scales:{y:{ticks:{callback:v=>fmtS(v),font:{size:9}},grid:{color:'#f1f5f9'}},x:{ticks:{font:{size:9}},grid:{display:false}}}}});
 
-  // DIV COMPARE CHART
-  mkChart('cDivComp',{type:'bar',data:{labels:cats.length?cats:['Belum Ada Data'],datasets:[
-    {label:'RAB Realistis',data:cats.map(d=>D.rab.filter(r=>r.div===d).reduce((s,r)=>s+(+r.rel||0),0)),backgroundColor:'rgba(245,158,11,.5)',borderColor:'#d97706',borderWidth:1,borderRadius:3},
-    {label:'RAB Optimis',data:cats.map(d=>D.rab.filter(r=>r.div===d).reduce((s,r)=>s+(+r.opt||0),0)),backgroundColor:'rgba(59,130,246,.4)',borderRadius:3},
-    {label:'RAB Pesimis',data:cats.map(d=>D.rab.filter(r=>r.div===d).reduce((s,r)=>s+(+r.pes||0),0)),backgroundColor:'rgba(139,92,246,.4)',borderRadius:3},
-    {label:'Aktual',data:cats.map(d=>aktualKat(d)),backgroundColor:cats.map(d=>{const a=aktualKat(d),r=D.rab.filter(x=>x.div===d).reduce((s,x)=>s+(+x.rel||0),0);return a>r?'#dc2626':'#16a34a';}),borderRadius:3},
-  ]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:true,position:'top',labels:{font:{size:9}}}},scales:{x:{ticks:{callback:v=>fmtS(v),font:{size:9}}},y:{ticks:{font:{size:9}}}}}});
+  // DIV COMPARE
+  const divs=[...new Set(D.rab.map(r=>r.div))];
+  const dR=divs.map(d=>D.rab.filter(r=>r.div===d).reduce((s,r)=>s+(+r.rel||0),0));
+  const dO2=divs.map(d=>D.rab.filter(r=>r.div===d).reduce((s,r)=>s+(+r.opt||0),0));
+  const dP2=divs.map(d=>D.rab.filter(r=>r.div===d).reduce((s,r)=>s+(+r.pes||0),0));
+  const dA=divs.map(d=>aktualDiv(d));
+  mkChart('cDivComp',{type:'bar',data:{labels:divs.map(d=>d.length>10?d.slice(0,10)+'…':d),datasets:[
+    {label:'Optimis',data:dO2,backgroundColor:'rgba(59,130,246,.4)',borderRadius:2},
+    {label:'Realistis',data:dR,backgroundColor:'rgba(245,158,11,.5)',borderColor:'#d97706',borderWidth:1,borderRadius:2},
+    {label:'Pesimis',data:dP2,backgroundColor:'rgba(139,92,246,.4)',borderRadius:2},
+    {label:'Aktual',data:dA,backgroundColor:dA.map((v,i)=>v>dR[i]?'rgba(220,38,38,.8)':'rgba(22,163,74,.8)'),borderRadius:2},
+  ]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:true,position:'top',labels:{font:{size:9},boxWidth:10}}},scales:{x:{ticks:{callback:v=>fmtS(v),font:{size:9}}},y:{ticks:{font:{size:9}}}}}});
 
   // CASHFLOW
-  const allDates=[...new Set([...D.masuk.map(x=>x.tgl),...D.keluar.map(x=>x.tgl)])].sort();
-  const cfDates=allDates.length?allDates:[today()];
-  let cumM=0,cumK=0;
-  const dCM=cfDates.map(d=>{cumM+=D.masuk.filter(x=>x.tgl===d).reduce((s,x)=>s+(+x.jml),0);return cumM;});
-  const dCK=cfDates.map(d=>{cumK+=D.keluar.filter(x=>x.tgl===d).reduce((s,x)=>s+(+x.jml),0);return cumK;});
-  mkChart('cCF',{type:'line',data:{labels:cfDates.map(d=>fmtD(d)),datasets:[{label:'Kumulatif Pemasukan',data:dCM,borderColor:'#16a34a',tension:.3,fill:false,pointRadius:3},{label:'Kumulatif Pengeluaran',data:dCK,borderColor:'#dc2626',tension:.3,fill:false,pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top',labels:{font:{size:10}}}},scales:{y:{ticks:{callback:v=>fmtS(v),font:{size:9}}},x:{ticks:{font:{size:9}}}}}});
+  const allD=[...new Set([...D.masuk.map(x=>x.tgl),...D.keluar.map(x=>x.tgl)])].sort();
+  const cfD=allD.length?allD:[today()];
+  let cM=0,cK=0;
+  const dCM=cfD.map(d=>{cM+=D.masuk.filter(x=>x.tgl===d).reduce((s,x)=>s+(+x.jml),0);return cM;});
+  const dCK=cfD.map(d=>{cK+=D.keluar.filter(x=>x.tgl===d).reduce((s,x)=>s+(+x.jml),0);return cK;});
+  mkChart('cCF',{type:'line',data:{labels:cfD.map(d=>fmtD(d)),datasets:[{label:'Kumulatif Pemasukan',data:dCM,borderColor:'#16a34a',tension:.3,fill:false,pointRadius:3},{label:'Kumulatif Pengeluaran',data:dCK,borderColor:'#dc2626',tension:.3,fill:false,pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'top',labels:{font:{size:10},boxWidth:12}}},scales:{y:{ticks:{callback:v=>fmtS(v),font:{size:9}}},x:{ticks:{font:{size:9}}}}}});
 
   // TABLES
   const catsMasuk={};D.masuk.forEach(x=>{catsMasuk[x.kat]=(catsMasuk[x.kat]||0)+(+x.jml);});
-  const masukTargets={Sponsorship:6000000,'Dana Usaha':8000000,'Donasi Panitia (DOPA)':5830000,'Dana Dekanat':3750000,'Tiket Company Visit':2225000};
-  document.getElementById('lTMasuk').innerHTML=Object.entries(catsMasuk).sort((a,b)=>b[1]-a[1]).map(([k,v])=>{const tgt=masukTargets[k]||0;const gap=v-tgt;return`<tr><td>${k}</td><td class="tr" style="color:#16a34a;font-weight:700;">${fmt(v)}</td><td class="tr" style="color:var(--txm);">${tgt?fmt(tgt):'-'}</td><td class="tr" style="color:${!tgt?'var(--txm)':gap>=0?'#16a34a':'#dc2626'};font-weight:600;">${tgt?(gap>=0?'+':'')+fmt(gap):'-'}</td></tr>`;}).join('')||'<tr><td colspan="4" style="text-align:center;color:#94a3b8;padding:16px;">Belum ada data pemasukan.</td></tr>';
+  document.getElementById('lTM').innerHTML=Object.entries(catsMasuk).sort((a,b)=>b[1]-a[1]).map(([k,v])=>{const tgt=TARGET_MASUK[k]||0;const gap=v-tgt;return`<tr><td>${k}</td><td class="tr" style="color:#16a34a;font-weight:700;">${fmt(v)}</td><td class="tr" style="color:var(--txm);">${tgt?fmt(tgt):'-'}</td><td class="tr" style="color:${!tgt?'var(--txm)':gap>=0?'#16a34a':'#dc2626'};font-weight:600;">${tgt?(gap>=0?'+':'')+fmt(gap):'-'}</td></tr>`;}).join('')||'<tr><td colspan="4" style="text-align:center;color:#94a3b8;padding:16px;">Belum ada data.</td></tr>';
 
-  document.getElementById('lTKeluar').innerHTML=cats.map(d=>{const akt=aktualKat(d);const rab=D.rab.filter(r=>r.div===d).reduce((s,r)=>s+(+r.rel||0),0);const ok=akt<=rab;return`<tr><td>${d}</td><td class="tr" style="font-weight:700;color:${ok?'#16a34a':'#dc2626'};">${fmt(akt)}</td><td class="tr">${fmt(rab)}</td><td><span class="badge ${ok?'bgreen':'bred'}">${ok?'✓ OK':akt>rab*1.1?'⚠ Over':'~ Batas'}</span></td></tr>`;}).join('')||'<tr><td colspan="4" style="text-align:center;color:#94a3b8;padding:16px;">Belum ada data RAB.</td></tr>';
+  document.getElementById('lTK').innerHTML=divs.map(d=>{const a=aktualDiv(d),r=D.rab.filter(x=>x.div===d).reduce((s,x)=>s+(+x.rel||0),0);const ok=a<=r;return`<tr><td>${d.length>18?d.slice(0,18)+'…':d}</td><td class="tr" style="font-weight:700;color:${ok?'#16a34a':'#dc2626'};">${fmt(a)}</td><td class="tr">${fmt(r)}</td><td><span class="badge ${ok?'bgreen':'bred'}">${ok?'✓ OK':'⚠ Over'}</span></td></tr>`;}).join('')||'<tr><td colspan="4" style="text-align:center;color:#94a3b8;padding:16px;">Belum ada RAB.</td></tr>';
 
-  const selisih=cats.map(d=>{const akt=aktualKat(d);const rab=D.rab.filter(r=>r.div===d).reduce((s,r)=>s+(+r.rel||0),0);return{d,akt,rab,sel:rab-akt,pct:rab?Math.round(akt/rab*100):0};}).filter(x=>x.rab>0);
-  document.getElementById('lAnalisis').innerHTML=selisih.length?`<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">${selisih.sort((a,b)=>a.sel-b.sel).map(x=>`<div style="padding:10px;background:${x.sel<0?'#fee2e2':'#dcfce7'};border-radius:8px;border:1px solid ${x.sel<0?'#fca5a5':'#86efac'};"><div style="font-size:11px;font-weight:700;color:${x.sel<0?'#dc2626':'#16a34a'};margin-bottom:4px;">${x.d}</div><div style="font-size:10px;color:var(--txm);">RAB: ${fmt(x.rab)}</div><div style="font-size:10px;color:var(--txm);">Aktual: ${fmt(x.akt)}</div><div style="font-size:12px;font-weight:800;color:${x.sel<0?'#dc2626':'#16a34a'};">${x.sel>=0?'+':''}<br>${fmt(Math.abs(x.sel))} ${x.sel>=0?'sisa':'over'}</div></div>`).join('')}</div>`:'<p style="color:var(--txm);font-size:12px;text-align:center;padding:20px;">Tambahkan RAB dan pengeluaran untuk melihat analisis selisih.</p>';
+  const sel=divs.map(d=>{const a=aktualDiv(d),r=D.rab.filter(x=>x.div===d).reduce((s,x)=>s+(+x.rel||0),0);return{d,a,r,sel:r-a,pct:r?Math.round(a/r*100):0};}).filter(x=>x.r>0).sort((a,b)=>a.sel-b.sel);
+  document.getElementById('lAnalisis').innerHTML=sel.length?`<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">${sel.map(x=>`<div style="padding:10px;background:${x.sel<0?'#fee2e2':'#dcfce7'};border-radius:8px;border:1px solid ${x.sel<0?'#fca5a5':'#86efac'};"><div style="font-size:10px;font-weight:800;color:${x.sel<0?'#dc2626':'#16a34a'};margin-bottom:4px;">${x.d.length>18?x.d.slice(0,18)+'…':x.d}</div><div style="font-size:10px;color:var(--txm);">RAB: ${fmt(x.r)}</div><div style="font-size:10px;color:var(--txm);">Aktual: ${fmt(x.a)}</div><div style="font-size:13px;font-weight:800;color:${x.sel<0?'#dc2626':'#16a34a'};margin-top:4px;">${x.sel>=0?'+':''} ${fmt(Math.abs(x.sel))} <span style="font-size:10px;">${x.sel>=0?'sisa':'over'}</span></div></div>`).join('')}</div>`:'<p style="color:var(--txm);font-size:12px;text-align:center;padding:20px;">Tambah RAB dan pengeluaran untuk melihat analisis.</p>';
 }
 
 // ============ DOPA ============
 function addDopa(){
-  const n=document.getElementById('dNama').value.trim(),nom=+document.getElementById('dNom').value||50000;
-  if(!n)return alert('Nama wajib!');
-  D.dopa.push({id:uid(),nama:n,nom,lunas:false});
+  const nama=document.getElementById('dNama').value.trim(),tier=document.getElementById('dTier').value;
+  if(!nama)return alert('Nama wajib!');
+  D.dopa.push({id:uid(),nama,jabatan:'Staf',tier,nom:TIER_NOM[tier],lunas:false});
   save();document.getElementById('dNama').value='';renderDopa();
 }
 function toggleDopa(id){const x=D.dopa.find(d=>d.id===id);if(x){x.lunas=!x.lunas;save();renderDopa();}}
 function toggleAllDopa(){const all=D.dopa.every(x=>x.lunas);D.dopa.forEach(x=>x.lunas=!all);save();renderDopa();}
+function filterDopa(f){
+  D.dopaFilter=f;
+  document.getElementById('dfAll').style.background=f==='semua'?'var(--apal)':'';
+  renderDopa();
+}
 function renderDopa(){
-  const el=document.getElementById('dopaGrid');
-  el.innerHTML=D.dopa.map(x=>`<div class="di ${x.lunas?'lunas':'belum'}" onclick="toggleDopa('${x.id}')"><p style="color:${x.lunas?'#166534':'#991b1b'};">${x.nama}</p><span>${fmt(x.nom)}</span><div style="margin-top:3px;"><span class="badge ${x.lunas?'bgreen':'bred'}">${x.lunas?'✓':'✗'}</span></div></div>`).join('');
+  const f=D.dopaFilter||'semua';
+  let rows=D.dopa;if(f==='belum')rows=D.dopa.filter(x=>!x.lunas);
+  const TIER_LABEL={po:'PO/VPO',pi:'PI',bph:'BPH',staf:'STAF'};
+  const TIER_CLASS={po:'tier-po',pi:'tier-pi',bph:'tier-bph',staf:'tier-staf'};
+  document.getElementById('dopaGrid').innerHTML=rows.map(x=>`<div class="di ${x.lunas?'lunas':'belum'}" onclick="toggleDopa('${x.id}')"><p style="color:${x.lunas?'#166534':'#991b1b'};">${x.nama}</p><span class="${TIER_CLASS[x.tier]||'tier-staf'}" style="display:inline-block;margin:2px 0;">${TIER_LABEL[x.tier]||x.tier}</span><br><span>${fmt(x.nom)}</span><div style="margin-top:3px;"><span class="badge ${x.lunas?'bgreen':'bred'}">${x.lunas?'✓ Lunas':'✗ Belum'}</span></div></div>`).join('');
+
   const tot=D.dopa.length,lns=dopaLunas().length,pct=dopaPct();
-  const tkp=dopaLunas().reduce((s,x)=>s+(+x.nom),0);
-  const pot=D.dopa.reduce((s,x)=>s+(+x.nom),0);
+  const tkp=dopaLunas().reduce((s,x)=>s+(+x.nom),0),pot=D.dopa.reduce((s,x)=>s+(+x.nom),0);
   document.getElementById('dopaPct').textContent=pct+'%';
   document.getElementById('dopaBar').style.width=pct+'%';
   document.getElementById('dopaBar').style.background=pct>=95?'#16a34a':pct>=80?'#d97706':'#dc2626';
-  document.getElementById('dopaLunas').textContent=lns+' orang';
-  document.getElementById('dopaBelum').textContent=(tot-lns)+' orang';
-  document.getElementById('dopaTotal').textContent=fmt(tkp);
-  document.getElementById('dopaPot').textContent=fmt(pot);
+  document.getElementById('dopaL').textContent=lns+' orang';
+  document.getElementById('dopaB').textContent=(tot-lns)+' orang';
+  document.getElementById('dopaT').textContent=fmt(tkp);
+  document.getElementById('dopaP').textContent=fmt(pot);
+
   const st=document.getElementById('dopaStatus');
-  if(pct>=95){st.className='alert ag';st.innerHTML='✓ Target DOPA <strong>TERCAPAI</strong>!';}
-  else if(pct>=80){st.className='alert aw';st.innerHTML='⚠ DOPA '+pct+'%. Perlu '+Math.max(0,Math.ceil(tot*0.95)-lns)+' orang lagi.';}
-  else{st.className='alert ar';st.innerHTML='🚨 DOPA '+pct+'%. Butuh segera: '+Math.max(0,Math.ceil(tot*0.95)-lns)+' orang!';}
+  if(pct>=95){st.className='alert ag';st.innerHTML='✓ Target DOPA <strong>TERCAPAI</strong>! (≥95%)';}
+  else if(pct>=80){st.className='alert aw';st.innerHTML='⚠ DOPA '+pct+'%. Masih kurang '+Math.max(0,Math.ceil(tot*0.95)-lns)+' orang untuk capai 95%.';}
+  else{st.className='alert ar';st.innerHTML='🚨 DOPA baru '+pct+'%. Butuh segera: '+Math.max(0,Math.ceil(tot*0.95)-lns)+' orang!';}
+
+  // per tier
+  const tiers=['po','pi','bph','staf'];const TLBL={po:'PO/VPO',pi:'PI',bph:'BPH',staf:'Staf'};
+  document.getElementById('dopaTier').innerHTML=tiers.map(t=>{
+    const items=D.dopa.filter(x=>x.tier===t);if(!items.length)return'';
+    const l=items.filter(x=>x.lunas).length;const p=Math.round(l/items.length*100);
+    return`<div style="margin-bottom:8px;"><div style="display:flex;justify-content:space-between;margin-bottom:2px;"><span class="${TIER_CLASS[t]}">${TLBL[t]}</span><span style="font-size:10px;color:var(--txm);">${l}/${items.length} — ${fmt(items.filter(x=>x.lunas).reduce((s,x)=>s+(+x.nom),0))}</span></div><div class="pw"><div class="pf" style="background:${p>=95?'#16a34a':p>=80?'#d97706':'#dc2626'};width:${p}%;"></div></div></div>`;
+  }).join('');
 }
 
-// ============ GFORM CONFIG ============
-function saveGFormConfig(){
-  const id=document.getElementById('gfSheetId').value.trim();
+// ============ GFORM ============
+function saveGF(){
+  const id=document.getElementById('gfId').value.trim();
   const gid=document.getElementById('gfGid').value.trim();
-  if(!id){alert('ID Spreadsheet wajib!');return;}
-  D.gfConfig={sheetId:id,gid:gid||'0'};save();
-  document.getElementById('gfStatus').innerHTML='<div class="alert ag">✓ Konfigurasi tersimpan! Klik "Sync Sekarang" untuk mengambil data terbaru.</div>';
-  document.getElementById('gfBadge').innerHTML='🟡 Terkonfigurasi';
+  if(!id)return alert('ID Spreadsheet wajib!');
+  D.gf={id,gid:gid||'1244319623'};save();
+  document.getElementById('gfStat').innerHTML='<div class="alert ag">✓ Tersimpan! Klik Sync G-Form untuk ambil data.</div>';
+  document.getElementById('gfBadge').textContent='🟡 Terkonfigurasi';
 }
 
-// ============ GOOGLE FORM SYNC ============
 async function syncGForm(){
-  const cfg=D.gfConfig;
-  if(!cfg||!cfg.sheetId){
-    document.getElementById('syncResult').innerHTML='<div class="alert aw">⚠ Belum dikonfigurasi. Masuk ke <strong>Manual & Setup</strong> → isi ID Spreadsheet.</div>';
+  const cfg=D.gf;
+  const synEl=document.getElementById('syncResult');
+  if(synEl)synEl.innerHTML='<div class="alert ai">⏳ Menghubungi Google Sheets...</div>';
+  if(!cfg?.id){
+    if(synEl)synEl.innerHTML='<div class="alert aw">⚠ Belum dikonfigurasi. Masuk ke <strong>Manual & Setup</strong> → isi ID Spreadsheet.</div>';
     return;
   }
-  document.getElementById('syncResult').innerHTML='<div class="alert ai">⏳ Mengambil data dari Google Sheets...</div>';
-  const url=`https://docs.google.com/spreadsheets/d/${cfg.sheetId}/export?format=csv&gid=${cfg.gid||0}`;
+  const url=`https://docs.google.com/spreadsheets/d/${cfg.id}/export?format=csv&gid=${cfg.gid||0}`;
   try{
     const res=await fetch(url);
-    if(!res.ok)throw new Error('HTTP '+res.status+' — Pastikan spreadsheet sudah dibagikan ke publik (Anyone with link can view).');
+    if(!res.ok)throw new Error('HTTP '+res.status+' — Pastikan spreadsheet diset Anyone with link can view.');
     const txt=await res.text();
     const rows=parseCSV(txt);
-    if(rows.length<2)throw new Error('Tidak ada data responden di sheet ini.');
-    const headers=rows[0].map(h=>h.toLowerCase().trim());
+    if(rows.length<2)throw new Error('Sheet kosong atau tidak ada responden.');
+    const headers=rows[0].map(h=>(h||'').toLowerCase().trim());
     let added=0;
     rows.slice(1).forEach(row=>{
       if(!row.some(c=>c))return;
-      const get=(keys)=>{for(const k of keys){const i=headers.findIndex(h=>h.includes(k));if(i>=0&&row[i])return row[i].trim();}return '';};
-      const nama=get(['nama','name']);
-      const jenis=get(['jenis','type','tipe','reimburse','disburs','dopa']);
-      const jml=parseRp(get(['jumlah','nominal','amount','nilai','rp']));
-      const desk=get(['keterangan','keperluan','deskripsi','description','detail']);
-      const bukti=get(['bukti','nota','kode','nomor','ref']);
-      const tgl=get(['timestamp','tanggal','waktu','date'])||today();
+      const get=(...ks)=>{for(const k of ks){const i=headers.findIndex(h=>h.includes(k));if(i>=0&&row[i])return String(row[i]).trim();}return'';};
+      const nama=get('nama','name');const jml=parseRp(get('jumlah','nominal','amount','nilai','rp'));
+      const desk=get('keterangan','keperluan','deskripsi','detail');
+      const jenis=detectJenis(get('jenis','type','tipe'),desk);
+      const bukti=get('bukti','nota','kode','nomor','ref');
+      const tgl=parseTgl(get('timestamp','tanggal','waktu','date'));
       if(!nama&&!jml)return;
-      const tglClean=parseTgl(tgl);
-      const existKey=nama+'|'+jml+'|'+tglClean;
-      if(D.reimb.some(r=>r.src==='GForm'&&r._key===existKey))return;
-      D.reimb.push({id:uid(),tgl:tglClean,nama:nama||'(tidak diketahui)',jenis:detectJenis(jenis,desk)||'Reimbursement',desk:desk||'-',jml:jml||0,bukti:bukti||'-',stat:'Menunggu',batas:addDays(tglClean,7),src:'GForm',_key:existKey});
+      const key=nama+'|'+jml+'|'+tgl;
+      if(D.reimb.some(r=>r.src==='GForm'&&r._key===key))return;
+      D.reimb.push({id:uid(),tgl,nama:nama||'(?)',jenis,desk:desk||'-',jml:jml||0,bukti:bukti||'-',stat:'Menunggu',batas:addDays(tgl,7),src:'GForm',_key:key});
       added++;
     });
     D.lastSync=new Date().toISOString();save();
+    if(synEl)synEl.innerHTML=`<div class="alert ag">✓ Sync berhasil! ${added} data baru dari ${rows.length-1} total respons.</div>`;
+    document.getElementById('gfBadge').textContent='🟢 Tersambung';
+    const ls=document.getElementById('lastSync');if(ls)ls.textContent='Terakhir sync: '+new Date(D.lastSync).toLocaleString('id-ID');
     renderTReiMb();updateReiMbSummary();
-    document.getElementById('lastSync').textContent='Terakhir sync: '+new Date(D.lastSync).toLocaleString('id-ID');
-    document.getElementById('gfBadge').innerHTML='🟢 Tersambung';
-    document.getElementById('syncResult').innerHTML=`<div class="alert ag">✓ Sync berhasil! ${added} data baru ditambahkan dari ${rows.length-1} total respons.</div>`;
   }catch(err){
-    document.getElementById('syncResult').innerHTML=`<div class="alert ar">✗ Gagal sync: ${err.message}<br><small>Tip: Pastikan spreadsheet diset "Anyone with the link can view" di Google Sheets.</small></div>`;
+    if(synEl)synEl.innerHTML=`<div class="alert ar">✗ Gagal: ${err.message}<br><small>Tip: Pastikan spreadsheet diset "Anyone with the link can view" dan ID benar.</small></div>`;
   }
 }
 
 function parseCSV(txt){
   const rows=[];const lines=txt.split('\n');
-  lines.forEach(line=>{
-    const cols=[];let cur='',inQ=false;
-    for(let i=0;i<line.length;i++){if(line[i]==='"'){inQ=!inQ;}else if(line[i]===','&&!inQ){cols.push(cur);cur='';}else cur+=line[i];}
-    cols.push(cur);rows.push(cols.map(c=>c.replace(/^"|"$/g,'').trim()));
-  });
-  return rows.filter(r=>r.length>1);
+  lines.forEach(line=>{const cols=[];let cur='',inQ=false;for(let i=0;i<line.length;i++){if(line[i]==='"'){inQ=!inQ;}else if(line[i]===','&&!inQ){cols.push(cur);cur='';}else cur+=line[i];}cols.push(cur);rows.push(cols.map(c=>c.replace(/^"|"$/g,'').trim()));});
+  return rows.filter(r=>r.length>1&&r.some(c=>c));
 }
-
-function parseRp(s){if(!s)return 0;return parseInt(String(s).replace(/[^0-9]/g,''))||0;}
-function parseTgl(s){if(!s)return today();const d=new Date(s);if(!isNaN(d))return d.toISOString().split('T')[0];return today();}
-function detectJenis(j,d){
-  const t=(j+' '+d).toLowerCase();
-  if(t.includes('dopa')||t.includes('donasi'))return'DOPA';
-  if(t.includes('disburs'))return'Disbursement';
-  return'Reimbursement';
-}
+function parseRp(s){return parseInt(String(s||0).replace(/[^0-9]/g,''))||0;}
+function parseTgl(s){if(!s)return today();try{const d=new Date(s);if(!isNaN(d))return d.toISOString().split('T')[0];}catch{}return today();}
+function detectJenis(j,d){const t=((j||'')+' '+(d||'')).toLowerCase();if(t.includes('dopa')||t.includes('donasi'))return'DOPA';if(t.includes('disburs'))return'Disbursement';if(t.includes('bukti'))return'Penyerahan Bukti';return'Reimbursement';}
 
 // ============ REIMBURSE ============
 function addReiMb(){
@@ -1322,27 +1274,24 @@ function addReiMb(){
   if(!n||!d||!jml||!tgl)return alert('Semua field wajib!');
   D.reimb.push({id:uid(),tgl,nama:n,jenis:j,desk:d,jml,bukti:b,stat:'Menunggu',batas:addDays(tgl,7),src:'Manual'});
   save();['rNama','rDesk','rJml','rBukti'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('rTgl').value=today();
-  renderTReiMb();updateReiMbSummary();
+  document.getElementById('rTgl').value=today();renderTReiMb();updateReiMbSummary();
 }
 function bayarReiMb(id){const x=D.reimb.find(r=>r.id===id);if(x){x.stat='Dibayar';x.tglBayar=today();save();renderTReiMb();updateReiMbSummary();}}
 function delReiMb(id){if(!confirm('Hapus?'))return;D.reimb=D.reimb.filter(x=>x.id!==id);save();renderTReiMb();updateReiMbSummary();}
 function renderTReiMb(){
-  const f=document.getElementById('rFilter').value;
+  const f=document.getElementById('rFilt').value;
   let rows=[...D.reimb].sort((a,b)=>b.tgl.localeCompare(a.tgl));
   if(f)rows=rows.filter(x=>x.jenis===f);
   const tb=document.getElementById('tReiMb');
   if(!rows.length){tb.innerHTML='<tr><td colspan="10" style="text-align:center;color:#94a3b8;padding:20px;">Belum ada pengajuan.</td></tr>';return;}
-  tb.innerHTML=rows.map(x=>{const od=x.stat==='Menunggu'&&isOD(x.batas);return`<tr style="${od?'background:#fff7f7;':''}"><td><span class="badge ${x.src==='GForm'?'bgreen':'bgray'}">${x.src==='GForm'?'GForm':'Manual'}</span></td><td>${fmtD(x.tgl)}</td><td>${x.nama}</td><td><span class="badge ${x.jenis==='Disbursement'?'bpur':x.jenis==='DOPA'?'bpink':'bblue'}">${x.jenis}</span></td><td>${x.desk}</td><td style="font-size:11px;">${x.bukti}</td><td class="tr" style="font-weight:700;">${fmt(x.jml)}</td><td><span class="badge ${x.stat==='Dibayar'?'bgreen':'bamb'}">${x.stat}</span></td><td style="color:${od?'#dc2626':'var(--txm)'};font-size:11px;font-weight:${od?'700':'400'};">${fmtD(x.batas)}${od?' ⚠':''}</td><td class="tc" style="white-space:nowrap;">${x.stat==='Menunggu'?`<button class="btn bg2 bsm" onclick="bayarReiMb('${x.id}')" style="margin-right:3px;">✓</button>`:''}<button class="btn bd2 bsm" onclick="delReiMb('${x.id}')">✕</button></td></tr>`;}).join('');
+  tb.innerHTML=rows.map(x=>{const od=x.stat==='Menunggu'&&isOD(x.batas);return`<tr style="${od?'background:#fff5f5;':''}"><td><span class="badge ${x.src==='GForm'?'bgreen bteal':'bgray'}">${x.src==='GForm'?'GForm':'Manual'}</span></td><td>${fmtD(x.tgl)}</td><td>${x.nama}</td><td><span class="badge ${x.jenis==='Disbursement'?'bpur':x.jenis==='DOPA'?'bpink':x.jenis==='Penyerahan Bukti'?'bteal':'bblue'}">${x.jenis}</span></td><td style="max-width:150px;">${x.desk}</td><td style="font-size:11px;">${x.bukti}</td><td class="tr" style="font-weight:700;">${fmt(x.jml)}</td><td><span class="badge ${x.stat==='Dibayar'?'bgreen':'bamb'}">${x.stat}</span></td><td style="color:${od?'#dc2626':'var(--txm)'};font-size:11px;font-weight:${od?700:400};">${fmtD(x.batas)}${od?' ⚠':''}</td><td class="tc" style="white-space:nowrap;">${x.stat==='Menunggu'?`<button class="btn bg2 bsm" onclick="bayarReiMb('${x.id}')" style="margin-right:3px;">✓</button>`:''}<button class="btn bd2 bsm" onclick="delReiMb('${x.id}')">✕</button></td></tr>`;}).join('');
 }
 function updateReiMbSummary(){
   const tot=D.reimb.length,nom=D.reimb.reduce((s,x)=>s+(+x.jml),0);
   const paid=D.reimb.filter(x=>x.stat==='Dibayar').reduce((s,x)=>s+(+x.jml),0);
   const wait=D.reimb.filter(x=>x.stat==='Menunggu').reduce((s,x)=>s+(+x.jml),0);
-  document.getElementById('rCnt').textContent=tot;
-  document.getElementById('rNom').textContent=fmt(nom);
-  document.getElementById('rPaid').textContent=fmt(paid);
-  document.getElementById('rWait').textContent=fmt(wait);
+  document.getElementById('rCnt').textContent=tot;document.getElementById('rNom').textContent=fmt(nom);
+  document.getElementById('rPaid').textContent=fmt(paid);document.getElementById('rWait').textContent=fmt(wait);
   const od=D.reimb.filter(x=>x.stat==='Menunggu'&&isOD(x.batas));
   document.getElementById('rAlerts').innerHTML=od.length?`<div class="alert ar">🚨 ${od.length} pengajuan OVERDUE!</div>`:'<div class="alert ag">✓ Tidak ada yang overdue.</div>';
 }
@@ -1357,100 +1306,75 @@ function addArsip(){
   if(D.arsip.find(x=>x.kode===k))return alert('Kode sudah digunakan!');
   D.arsip.push({id:uid(),kode:k,tgl:t,jenis:j,nom,desk:d,pihak:pi,metode:m,catatan:c});
   save();['bKode','bNom','bDesk','bPihak','bCat'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('bTgl').value=today();
-  renderArsip();renderArsipStats();
+  document.getElementById('bTgl').value=today();renderArsip();renderArsipStat();
 }
-function delArsip(id){if(!confirm('Hapus?'))return;D.arsip=D.arsip.filter(x=>x.id!==id);save();renderArsip();renderArsipStats();}
+function delArsip(id){if(!confirm('Hapus?'))return;D.arsip=D.arsip.filter(x=>x.id!==id);save();renderArsip();renderArsipStat();}
 function renderArsip(){
-  const f=document.getElementById('aFilter').value;
-  let rows=[...D.arsip].sort((a,b)=>b.tgl.localeCompare(a.tgl));
-  if(f)rows=rows.filter(x=>x.jenis===f);
+  const f=document.getElementById('aFilt').value;
+  let rows=[...D.arsip].sort((a,b)=>b.tgl.localeCompare(a.tgl));if(f)rows=rows.filter(x=>x.jenis===f);
   const tb=document.getElementById('tArsip');
   if(!rows.length){tb.innerHTML='<tr><td colspan="9" style="text-align:center;color:#94a3b8;padding:20px;">Belum ada arsip.</td></tr>';return;}
-  tb.innerHTML=rows.map(x=>`<tr><td style="font-weight:700;color:#1e40af;font-family:monospace;font-size:11px;">${x.kode}</td><td>${fmtD(x.tgl)}</td><td><span class="badge ${x.jenis==='Pemasukan'?'bgreen':x.jenis==='Pengeluaran'?'bred':'bblue'}">${x.jenis}</span></td><td>${x.desk}</td><td>${x.pihak||'-'}</td><td><span class="badge bgray">${x.metode}</span></td><td class="tr" style="font-weight:700;">${fmt(x.nom)}</td><td style="font-size:11px;color:var(--txm);">${x.catatan||'-'}</td><td class="tc"><button class="btn bd2 bsm" onclick="delArsip('${x.id}')">✕</button></td></tr>`).join('');
+  tb.innerHTML=rows.map(x=>`<tr><td style="font-weight:700;color:#1e40af;font-family:monospace;font-size:11px;">${x.kode}</td><td>${fmtD(x.tgl)}</td><td><span class="badge ${x.jenis==='Pemasukan'?'bgreen':x.jenis==='Pengeluaran'?'bred':'bblue'}">${x.jenis}</span></td><td>${x.desk}</td><td>${x.pihak||'-'}</td><td><span class="badge bgray">${x.metode}</span></td><td class="tr" style="font-weight:700;">${fmt(x.nom)}</td><td style="font-size:11px;color:var(--txm);max-width:100px;overflow:hidden;text-overflow:ellipsis;">${x.catatan||'-'}</td><td class="tc"><button class="btn bd2 bsm" onclick="delArsip('${x.id}')">✕</button></td></tr>`).join('');
 }
-function renderArsipStats(){
-  const tot=D.arsip.length,totalNom=D.arsip.reduce((s,x)=>s+(+x.nom),0);
+function renderArsipStat(){
+  const tot=D.arsip.length,totN=D.arsip.reduce((s,x)=>s+(+x.nom),0);
   const byJ={};D.arsip.forEach(x=>{byJ[x.jenis]=(byJ[x.jenis]||0)+1;});
-  document.getElementById('arsipStats').innerHTML=`<div style="margin-bottom:10px;"><div style="font-size:11px;color:var(--txm);">Total Arsip</div><div style="font-size:22px;font-weight:800;color:var(--navy);">${tot} dokumen</div></div><div style="margin-bottom:12px;"><div style="font-size:11px;color:var(--txm);">Total Nominal</div><div style="font-size:16px;font-weight:700;">${fmt(totalNom)}</div></div><hr class="divider">${Object.entries(byJ).map(([k,v])=>`<div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;">${k}</span><span class="badge bgray">${v} dok</span></div>`).join('')}`;
+  document.getElementById('arsipStat').innerHTML=`<div style="margin-bottom:10px;"><div style="font-size:11px;color:var(--txm);">Total Dokumen</div><div style="font-size:22px;font-weight:800;color:var(--navy);">${tot}</div></div><div style="margin-bottom:12px;"><div style="font-size:11px;color:var(--txm);">Total Nominal</div><div style="font-size:15px;font-weight:700;">${fmt(totN)}</div></div><hr class="divider">${Object.entries(byJ).map(([k,v])=>`<div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:12px;">${k}</span><span class="badge bgray">${v} dok</span></div>`).join('')||'<p style="font-size:11px;color:#94a3b8;">Belum ada arsip.</p>'}`;
 }
 
-// ============ SPO ============
+// ============ SPO & CHECKLIST ============
 function renderSPO(){
   const rabOk=D.rab.length>0;const dopaOk=dopaPct()>=95;
   const keluar=totalKeluar(),rabRel=D.rab.reduce((s,r)=>s+(+r.rel||0),0)||RAB_REL;
   const ctrlOk=rabRel?keluar/rabRel<=1.1:true;
-  const rTotal=D.reimb.length,rDone=D.reimb.filter(x=>x.stat==='Dibayar').length;
-  const rOk=rTotal?rDone/rTotal>=0.95:true;
-  document.getElementById('spo-rab').innerHTML=`<span class="badge ${rabOk?'bgreen':'bred'}">${rabOk?'✓ Ada':'✗ Belum'}</span>`;
-  document.getElementById('spo-ctrl').innerHTML=`<span class="badge ${ctrlOk?'bgreen':'bamb'}">${ctrlOk?'✓ OK':'⚠ Perhatian'}</span>`;
-  document.getElementById('spo-dopa').innerHTML=`<span class="badge ${dopaOk?'bgreen':dopaPct()>=80?'bamb':'bred'}">${dopaPct()}%</span>`;
-  document.getElementById('spo-reimb').innerHTML=`<span class="badge ${rOk?'bgreen':'bamb'}">${rTotal?Math.round(rDone/rTotal*100):100}%</span>`;
+  const rTot=D.reimb.length,rDone=D.reimb.filter(x=>x.stat==='Dibayar').length,rOk=rTot?rDone/rTot>=0.95:true;
+  document.getElementById('s-rab').innerHTML=`<span class="badge ${rabOk?'bgreen':'bred'}">${rabOk?'✓ Tersedia':'✗ Belum'}</span>`;
+  document.getElementById('s-ctrl').innerHTML=`<span class="badge ${ctrlOk?'bgreen':'bamb'}">${ctrlOk?'✓ OK':'⚠ Perhatian'}</span>`;
+  document.getElementById('s-dopa').innerHTML=`<span class="badge ${dopaOk?'bgreen':dopaPct()>=80?'bamb':'bred'}">${dopaPct()}%</span>`;
+  document.getElementById('s-reimb').innerHTML=`<span class="badge ${rOk?'bgreen':'bamb'}">${rTot?Math.round(rDone/rTot*100):100}%</span>`;
 }
 function renderChk(){
   ['pra','hari','pasca'].forEach(ph=>{
     const el=document.getElementById('chk'+ph.charAt(0).toUpperCase()+ph.slice(1));
-    el.innerHTML=D.chk[ph].map(x=>`<div onclick="toggleChk('${ph}','${x.id}')" class="todo-item"><div class="todo-cb ${x.done?'done':''}">${x.done?'✓':''}</div><span class="todo-text ${x.done?'done':''}">${x.text}</span></div>`).join('');
+    if(!el)return;
+    el.innerHTML=D.chk[ph].map(x=>`<div onclick="togChk('${ph}','${x.id}')" class="todo-item"><div class="todo-cb ${x.done?'done':''}">${x.done?'✓':''}</div><span class="todo-text ${x.done?'done':''}">${x.text}</span></div>`).join('');
   });
 }
-function toggleChk(ph,id){const x=D.chk[ph].find(c=>c.id===id);if(x){x.done=!x.done;save();renderChk();}}
+function togChk(ph,id){const x=D.chk[ph].find(c=>c.id===id);if(x){x.done=!x.done;save();renderChk();}}
 
 // ============ TODO ============
+const PH_COLORS={RAB:'#3b82f6',SPO:'#7c3aed',DOPA:'#ec4899','Pre-Event':'#0d9488','Main Event':'#d97706',Pasca:'#dc2626',Lain:'#64748b'};
+const PRI_C={Tinggi:'bred',Sedang:'bamb',Rendah:'bgray'};
 function renderTodo(){
-  const phases=[...new Set(D.todo.map(t=>t.phase))];
   const done=D.todo.filter(t=>t.done).length;
   const pct=D.todo.length?Math.round(done/D.todo.length*100):0;
-  document.getElementById('todoPct').textContent=pct+'% selesai ('+done+'/'+D.todo.length+')';
-  document.getElementById('todoBar').style.width=pct+'%';
-
-  const phColors={RAB:'#3b82f6',SPO:'#7c3aed',DOPA:'#ec4899','Pre-Event':'#0d9488','Main Event':'#d97706',Pasca:'#dc2626',Lain:'#64748b'};
-  const priColors={Tinggi:'bred',Sedang:'bamb',Rendah:'bgray'};
-
-  // Grouped by phase
+  document.getElementById('tdPct').textContent=pct+'% selesai ('+done+'/'+D.todo.length+')';
+  document.getElementById('tdBar').style.width=pct+'%';
   const grouped={};D.todo.forEach(t=>{if(!grouped[t.phase])grouped[t.phase]=[];grouped[t.phase].push(t);});
-  document.getElementById('todoList').innerHTML=Object.entries(grouped).map(([ph,items])=>`
-    <div style="margin-bottom:14px;">
-      <div style="font-size:11px;font-weight:800;color:${phColors[ph]||'#64748b'};text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;padding:3px 8px;background:${phColors[ph]||'#64748b'}18;border-radius:5px;display:inline-block;">${ph}</div>
-      ${items.map(t=>`<div class="todo-item" onclick="toggleTodo('${t.id}')">
-        <div class="todo-cb ${t.done?'done':''}">${t.done?'✓':''}</div>
-        <span class="todo-text ${t.done?'done':''}" style="flex:1;">${t.text}</span>
-        <span class="badge ${priColors[t.pri]||'bgray'} todo-tag">${t.pri}</span>
-        <button onclick="event.stopPropagation();delTodo('${t.id}')" class="btn bd2 bsm" style="margin-left:4px;padding:2px 6px;">✕</button>
-      </div>`).join('')}
-    </div>`).join('');
-
-  // Phase progress
-  document.getElementById('todoPhaseProgress').innerHTML=Object.entries(grouped).map(([ph,items])=>{
-    const d=items.filter(t=>t.done).length,p=Math.round(d/items.length*100);
-    return`<div style="margin-bottom:10px;"><div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span style="font-size:11px;font-weight:700;color:${phColors[ph]||'#64748b'};">${ph}</span><span style="font-size:10px;color:var(--txm);">${d}/${items.length}</span></div><div class="pw"><div class="pf" style="background:${phColors[ph]||'#64748b'};width:${p}%;"></div></div></div>`;
-  }).join('');
+  document.getElementById('tdList').innerHTML=Object.entries(grouped).map(([ph,items])=>`<div style="margin-bottom:12px;"><div style="font-size:10px;font-weight:800;color:${PH_COLORS[ph]||'#64748b'};text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;padding:2px 7px;background:${PH_COLORS[ph]||'#64748b'}18;border-radius:4px;display:inline-block;">${ph}</div>${items.map(t=>`<div class="todo-item" onclick="togTodo('${t.id}')"><div class="todo-cb ${t.done?'done':''}">${t.done?'✓':''}</div><span class="todo-text ${t.done?'done':''}">${t.text}</span><span class="badge ${PRI_C[t.pri]||'bgray'}" style="margin-left:auto;flex-shrink:0;">${t.pri}</span><button onclick="event.stopPropagation();delTodo('${t.id}')" class="btn bd2 bsm" style="margin-left:4px;padding:2px 6px;">✕</button></div>`).join('')}</div>`).join('');
+  document.getElementById('tdPhase').innerHTML=Object.entries(grouped).map(([ph,items])=>{const d=items.filter(t=>t.done).length,p=Math.round(d/items.length*100);return`<div style="margin-bottom:9px;"><div style="display:flex;justify-content:space-between;margin-bottom:2px;"><span style="font-size:11px;font-weight:700;color:${PH_COLORS[ph]||'#64748b'};">${ph}</span><span style="font-size:10px;color:var(--txm);">${d}/${items.length}</span></div><div class="pw"><div class="pf" style="background:${PH_COLORS[ph]||'#64748b'};width:${p}%;"></div></div></div>`;}).join('');
 }
-function toggleTodo(id){const t=D.todo.find(x=>x.id===id);if(t){t.done=!t.done;save();renderTodo();}}
+function togTodo(id){const t=D.todo.find(x=>x.id===id);if(t){t.done=!t.done;save();renderTodo();}}
 function delTodo(id){if(!confirm('Hapus?'))return;D.todo=D.todo.filter(x=>x.id!==id);save();renderTodo();}
 function addTodo(){
-  const txt=document.getElementById('newTodo').value.trim();
-  const phase=document.getElementById('newTodoPhase').value;
-  const pri=document.getElementById('newTodoPri').value;
+  const txt=document.getElementById('newTd').value.trim();
   if(!txt)return alert('Nama to-do wajib!');
-  D.todo.push({id:uid(),text:txt,phase,pri,done:false});
-  save();document.getElementById('newTodo').value='';renderTodo();
+  D.todo.push({id:uid(),text:txt,phase:document.getElementById('newTdPhase').value,pri:document.getElementById('newTdPri').value,done:false});
+  save();document.getElementById('newTd').value='';renderTodo();
 }
 
 // ============ EXPORT ============
 function exportCSV(){
   const lines=['LAPORAN KEUANGAN STCE 2026','Bendahara Controller: Resty Novika Febrilia','BNI: 1988428515','Export: '+new Date().toLocaleDateString('id-ID'),'',
-    '--- PEMASUKAN ---','Tanggal,Deskripsi,Kategori,Jumlah,Pihak,Bukti,Sumber',
-    ...D.masuk.map(x=>`${x.tgl},"${x.desk}",${x.kat},${x.jml},"${x.pihak||''}",${x.bukti||''},${x.src||'Manual'}`),
-    '','--- PENGELUARAN ---','Tanggal,Deskripsi,Kategori,Jumlah,Status,Bukti',
-    ...D.keluar.map(x=>`${x.tgl},"${x.desk}",${x.kat},${x.jml},${x.stat},${x.bukti||''}`),
-    '','--- RAB ---','Nama Pos,Divisi,Optimis,Realistis,Pesimis',
-    ...D.rab.map(r=>`"${r.nama}",${r.div},${r.opt},${r.rel},${r.pes}`),
-    '','--- REIMBURSE ---','Tanggal,Nama,Jenis,Deskripsi,Jumlah,Status,Sumber',
-    ...D.reimb.map(x=>`${x.tgl},"${x.nama}",${x.jenis},"${x.desk}",${x.jml},${x.stat},${x.src||'Manual'}`)
+    '--- RINGKASAN ---','Total Pemasukan,'+fmt(totalMasuk()),'Total Pengeluaran,'+fmt(totalKeluar()),'Saldo Bersih,'+fmt(totalMasuk()-totalLunas()),'',
+    '--- RAB 2026 ---','Divisi,Optimis,Realistis,Pesimis',...D.rab.map(r=>`"${r.div}",${r.opt},${r.rel},${r.pes}`),'',
+    '--- PEMASUKAN ---','Tanggal,Deskripsi,Kategori,Jumlah,Pihak,Bukti',...D.masuk.map(x=>`${x.tgl},"${x.desk}",${x.kat},${x.jml},"${x.pihak||''}",${x.bukti||''}`),'',
+    '--- PENGELUARAN ---','Tanggal,Deskripsi,Kategori,Jumlah,Status,Bukti',...D.keluar.map(x=>`${x.tgl},"${x.desk}",${x.kat},${x.jml},${x.stat},${x.bukti||''}`),'',
+    '--- DOPA ---','Nama,Jabatan,Tier,Nominal,Status',...D.dopa.map(x=>`"${x.nama}","${x.jabatan||''}",${x.tier},${x.nom},${x.lunas?'Lunas':'Belum'}`),'',
+    '--- REIMBURSE/DISBURSEMENT ---','Tanggal,Nama,Jenis,Deskripsi,Jumlah,Status,Batas Bayar,Sumber',...D.reimb.map(x=>`${x.tgl},"${x.nama}",${x.jenis},"${x.desk}",${x.jml},${x.stat},${x.batas||''},${x.src||'Manual'}`)
   ];
   const blob=new Blob([lines.join('\n')],{type:'text/csv;charset=utf-8;'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');a.href=url;a.download='laporan_keuangan_stce2026.csv';a.click();
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='laporan_keuangan_stce2026.csv';a.click();URL.revokeObjectURL(url);
 }
 
 // ============ INIT ============
@@ -1458,11 +1382,10 @@ document.addEventListener('DOMContentLoaded',()=>{
   load();
   document.getElementById('currDate').textContent=new Date().toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
   ['pTgl','eTgl','rTgl','bTgl'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=today();});
-  if(D.gfConfig?.sheetId){document.getElementById('gfSheetId').value=D.gfConfig.sheetId;document.getElementById('gfGid').value=D.gfConfig.gid||'';}
-  if(D.lastSync)document.getElementById('lastSync').textContent='Terakhir sync: '+new Date(D.lastSync).toLocaleString('id-ID');
-  document.getElementById('gfBadge').innerHTML=D.gfConfig?.sheetId?'🟡 Terkonfigurasi':'⚪ Belum tersambung';
-  updateEKatDropdown();
-  renderDashboard();
+  if(D.gf?.id){const el=document.getElementById('gfId');if(el)el.value=D.gf.id;const eg=document.getElementById('gfGid');if(eg)eg.value=D.gf.gid||'';}
+  if(D.lastSync){const ls=document.getElementById('lastSync');if(ls)ls.textContent='Terakhir sync: '+new Date(D.lastSync).toLocaleString('id-ID');}
+  const gb=document.getElementById('gfBadge');if(gb)gb.textContent=D.gf?.id?'🟡 Terkonfigurasi':'⚪ Belum tersambung';
+  renderDash();
 });
 </script>
 </body>
