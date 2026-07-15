@@ -1264,7 +1264,9 @@ function parseCSV(txt){
 }
 function parseRp(s){return parseInt(String(s||0).replace(/[^0-9]/g,''))||0;}
 function parseTgl(s){if(!s)return today();try{const d=new Date(s);if(!isNaN(d))return d.toISOString().split('T')[0];}catch{}return today();}
-function detectJenis(j,d){const t=((j||'')+' '+(d||'')).toLowerCase();if(t.includes('dopa')||t.includes('donasi'))return'DOPA';if(t.includes('disburs'))return'Disbursement';if(t.includes('bukti'))return'Penyerahan Bukti';return'Reimbursement';}
+function detectJenis(j,d){const t=((j||'')+' '+(d||'')).toLowerCase();if(t.includes('sanksi')||t.includes('denda'))return'Sanksi';if(t.includes('dopa')||t.includes('donasi'))return'DOPA';if(t.includes('disburs'))return'Disbursement';if(t.includes('bukti'))return'Penyerahan Bukti';return'Reimbursement';}
+function normNama(s){return String(s||'').toLowerCase().trim().replace(/\s+/g,' ');}
+function findDopaMatch(nama){const n=normNama(nama);if(!n)return null;return D.dopa.find(x=>normNama(x.nama)===n)||D.dopa.find(x=>normNama(x.nama).includes(n)||n.includes(normNama(x.nama)))||null;}
 
 // ============ REIMBURSE ============
 function addReiMb(){
@@ -1276,7 +1278,18 @@ function addReiMb(){
   save();['rNama','rDesk','rJml','rBukti'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('rTgl').value=today();renderTReiMb();updateReiMbSummary();
 }
-function bayarReiMb(id){const x=D.reimb.find(r=>r.id===id);if(x){x.stat='Dibayar';x.tglBayar=today();save();renderTReiMb();updateReiMbSummary();}}
+function bayarReiMb(id){
+  const x=D.reimb.find(r=>r.id===id);if(!x)return;
+  x.stat='Dibayar';x.tglBayar=today();
+  let note='';
+  if(x.jenis==='DOPA'){
+    const m=findDopaMatch(x.nama);
+    if(m&&!m.lunas){m.lunas=true;note='\n\n✓ Status DOPA "'+m.nama+'" otomatis diupdate jadi Lunas di halaman DOPA.';}
+    else if(!m){note='\n\n⚠ Nama "'+x.nama+'" tidak ditemukan di roster DOPA. Cek & update manual di halaman DOPA.';}
+  }
+  save();renderTReiMb();updateReiMbSummary();
+  if(x.jenis==='DOPA'){renderDopa();if(note)alert('Pembayaran dikonfirmasi.'+note);}
+}
 function delReiMb(id){if(!confirm('Hapus?'))return;D.reimb=D.reimb.filter(x=>x.id!==id);save();renderTReiMb();updateReiMbSummary();}
 function renderTReiMb(){
   const f=document.getElementById('rFilt').value;
@@ -1284,7 +1297,7 @@ function renderTReiMb(){
   if(f)rows=rows.filter(x=>x.jenis===f);
   const tb=document.getElementById('tReiMb');
   if(!rows.length){tb.innerHTML='<tr><td colspan="10" style="text-align:center;color:#94a3b8;padding:20px;">Belum ada pengajuan.</td></tr>';return;}
-  tb.innerHTML=rows.map(x=>{const od=x.stat==='Menunggu'&&isOD(x.batas);return`<tr style="${od?'background:#fff5f5;':''}"><td><span class="badge ${x.src==='GForm'?'bgreen bteal':'bgray'}">${x.src==='GForm'?'GForm':'Manual'}</span></td><td>${fmtD(x.tgl)}</td><td>${x.nama}</td><td><span class="badge ${x.jenis==='Disbursement'?'bpur':x.jenis==='DOPA'?'bpink':x.jenis==='Penyerahan Bukti'?'bteal':'bblue'}">${x.jenis}</span></td><td style="max-width:150px;">${x.desk}</td><td style="font-size:11px;">${x.bukti}</td><td class="tr" style="font-weight:700;">${fmt(x.jml)}</td><td><span class="badge ${x.stat==='Dibayar'?'bgreen':'bamb'}">${x.stat}</span></td><td style="color:${od?'#dc2626':'var(--txm)'};font-size:11px;font-weight:${od?700:400};">${fmtD(x.batas)}${od?' ⚠':''}</td><td class="tc" style="white-space:nowrap;">${x.stat==='Menunggu'?`<button class="btn bg2 bsm" onclick="bayarReiMb('${x.id}')" style="margin-right:3px;">✓</button>`:''}<button class="btn bd2 bsm" onclick="delReiMb('${x.id}')">✕</button></td></tr>`;}).join('');
+  tb.innerHTML=rows.map(x=>{const od=x.stat==='Menunggu'&&isOD(x.batas);return`<tr style="${od?'background:#fff5f5;':''}"><td><span class="badge ${x.src==='GForm'?'bgreen bteal':'bgray'}">${x.src==='GForm'?'GForm':'Manual'}</span></td><td>${fmtD(x.tgl)}</td><td>${x.nama}</td><td><span class="badge ${x.jenis==='Disbursement'?'bpur':x.jenis==='DOPA'?'bpink':x.jenis==='Sanksi'?'bamb':x.jenis==='Penyerahan Bukti'?'bteal':'bblue'}">${x.jenis}</span></td><td style="max-width:150px;">${x.desk}</td><td style="font-size:11px;">${x.bukti}</td><td class="tr" style="font-weight:700;">${fmt(x.jml)}</td><td><span class="badge ${x.stat==='Dibayar'?'bgreen':'bamb'}">${x.stat}</span></td><td style="color:${od?'#dc2626':'var(--txm)'};font-size:11px;font-weight:${od?700:400};">${fmtD(x.batas)}${od?' ⚠':''}</td><td class="tc" style="white-space:nowrap;">${x.stat==='Menunggu'?`<button class="btn bg2 bsm" onclick="bayarReiMb('${x.id}')" style="margin-right:3px;">✓</button>`:''}<button class="btn bd2 bsm" onclick="delReiMb('${x.id}')">✕</button></td></tr>`;}).join('');
 }
 function updateReiMbSummary(){
   const tot=D.reimb.length,nom=D.reimb.reduce((s,x)=>s+(+x.jml),0);
